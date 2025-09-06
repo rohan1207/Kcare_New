@@ -62,11 +62,7 @@ export default function Navbar() {
           <div className="hidden items-center gap-3 md:flex">
             <button
               type="button"
-              onClick={(e) => {
-                e.preventDefault();
-                console.log('Patient Portal button clicked');
-                setIsAuthModalOpen(true);
-              }}
+              onClick={() => window.open('https://kcare-patient-portal.onrender.com', '_blank')}
               className="rounded-full border border-teal-200 px-4 py-2 text-sm font-semibold text-teal-700 hover:border-teal-300"
             >
               Patient Portal
