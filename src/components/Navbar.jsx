@@ -67,23 +67,39 @@ export default function Navbar() {
           <div className="hidden flex-1 items-center justify-end gap-3 md:flex">
            
             <a
-              href="#book"
+              href="/book"
               className="rounded-full bg-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-600"
             >
               Book consultation
             </a>
-             <button
-              type="button"
-              onClick={() =>
-                window.open(
-                  "https://kcare-patient-portal.onrender.com",
-                  "_blank"
-                )
-              }
-              className="rounded-full border border-teal-200 px-4 py-2 text-sm font-semibold text-teal-700 hover:border-teal-300"
-            >
-              Login
-            </button>
+             <div className="relative group">
+              <button
+                type="button"
+                className="rounded-full border border-teal-200 px-4 py-2 text-sm font-semibold text-teal-700 hover:border-teal-300 inline-flex items-center gap-1"
+              >
+                Login
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                </svg>
+              </button>
+              {/* Dropdown menu */}
+              <div className="absolute right-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
+                <div className="bg-white rounded-lg shadow-lg border border-stone-200/70 overflow-hidden">
+                  <button
+                    onClick={() => window.open("https://kcare-patient-portal.onrender.com", "_blank")}
+                    className="w-full px-4 py-2 text-sm text-stone-700 hover:bg-stone-50 hover:text-teal-700 text-left"
+                  >
+                    Patient
+                  </button>
+                  <button
+                    onClick={() => window.open("https://kcare-admin-portal.onrender.com", "_blank")}
+                    className="w-full px-4 py-2 text-sm text-stone-700 hover:bg-stone-50 hover:text-teal-700 text-left"
+                  >
+                    Admin/Doctor
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
 
           <button
@@ -140,26 +156,30 @@ export default function Navbar() {
               <div className="mt-3 flex gap-2">
                
                 <a
-                  href="#book"
+                  href="/book"
                   className="flex-1 rounded-full bg-amber-500 px-4 py-2 text-center text-sm font-semibold text-white"
                 >
                   Book
                 </a>
-                 <button
-                  onClick={() => setIsAuthModalOpen(true)}
-                  className="flex-1 rounded-full border border-teal-200 px-4 py-2 text-center text-sm font-semibold text-teal-700"
-                >
-                  Login
-                </button>
+                 <div className="flex-1 space-y-2">
+                  <button
+                    onClick={() => window.open("https://kcare-patient-portal.onrender.com", "_blank")}
+                    className="w-full rounded-full border border-teal-200 px-4 py-2 text-center text-sm font-semibold text-teal-700 hover:bg-teal-50"
+                  >
+                    Patient Login
+                  </button>
+                  <button
+                    onClick={() => window.open("https://kcare-admin-portal.onrender.com", "_blank")}
+                    className="w-full rounded-full border border-teal-200 px-4 py-2 text-center text-sm font-semibold text-teal-700 hover:bg-teal-50"
+                  >
+                    Admin/Doctor Login
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         )}
       </header>
-
-      {isAuthModalOpen && (
-        <AuthModal onClose={() => setIsAuthModalOpen(false)} />
-      )}
     </>
   );
 }

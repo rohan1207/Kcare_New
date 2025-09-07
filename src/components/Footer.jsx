@@ -72,7 +72,7 @@ export default function Footer() {
                   </a>
                 </li>
                 <li>
-                  <a className="hover:text-stone-900" href="#book">
+                  <a className="hover:text-stone-900" href="/book">
                     Book consultation
                   </a>
                 </li>

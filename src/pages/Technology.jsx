@@ -144,80 +144,49 @@ function dotBgClass(category) {
   }
 }
 
-function TechnologyCard({ item, index }) {
-  const [isHovered, setIsHovered] = useState(false);
+function TechnologyCard({ item }) {
   const IconComponent = item.icon;
 
   return (
-    <div
-      className="group relative overflow-hidden rounded-3xl bg-white border border-stone-200/70 shadow-lg hover:shadow-xl transition-all duration-700 hover:-translate-y-2"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Soft amber/teal wash */}
-      <div
-        className={`absolute inset-0 bg-gradient-to-br from-amber-50 to-teal-50 opacity-0 group-hover:opacity-10 transition-opacity duration-700`}
-      />
-
-      <div className="relative bg-white rounded-3xl p-8">
+    <div className="group overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg">
+      <div className="p-6">
         {/* Icon and Category */}
-        <div className="flex items-center justify-between mb-6">
-          <div
-            className={`p-3 rounded-2xl bg-gradient-to-br from-teal-600 to-amber-600 shadow-lg`}
-          >
-            <IconComponent className="w-6 h-6 text-white" />
+        <div className="flex items-center justify-between mb-4">
+          <div className="p-2 rounded-lg bg-teal-50">
+            <IconComponent className="w-5 h-5 text-teal-600" />
           </div>
-          <span
-            className={`px-3 py-1 rounded-full text-xs font-semibold border ${pillClasses(
-              item.category
-            )}`}
-          >
+          <span className={`px-3 py-1 rounded-full text-xs font-medium border ${pillClasses(item.category)}`}>
             {item.category}
           </span>
         </div>
 
         {/* Title */}
-        <h3 className="text-xl font-semibold text-stone-900 mb-4 leading-tight group-hover:text-stone-800 transition-colors">
+        <h3 className="font-display text-lg font-medium text-stone-900 mb-3">
           {item.title}
         </h3>
 
         {/* Description */}
-        <p className="text-stone-600 text-sm leading-relaxed mb-6">
+        <p className="text-sm leading-relaxed text-stone-600 mb-4">
           {item.description}
         </p>
 
-        {/* Features - Show on hover */}
-        <div
-          className={`transition-all duration-500 overflow-hidden ${
-            isHovered ? "max-h-40 opacity-100" : "max-h-0 opacity-0"
-          }`}
-        >
-          <div className="border-t border-stone-100 pt-4 mb-6">
-            <div className="grid grid-cols-2 gap-2">
-              {item.features.map((feature, idx) => (
-                <div
-                  key={idx}
-                  className="flex items-center text-xs text-stone-600"
-                >
-                  <div
-                    className={`w-1.5 h-1.5 rounded-full mr-2 flex-shrink-0 ${dotBgClass(
-                      item.category
-                    )}`}
-                  />
-                  {feature}
-                </div>
-              ))}
+        {/* Features */}
+        <div className="grid grid-cols-2 gap-2 mb-6">
+          {item.features.map((feature, idx) => (
+            <div key={idx} className="flex items-center text-xs text-stone-600">
+              <div className={`w-1 h-1 rounded-full mr-2 flex-shrink-0 ${dotBgClass(item.category)}`} />
+              {feature}
             </div>
-          </div>
+          ))}
         </div>
 
         {/* CTA Button */}
-        <button
-          className={`w-full flex items-center justify-center gap-2 px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-300 bg-teal-600 text-white shadow-lg hover:shadow-xl transform hover:scale-105 hover:bg-teal-700`}
-        >
-          Learn More
-          <ArrowRightIcon className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-        </button>
+        <div className="mt-4">
+          <button className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-100">
+            Learn more
+            <ArrowRightIcon className="h-4 w-4" />
+          </button>
+        </div>
       </div>
     </div>
   );
@@ -300,10 +269,10 @@ export default function Technology() {
               <button
                 key={category}
                 onClick={() => setActiveCategory(category)}
-                className={`px-6 py-3 rounded-2xl font-medium transition-all duration-300 ${
+                className={`px-4 py-1.5 rounded-full font-medium text-sm transition-all duration-300 ${
                   activeCategory === category
-                    ? "bg-amber-500 text-white shadow-sm transform scale-105 hover:bg-amber-600"
-                    : "bg-white/80 backdrop-blur-xl border border-stone-200 text-stone-800 hover:shadow-md hover:scale-105"
+                    ? "bg-teal-50 text-teal-700"
+                    : "text-stone-600 hover:bg-stone-50"
                 }`}
               >
                 {category}
@@ -315,8 +284,8 @@ export default function Technology() {
 
       {/* Technology Grid */}
       <section className="px-6 pb-24">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="mx-auto max-w-7xl">
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {filteredTech.map((tech, index) => (
               <div
                 key={tech.title}
@@ -327,7 +296,7 @@ export default function Technology() {
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
-                <TechnologyCard item={tech} index={index} />
+                <TechnologyCard item={tech} />
               </div>
             ))}
           </div>

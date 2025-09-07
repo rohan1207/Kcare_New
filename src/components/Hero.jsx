@@ -1,7 +1,10 @@
 // Hero for Hcare – uses robo6.png as background, clean layout inspired by reference
 export default function Hero() {
   return (
-    <section id="home" className="relative isolate flex min-h-screen items-center justify-center">
+    <section
+      id="home"
+      className="relative isolate flex min-h-screen items-center justify-center"
+    >
       {/* Background image with soft overlay */}
       <div
         className="absolute inset-0 -z-10 bg-cover bg-center"
@@ -23,7 +26,7 @@ export default function Hero() {
 
         <div className="mt-8 flex justify-center gap-3">
           <a
-            href="#book"
+            href="/book"
             className="rounded-full bg-teal-600 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-teal-700"
           >
             Book a consultation

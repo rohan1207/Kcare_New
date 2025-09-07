@@ -46,7 +46,7 @@ export default function FAQ() {
           </h2>
           <div className="mt-8 flex flex-wrap gap-4">
             <a
-              href="#book"
+              href="/book"
               className="rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-amber-600"
             >
               Book an Appointment

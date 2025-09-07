@@ -5,6 +5,8 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
 import ContactUs from "./pages/ContactUs";
+import BookAppointment from "./pages/BookAppointment";
+
 import AboutUs from "./pages/AboutUs";
 
 export default function App() {
@@ -18,6 +20,7 @@ export default function App() {
           <Route path="/about" element={<AboutUs />} />
          
           <Route path="/contact" element={<ContactUs />} />
+          <Route path="/book" element={<BookAppointment />} />
         </Routes>
         <Footer />
       </BrowserRouter>

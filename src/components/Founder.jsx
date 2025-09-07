@@ -107,7 +107,7 @@ export default function Founder() {
 
             <div className="mt-6 flex flex-wrap gap-3">
               <a
-                href="#book"
+                href="/book"
                 className="rounded-full bg-amber-500 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-amber-600"
               >
                 Book a consultation
