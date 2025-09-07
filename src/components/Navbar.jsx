@@ -24,15 +24,19 @@ export default function Navbar() {
             : "bg-transparent backdrop-blur-0")
         }
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 md:px-6">
-          <a href="/" className="flex items-center gap-2">
-            <img src="/logo1.png" alt="Hcare" className="h-9 w-auto" />
-            <span className="font-display text-xl tracking-tight text-stone-900">
-              K care
-            </span>
-          </a>
+        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 md:px-6">
+          {/* Left section */}
+          <div className="flex flex-1 items-center justify-start">
+            <a href="/" className="flex items-center gap-2">
+              <img src="/logo1.png" alt="Hcare" className="h-12 w-auto" />
+              <span className="font-display text-2xl tracking-tight text-stone-900">
+                K care
+              </span>
+            </a>
+          </div>
 
-          <div className="hidden items-center gap-8 md:flex">
+          {/* Center section */}
+          <div className="hidden flex-1 items-center justify-center gap-8 md:flex">
             <a
               href="#services"
               className="text-sm font-medium text-stone-700 hover:text-teal-700"
@@ -59,20 +63,27 @@ export default function Navbar() {
             </a>
           </div>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <button
-              type="button"
-              onClick={() => window.open('https://kcare-patient-portal.onrender.com', '_blank')}
-              className="rounded-full border border-teal-200 px-4 py-2 text-sm font-semibold text-teal-700 hover:border-teal-300"
-            >
-              Patient Portal
-            </button>
+          {/* Right section */}
+          <div className="hidden flex-1 items-center justify-end gap-3 md:flex">
+           
             <a
               href="#book"
               className="rounded-full bg-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-600"
             >
               Book consultation
             </a>
+             <button
+              type="button"
+              onClick={() =>
+                window.open(
+                  "https://kcare-patient-portal.onrender.com",
+                  "_blank"
+                )
+              }
+              className="rounded-full border border-teal-200 px-4 py-2 text-sm font-semibold text-teal-700 hover:border-teal-300"
+            >
+              Login
+            </button>
           </div>
 
           <button
@@ -127,18 +138,19 @@ export default function Navbar() {
                 </a>
               </div>
               <div className="mt-3 flex gap-2">
-                <button
-                  onClick={() => setIsAuthModalOpen(true)}
-                  className="flex-1 rounded-full border border-teal-200 px-4 py-2 text-center text-sm font-semibold text-teal-700"
-                >
-                  Patient Portal
-                </button>
+               
                 <a
                   href="#book"
                   className="flex-1 rounded-full bg-amber-500 px-4 py-2 text-center text-sm font-semibold text-white"
                 >
                   Book
                 </a>
+                 <button
+                  onClick={() => setIsAuthModalOpen(true)}
+                  className="flex-1 rounded-full border border-teal-200 px-4 py-2 text-center text-sm font-semibold text-teal-700"
+                >
+                  Login
+                </button>
               </div>
             </div>
           </div>

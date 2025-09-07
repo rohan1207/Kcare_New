@@ -92,37 +92,26 @@ const SERVICES = [
 
 function ServiceCard({ service }) {
   return (
-    <div className="group relative aspect-[4/3] overflow-hidden rounded-md border border-stone-200 bg-white/70 shadow-sm transition-all duration-500 hover:border-stone-300 hover:shadow-md">
-      {/* Base image layer */}
-      <div className="absolute inset-0">
+    <div className="group overflow-hidden rounded-lg bg-white shadow-sm transition-all duration-300 hover:scale-105 hover:shadow-lg">
+      <div className="aspect-[4/3] overflow-hidden">
         <img
           src={service.image}
           alt={service.title}
-          className="h-full w-full object-cover transition-transform duration-700"
+          className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-4">
-          <h3 className="font-display text-lg font-medium text-white drop-shadow-sm">
-            {service.title}
-          </h3>
-        </div>
       </div>
-
-      {/* Content overlay that slides up */}
-      <div className="absolute inset-0 translate-y-full bg-white/95 p-4 backdrop-blur-sm transition-transform duration-500 ease-out group-hover:translate-y-0">
-        <div className="flex h-full flex-col">
-          <h3 className="font-display text-lg font-medium text-stone-900">
-            {service.title}
-          </h3>
-          <p className="mt-2 text-sm leading-relaxed text-stone-600">
-            {service.description}
-          </p>
-          <div className="mt-auto pt-4">
-            <button className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-100">
-              Learn more
-              <ArrowRightIcon className="h-4 w-4" />
-            </button>
-          </div>
+      <div className="p-4">
+        <h3 className="font-display text-lg font-medium text-stone-900">
+          {service.title}
+        </h3>
+        <p className="mt-2 text-sm leading-relaxed text-stone-600">
+          {service.description}
+        </p>
+        <div className="mt-4">
+          <button className="inline-flex items-center gap-1.5 rounded-full bg-teal-50 px-3 py-1.5 text-sm font-medium text-teal-700 transition-colors hover:bg-teal-100">
+            Learn more
+            <ArrowRightIcon className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </div>
@@ -165,7 +154,7 @@ export default function Services() {
 
         {/* Trust banner */}
         <div className="mt-16 flex items-center justify-center">
-          <div className="inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white/80 px-4 py-2 text-sm text-stone-700 shadow-sm backdrop-blur-sm">
+          <div className="inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white/80 px-4 -py-1 -mb-12 text-sm text-stone-700 shadow-sm backdrop-blur-sm">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-amber-500" />
             Board-certified excellence in surgical care
           </div>

@@ -21,7 +21,7 @@ export default function Founder() {
   return (
     <section
       id="founder"
-      className="relative isolate overflow-hidden py-16 md:py-24"
+      className="relative isolate overflow-hidden pt-4 pb-5 md:pt-12 md:pb-24 -mt-12"
     >
       <div className="mx-auto grid max-w-7xl items-start gap-10 px-4 md:grid-cols-12 md:px-6">
         {/* Left: portrait / identity card */}
