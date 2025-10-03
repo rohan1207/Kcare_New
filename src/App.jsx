@@ -3,6 +3,7 @@ import HomePage from "./pages/HomePage";
 // import Technology from "./pages/Technology";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import MobileNotice from "./components/MobileNotice";
 
 import ContactUs from "./pages/ContactUs";
 import BookAppointment from "./pages/BookAppointment";
@@ -35,6 +36,7 @@ function AppInner() {
         </Routes>
       </main>
       <Footer />
+      <MobileNotice />
     </>
   );
 }
