@@ -1,150 +1,174 @@
-import { useState, useMemo } from "react";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/outline";
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
 
-// Exact-style testimonial section: left text with badge, big serif quote; right rounded image; nav arrows
-const DATA = [
+const TESTIMONIALS = [
   {
-    quote: "It saved my life and brought me back to myself",
-    body: (
-      <>
-        I was struggling with daily pain and anxiety after open surgery.{" "}
-        <strong>I had tried everything to feel normal again</strong> — therapy,
-        medication, and rest. Robotic surgery minimized my pain and scarring and
-        gave me my energy back. It’s been the most deeply healing experience of
-        my life.
-      </>
-    ),
-    name: "Sarah",
-    meta: "Robotic Hysterectomy | Roseville, CA",
-    image: "/user.png",
+    name: "Sarah Johnson",
+    role: "Marketing Manager",
+    avatar:
+      "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200&auto=format&fit=crop",
+    quote:
+      "It was the best decision I made for my health. The team is caring and precise. They explained everything and made me comfortable every step of the way.",
+    tone: "lightBlue",
   },
   {
-    quote: "Precision that changed my recovery",
-    body: (
-      <>
-        I was terrified of a long downtime. With robotics, my incisions were
-        tiny and I was walking the next day.{" "}
-        <strong>The accuracy was unbelievable</strong> and recovery was faster
-        than I imagined.
-      </>
-    ),
-    name: "Marcus",
-    meta: "Robotic Hernia Repair | Sacramento, CA",
-    image: "/user.png",
+    name: "Emily Davis",
+    role: "Teacher",
+    avatar:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
+    quote:
+      "As someone with surgical anxiety, finding a clinic where I felt at ease was crucial. The robotic approach made recovery smoother than I imagined.",
+    tone: "white",
   },
   {
-    quote: "Back to life without the fear of pain",
-    body: (
-      <>
-        Years of discomfort kept me from work and family time.{" "}
-        <strong>Robotic precision meant less trauma</strong> and I was home the
-        same day. I’m finally sleeping and smiling again.
-      </>
-    ),
-    name: "Evelyn",
-    meta: "Robotic Gallbladder Surgery | Folsom, CA",
-    image: "/user.png",
-  },
-  {
-    quote: "Care that felt caring—every step",
-    body: (
-      <>
-        The team explained everything and the technology was reassuring.{" "}
-        <strong>Minimal scarring and quick mobility</strong> changed the way I
-        think about surgery.
-      </>
-    ),
-    name: "Daniel",
-    meta: "Robotic Prostatectomy | Elk Grove, CA",
-    image: "/user.png",
-  },
-  {
-    quote: "The confidence to move again",
-    body: (
-      <>
-        After years of putting it off, the robotic approach made it simple.{" "}
-        <strong>Less pain, less fear, more life</strong>.
-      </>
-    ),
-    name: "Priya",
-    meta: "Robotic Endometriosis Surgery | Davis, CA",
-    image: "/user.png",
-  },
-  {
-    quote: "Small incisions, big results",
-    body: (
-      <>
-        I expected weeks of struggle, but{" "}
-        <strong>the recovery was smooth and fast</strong>. I’m grateful for the
-        precision and compassion I received.
-      </>
-    ),
-    name: "Jared",
-    meta: "Robotic Colon Resection | Rocklin, CA",
-    image: "/user.png",
+    name: "Michael Chen",
+    role: "Financial Analyst",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+    quote:
+      "I've been a patient for years. Consistent high‑quality care keeps me coming back. Professionalism and empathy are evident in every visit.",
+    tone: "mint",
   },
 ];
 
-export default function Testimonials() {
-  const [index, setIndex] = useState(0);
-  const t = useMemo(() => DATA[index % DATA.length], [index]);
+const popUp = {
+  hidden: { opacity: 0, y: 60, scale: 0.98 },
+  visible: (i = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      delay: i * 0.08,
+      type: "spring",
+      stiffness: 220,
+      damping: 20,
+      mass: 0.7,
+    },
+  }),
+};
 
-  const prev = () => setIndex((i) => (i - 1 + DATA.length) % DATA.length);
-  const next = () => setIndex((i) => (i + 1) % DATA.length);
-
+function TestimonialCard({ t, index }) {
+  const base =
+    "rounded-3xl p-6 sm:p-7 shadow-sm ring-1 text-slate-700 leading-relaxed";
+  const tones = {
+    lightBlue: "bg-blue-50 ring-blue-100",
+    white: "bg-white ring-slate-200",
+    mint: "bg-teal-50 ring-teal-100",
+  };
   return (
-    <section className="relative isolate py-16 md:py-24">
-      <div className="mx-auto grid max-w-7xl items-start gap-12 px-4 md:grid-cols-2 md:px-6">
-        {/* Left column: badge, quote, body, author, controls */}
+    <motion.article
+      variants={popUp}
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.35 }}
+      className={`${base} ${tones[t.tone]}`}
+    >
+      <div className="flex items-center gap-3">
+        <img
+          src={t.avatar}
+          alt={t.name}
+          className="h-10 w-10 rounded-full object-cover ring-2 ring-white"
+        />
         <div>
-          <div className="mb-4 flex items-center gap-2 text-sm font-medium text-stone-700">
-            <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-500" />
-            Client Testimonials
-          </div>
+          <div className="font-semibold text-slate-900">{t.name}</div>
+          <div className="text-xs text-slate-500">{t.role}</div>
+        </div>
+      </div>
+      <p className="mt-4 text-sm">{t.quote}</p>
+    </motion.article>
+  );
+}
 
-          <h2 className="font-display text-[40px] leading-[1.1] text-stone-900 sm:text-[56px] md:text-[64px]">
-            &ldquo;{t.quote}&rdquo;
-          </h2>
+export default function Testimonials() {
+  return (
+    <section id="testimonials" className="relative isolate py-20 md:py-28 bg-slate-50">
+      {/* Pattern overlay */}
+      <div className="pointer-events-none absolute inset-0 opacity-50" aria-hidden="true">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage:
+              "url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%230f172a\' fill-opacity=\'0.02\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
+            backgroundSize: "30px 30px",
+          }}
+        />
+      </div>
 
-          <p className="mt-8 max-w-[44rem] text-base leading-relaxed text-stone-700 sm:text-lg">
-            {t.body}
-          </p>
-
-          <div className="mt-8 text-stone-700">
-            <div className="text-base font-semibold text-stone-900">
-              {t.name}
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+        {/* Top header and hero image */}
+        <div className="grid items-start gap-8 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <div className="flex items-center justify-between text-slate-500 text-sm">
+              <span>Patient Stories</span>
+              <span className="hidden sm:block">2024</span>
             </div>
-            <div className="text-sm">{t.meta}</div>
+            <h2 className="mt-3 text-slate-900 text-4xl sm:text-5xl lg:text-6xl font-light leading-tight tracking-tight">
+              Patients Gave
+              <br />
+              Lots of Love
+            </h2>
+
+            {/* First row cards (visible as soon as section is in view) */}
+            <div className="mt-8 grid gap-5 sm:grid-cols-2">
+              <TestimonialCard t={TESTIMONIALS[0]} index={0} />
+              <TestimonialCard t={TESTIMONIALS[1]} index={0.2} />
+            </div>
           </div>
 
-          <div className="mt-10 flex items-center justify-center gap-4 md:justify-start">
-            <button
-              onClick={prev}
-              aria-label="Previous testimonial"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-stone-300 bg-white text-stone-800 shadow-sm hover:border-stone-400"
-            >
-              <ChevronLeftIcon className="h-6 w-6" />
-            </button>
-            <button
-              onClick={next}
-              aria-label="Next testimonial"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-stone-300 bg-white text-stone-800 shadow-sm hover:border-stone-400"
-            >
-              <ChevronRightIcon className="h-6 w-6" />
-            </button>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ type: "spring", stiffness: 160, damping: 18 }}
+            viewport={{ once: true, amount: 0.4 }}
+            className="lg:col-span-5"
+          >
+            <div className="overflow-hidden rounded-3xl ring-1 ring-slate-200 shadow-xl">
+              <img
+                src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1600&auto=format&fit=crop"
+                alt="Happy patient and surgeon"
+                className="w-full h-[220px] sm:h-[300px] lg:h-[360px] object-cover"
+              />
+            </div>
+          </motion.div>
         </div>
 
-        {/* Right column: rounded image, large radius like reference */}
-        <div className="order-first md:order-none">
-          <div className="overflow-hidden rounded-[32px]">
+        {/* Second wave on scroll: pop up from below */}
+        <div className="mt-6 grid gap-6 lg:grid-cols-12">
+          <motion.div
+            variants={popUp}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.4 }}
+            custom={0}
+            className="lg:col-span-7 overflow-hidden rounded-3xl ring-1 ring-slate-200"
+          >
             <img
-              src={t.image}
-              alt={t.name}
-              className="aspect-[4/3] h-full w-full object-cover"
+              src="https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=1600&auto=format&fit=crop"
+              alt="Medical professionals providing care"
+              className="w-full h-[220px] sm:h-[260px] lg:h-[280px] object-cover"
             />
+          </motion.div>
+
+          <div className="lg:col-span-5">
+            <TestimonialCard t={TESTIMONIALS[2]} index={0.15} />
           </div>
         </div>
+
+        {/* View all link */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ delay: 0.1 }}
+          className="mt-10 flex justify-end"
+        >
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
+          >
+            View all testimonials <ArrowRight className="h-4 w-4" />
+          </a>
+        </motion.div>
       </div>
     </section>
   );

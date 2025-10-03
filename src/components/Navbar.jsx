@@ -1,185 +1,146 @@
-import { useEffect, useState } from "react";
-import AuthModal from "./AuthModal"; // adjust the path if necessary
+import { useState } from "react";
+import { Dialog } from '@headlessui/react';
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
-// Hcare Navbar – transparent, subtle glass blur on scroll
+const navigation = [
+  { name: 'Services', href: '#' },
+  { name: 'Implants', href: '#' },
+  { name: 'Price', href: '#' },
+  { name: 'Preventive Care', href: '#' },
+];
+
 export default function Navbar() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener('scroll', onScroll);
+    return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  const isHome = location.pathname === '/';
+  const transparent = isHome && !scrolled;
+  const linkBase = 'relative text-[15px] font-medium px-2 py-1 rounded-md after:content-[""] after:absolute after:left-2 after:right-2 after:-bottom-0.5 after:h-[2px] after:rounded-full after:transition-transform after:duration-300 after:scale-x-0';
+  const linkTheme = transparent
+    ? 'text-white hover:bg-white/10 hover:after:scale-x-100 after:bg-teal-200'
+    : 'text-slate-900 hover:bg-sky-50 hover:after:scale-x-100 after:bg-sky-600';
+  const ctaClasses = transparent
+    ? 'text-white border border-white/20 bg-white/10 hover:bg-white/20 rounded-full'
+    : 'text-white bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 rounded-full shadow-md shadow-sky-900/10';
+
   return (
-    <>
-      <header
-        className={
-          "fixed inset-x-0 top-0 z-50 transition-all duration-300 " +
-          (scrolled
-            ? "bg-white/55 backdrop-blur-sm shadow-sm"
-            : "bg-transparent backdrop-blur-0")
-        }
+    <header className="fixed inset-x-0 top-0 z-50">
+      <nav
+        className={`${transparent ? 'bg-transparent' : 'bg-white/60 backdrop-blur-md border-b border-white/20 shadow-[0_8px_32px_rgba(2,132,199,0.15)]'} transition-colors duration-300`}
+        aria-label="Global"
       >
-        <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-5 md:px-6">
-          {/* Left section */}
-          <div className="flex flex-1 items-center justify-start">
-            <a href="/" className="flex items-center gap-2">
-              <img src="/logo1.png" alt="Hcare" className="h-12 w-auto" />
-              <span className="font-display text-2xl tracking-tight text-stone-900">
-                K care
-              </span>
-            </a>
-          </div>
-
-          {/* Center section */}
-          <div className="hidden flex-1 items-center justify-center gap-8 md:flex">
-            <a
-              href="#services"
-              className="text-sm font-medium text-stone-700 hover:text-teal-700"
-            >
-              Services
-            </a>
-            <a
-              href="/technology"
-              className="text-sm font-medium text-stone-700 hover:text-teal-700"
-            >
-              Technology
-            </a>
-            <a
-              href="/about"
-              className="text-sm font-medium text-stone-700 hover:text-teal-700"
-            >
-              About Kcare
-            </a>
-            <a
-              href="/contact"
-              className="text-sm font-medium text-stone-700 hover:text-teal-700"
-            >
-              Contact
-            </a>
-          </div>
-
-          {/* Right section */}
-          <div className="hidden flex-1 items-center justify-end gap-3 md:flex">
-           
-            <a
-              href="/book"
-              className="rounded-full bg-amber-500 px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-600"
-            >
-              Book consultation
-            </a>
-             <div className="relative group">
-              <button
-                type="button"
-                className="rounded-full border border-teal-200 px-4 py-2 text-sm font-semibold text-teal-700 hover:border-teal-300 inline-flex items-center gap-1"
-              >
-                Login
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-4 h-4">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        <div className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-6 flex items-center justify-between">
+          <div className="flex lg:flex-1 items-center">
+            <a href="#" className="-m-1.5 p-1.5 flex items-center gap-3">
+              <div className="w-9 h-9 rounded-md bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center ring-1 ring-white/40">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
                 </svg>
-              </button>
-              {/* Dropdown menu */}
-              <div className="absolute right-0 mt-2 w-48 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 ease-in-out">
-                <div className="bg-white rounded-lg shadow-lg border border-stone-200/70 overflow-hidden">
-                  <button
-                    onClick={() => window.open("https://kcare-patient-portal.onrender.com", "_blank")}
-                    className="w-full px-4 py-2 text-sm text-stone-700 hover:bg-stone-50 hover:text-teal-700 text-left"
-                  >
-                    Patient
-                  </button>
-                  <button
-                    onClick={() => window.open("https://kcare-admin-portal.onrender.com", "_blank")}
-                    className="w-full px-4 py-2 text-sm text-stone-700 hover:bg-stone-50 hover:text-teal-700 text-left"
-                  >
-                    Admin/Doctor
-                  </button>
-                </div>
               </div>
-            </div>
+              <span className={`text-2xl font-bold tracking-tight ${transparent ? 'text-white' : 'text-sky-900'}`}>Kcare</span>
+            </a>
           </div>
 
-          <button
-            aria-label="Open menu"
-            className="inline-flex items-center justify-center rounded-md border border-stone-200 p-2 text-stone-700 md:hidden"
-            onClick={() => setOpen((v) => !v)}
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth={1.5}
-              stroke="currentColor"
-              className="h-6 w-6"
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 ${transparent ? 'text-white' : 'text-sky-900'}`}
+              onClick={() => setMobileMenuOpen(true)}
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
-              />
-            </svg>
-          </button>
-        </nav>
+              <span className="sr-only">Open main menu</span>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
 
-        {open && (
-          <div className="mx-auto block max-w-7xl px-4 pb-4 md:hidden">
-            <div className="rounded-2xl border border-white/40 bg-white/70 p-4 backdrop-blur-sm shadow-sm">
-              <div className="grid gap-2">
-                <a
-                  href="#services"
-                  className="rounded-md px-2 py-2 text-stone-800 hover:text-teal-700"
-                >
-                  Services
-                </a>
-                <a
-                  href="/technology"
-                  className="rounded-md px-2 py-2 text-stone-800 hover:text-teal-700"
-                >
-                  Technology
-                </a>
-                <a
-                  href="#pricing"
-                  className="rounded-md px-2 py-2 text-stone-800 hover:text-teal-700"
-                >
-                  Pricing
-                </a>
-                <a
-                  href="#contact"
-                  className="rounded-md px-2 py-2 text-stone-800 hover:text-teal-700"
-                >
-                  Contact
-                </a>
+          <div className="hidden lg:flex items-center">
+            <nav className="flex items-center gap-x-8">
+              {navigation.map((item, idx) => {
+                const isActive = activeIdx === idx;
+                return (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setActiveIdx(idx)}
+                    className={`${linkBase} ${linkTheme} ${isActive ? 'after:scale-x-100' : ''}`}
+                  >
+                    {item.name}
+                  </a>
+                );
+              })}
+            </nav>
+          </div>
+
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a
+              href="#"
+              className={`text-sm font-semibold leading-6 px-5 py-2.5 transition-colors ${ctaClasses}`}
+            >
+              Health Check
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <div className="fixed inset-0 z-50" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/80 backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="flex items-center justify-between">
+            <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
+              <div className="w-8 h-8 rounded-md bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center">
+                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                </svg>
               </div>
-              <div className="mt-3 flex gap-2">
-               
+              <span className="text-2xl font-bold text-sky-900 tracking-tight">Kcare</span>
+            </a>
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-sky-900"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="sr-only">Close menu</span>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="space-y-2 py-6">
+                {navigation.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-sky-900 hover:bg-slate-100"
+                  >
+                    {item.name}
+                  </a>
+                ))}
+              </div>
+              <div className="py-6">
                 <a
-                  href="/book"
-                  className="flex-1 rounded-full bg-amber-500 px-4 py-2 text-center text-sm font-semibold text-white"
+                  href="#"
+                  className="block text-center rounded-full px-5 py-2.5 text-base font-semibold leading-7 text-white bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 shadow-md shadow-sky-900/10"
                 >
-                  Book
+                  Health Check
                 </a>
-                 <div className="flex-1 space-y-2">
-                  <button
-                    onClick={() => window.open("https://kcare-patient-portal.onrender.com", "_blank")}
-                    className="w-full rounded-full border border-teal-200 px-4 py-2 text-center text-sm font-semibold text-teal-700 hover:bg-teal-50"
-                  >
-                    Patient Login
-                  </button>
-                  <button
-                    onClick={() => window.open("https://kcare-admin-portal.onrender.com", "_blank")}
-                    className="w-full rounded-full border border-teal-200 px-4 py-2 text-center text-sm font-semibold text-teal-700 hover:bg-teal-50"
-                  >
-                    Admin/Doctor Login
-                  </button>
-                </div>
               </div>
             </div>
           </div>
-        )}
-      </header>
-    </>
+        </Dialog.Panel>
+      </Dialog>
+    </header>
   );
 }

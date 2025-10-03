@@ -32,36 +32,32 @@ export default function FAQ() {
   const [open, setOpen] = useState(0); // first expanded
 
   return (
-    <section className="relative isolate py-16 md:py-24">
-      <div className="mx-auto grid max-w-7xl gap-12 px-4 md:grid-cols-2 md:px-6">
+    <section className="relative isolate py-20 md:py-28 bg-slate-900">
+      <div className="mx-auto grid max-w-7xl items-start gap-16 px-6 lg:grid-cols-2 lg:px-8">
         {/* Left: heading + buttons */}
         <div>
-          <div className="mb-4 flex items-center gap-2 text-sm font-medium text-stone-700">
-            <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-500" />
-            FAQs
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-cyan-400/10 mb-6">
+            <span className="text-cyan-200 text-sm font-light tracking-wide">Common Questions</span>
           </div>
-          <h2 className="font-display text-[40px] leading-[1.1] text-stone-900 sm:text-[56px] md:text-[64px]">
-            What our customers
-            <br /> want to know
+          <h2 className="font-display text-4xl leading-tight text-white/90 sm:text-5xl">
+            Your Questions,
+            <br /> Answered
           </h2>
-          <div className="mt-8 flex flex-wrap gap-4">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-gray-300 font-light">
+            Find answers to common questions about robotic surgery, recovery, and our patient-centric approach to care.
+          </p>
+          <div className="mt-10 flex flex-wrap gap-4">
             <a
               href="/book"
-              className="rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-amber-600"
+              className="rounded-full bg-cyan-600/90 px-8 py-3 text-base font-medium text-white transition-colors hover:bg-cyan-700/90"
             >
-              Book an Appointment
-            </a>
-            <a
-              href="#learn"
-              className="rounded-full border border-stone-800 px-6 py-3 text-sm font-semibold text-stone-900"
-            >
-              Learn more
+              Schedule a Consultation
             </a>
           </div>
         </div>
 
         {/* Right: accordion list */}
-        <div className="divide-y divide-stone-200">
+        <div className="divide-y divide-white/10">
           {QA.map((item, i) => {
             const isOpen = i === open;
             return (
@@ -71,17 +67,17 @@ export default function FAQ() {
                   onClick={() => setOpen(isOpen ? -1 : i)}
                   aria-expanded={isOpen}
                 >
-                  <span className="font-medium leading-snug text-stone-900 text-2xl md:text-[28px]">
+                  <span className="text-lg font-light leading-snug text-white/90">
                     {item.q}
                   </span>
                   <ChevronDownIcon
-                    className={`mt-1 h-6 w-6 text-stone-800 transition-transform ${
+                    className={`mt-1 h-6 w-6 flex-shrink-0 text-cyan-300 transition-transform ${
                       isOpen ? "rotate-180" : "rotate-0"
                     }`}
                   />
                 </button>
                 {isOpen && (
-                  <p className="mt-3 max-w-3xl text-stone-700">{item.a}</p>
+                  <p className="mt-4 max-w-3xl text-gray-300 font-light">{item.a}</p>
                 )}
               </div>
             );

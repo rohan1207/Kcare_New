@@ -1,6 +1,6 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import Technology from "./pages/Technology";
+// import Technology from "./pages/Technology";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 
@@ -13,17 +13,28 @@ export default function App() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-white text-stone-900">
       <BrowserRouter>
-        <Navbar />
+        <AppInner />
+      </BrowserRouter>
+    </div>
+  );
+}
+
+function AppInner() {
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  return (
+    <>
+      <Navbar />
+      <main className={isHome ? "" : "pt-24 lg:pt-28"}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route path="/technology" element={<Technology />} />
+          {/* <Route path="/technology" element={<Technology />} /> */}
           <Route path="/about" element={<AboutUs />} />
-         
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/book" element={<BookAppointment />} />
         </Routes>
-        <Footer />
-      </BrowserRouter>
-    </div>
+      </main>
+      <Footer />
+    </>
   );
 }

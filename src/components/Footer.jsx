@@ -1,123 +1,73 @@
 export default function Footer() {
   return (
-    <footer className="mt-24 border-t border-stone-200 bg-white/70 backdrop-blur-md">
-      <div className="mx-auto max-w-7xl px-4 py-14 md:px-6">
-        {/* Top: brand + nav */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-          {/* Brand and mission */}
-          <div className="md:col-span-5">
+    <footer className="mt-24 bg-gradient-to-tr from-sky-900 via-teal-700 to-teal-600 text-sky-50">
+      <div className="mx-auto max-w-7xl px-6 py-16 lg:px-8">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-10">
+          {/* Brand + short mission */}
+          <div className="lg:w-1/3">
             <a href="/" className="inline-flex items-center gap-3">
-              <img
-                src="/logo1.png"
-                alt="Kcare"
-                className="h-9 w-9 rounded-md object-contain"
-              />
-              <span className="font-display text-xl font-semibold tracking-tight text-stone-900">
+              <img src="/logo1.png" alt="Kcare" className="h-10 w-10 rounded-md object-contain bg-white/10 p-1" />
+              <span className="font-display text-2xl font-semibold tracking-tight text-white">
                 Kcare Clinic
               </span>
             </a>
-            <p className="mt-4 max-w-md text-sm leading-relaxed text-stone-600">
-              Advanced robotic surgery, designed for faster recovery, minimal
-              scarring, and precision you can trust.
+            <p className="mt-4 max-w-md text-sm text-sky-100/90">
+              Advanced robotic & laparoscopic surgery — faster recovery, minimal scarring, and care you can trust.
             </p>
 
-            <div className="mt-6 inline-flex items-center gap-3 rounded-full border border-stone-200 bg-white/70 px-4 py-2 text-sm text-stone-800 shadow-sm">
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-500" />
-              Board-certified care. Patient-first outcomes.
+            <div className="mt-6 flex items-center gap-3">
+              <a
+                href="#book"
+                className="inline-flex items-center gap-2 rounded-full bg-white text-teal-700 px-4 py-2 text-sm font-semibold shadow-md hover:opacity-95"
+              >
+                Book an Appointment
+              </a>
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 px-3 py-2 text-xs text-sky-100/90">
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3 text-amber-400" viewBox="0 0 20 20" fill="currentColor">
+                  <path d="M10 2a6 6 0 016 6v1h1a1 1 0 011 1v2a1 1 0 01-1 1h-1v1a6 6 0 11-12 0v-1H3a1 1 0 01-1-1V10a1 1 0 011-1h1V9a6 6 0 016-6z" />
+                </svg>
+                Board-certified care
+              </span>
             </div>
           </div>
 
-          {/* Nav columns */}
-          <div className="md:col-span-7 grid grid-cols-2 gap-10 sm:grid-cols-3">
+          {/* Links grid */}
+          <div className="lg:w-2/3 grid grid-cols-2 sm:grid-cols-3 gap-8">
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-                Explore
-              </div>
-              <ul className="mt-3 space-y-2 text-sm text-stone-700">
-                <li>
-                  <a className="hover:text-stone-900" href="#home">
-                    Home
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="#services">
-                    Services
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="/technology">
-                    Technology
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="#pricing">
-                    Pricing
-                  </a>
-                </li>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-sky-100/80">Explore</h4>
+              <ul className="mt-3 space-y-2 text-sm text-sky-100/90">
+                <li><a className="hover:text-white" href="#home">Home</a></li>
+                <li><a className="hover:text-white" href="#services">Services</a></li>
+                <li><a className="hover:text-white" href="/technology">Technology</a></li>
+                <li><a className="hover:text-white" href="#pricing">Pricing</a></li>
               </ul>
             </div>
+
             <div>
-              <div className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-                Patients
-              </div>
-              <ul className="mt-3 space-y-2 text-sm text-stone-700">
-                <li>
-                  <a className="hover:text-stone-900" href="#testimonials">
-                    Testimonials
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="#faq">
-                    FAQ
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="/book">
-                    Book consultation
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="#learn">
-                    Learn more
-                  </a>
-                </li>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-sky-100/80">Patients</h4>
+              <ul className="mt-3 space-y-2 text-sm text-sky-100/90">
+                <li><a className="hover:text-white" href="#testimonials">Testimonials</a></li>
+                <li><a className="hover:text-white" href="#faq">FAQ</a></li>
+                <li><a className="hover:text-white" href="/book">Book consultation</a></li>
+                <li><a className="hover:text-white" href="#learn">Learn more</a></li>
               </ul>
             </div>
-            <div className="hidden sm:block">
-              <div className="text-xs font-semibold uppercase tracking-wider text-stone-500">
-                Contact
-              </div>
-              <ul className="mt-3 space-y-2 text-sm text-stone-700">
-                <li>
-                  <a className="hover:text-stone-900" href="#contact">
-                    Get in touch
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="#portal">
-                    Patient portal
-                  </a>
-                </li>
-                <li>
-                  <a className="hover:text-stone-900" href="#location">
-                    Find us
-                  </a>
-                </li>
+
+            <div>
+              <h4 className="text-xs font-semibold uppercase tracking-wider text-sky-100/80">Contact</h4>
+              <ul className="mt-3 space-y-2 text-sm text-sky-100/90">
+                <li><a className="hover:text-white" href="#contact">Get in touch</a></li>
+                <li><a className="hover:text-white" href="#portal">Patient portal</a></li>
+                <li><a className="hover:text-white" href="#location">Find us</a></li>
+                <li><a className="hover:text-white" href="tel:+1234567890">+1 (234) 567-890</a></li>
               </ul>
             </div>
           </div>
         </div>
 
-        <div className="mt-10 h-px w-full bg-gradient-to-r from-transparent via-stone-200 to-transparent" />
-
-        {/* Bottom bar */}
-        <div className="mt-6 flex flex-col items-center justify-between gap-3 text-xs text-stone-500 sm:flex-row">
-          <div>
-            © {new Date().getFullYear()} Kcare Clinic. All rights reserved.
-          </div>
-          <div className="text-center">
-            /: Designed & Developed By TheSocialKollab
-          </div>
+        <div className="mt-10 border-t border-white/10 pt-6 flex flex-col-reverse sm:flex-row items-center justify-between gap-4">
+          <div className="text-sm text-sky-100/80">© {new Date().getFullYear()} Kcare Clinic. All rights reserved.</div>
+          <div className="text-sm text-sky-100/80">Designed & Developed by TheSocialKollab</div>
         </div>
       </div>
     </footer>

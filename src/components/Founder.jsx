@@ -1,159 +1,147 @@
-import { useState } from "react";
-import {
-  BadgeCheckIcon,
-  ShieldCheckIcon,
-  AcademicCapIcon,
-  BriefcaseIcon,
-  ClockIcon,
-} from "@heroicons/react/outline";
+import { Award, Stethoscope, GraduationCap, Clock, ArrowRight, Sparkles, Shield } from 'lucide-react';
 
-const SERVICES = [
-  "Umbilical Hernia Surgery",
-  "Laser Treatment for Varicose Veins",
-  "Benign and Cancer Surgeries",
-  "Colorectal Surgery",
-  "Total Thyroidectomy",
+const DOCTORS = [
+  {
+    name: 'Dr. Pramod Kadam',
+    title: 'Lead General & Laparoscopic Surgeon',
+    image: '/pramod_kadam.jpg',
+    credentials: 'MBBS, DNB',
+    experience: '15+',
+    procedures: '1000+',
+    specializations: [
+      'Umbilical Hernia Surgery',
+      'Laser Treatment for Varicose Veins',
+      'Benign and Cancer Surgeries',
+      'Colorectal Surgery',
+      'Total Thyroidectomy',
+    ],
+  },
+  {
+    name: 'Dr. Shital Sharma',
+    title: 'Laparoscopic & Gynecological Surgeon',
+    image: '/sharma.jpg',
+    credentials: 'MBBS, MS',
+    experience: '12+',
+    procedures: '800+',
+    specializations: [
+      'Laparoscopic Surgery',
+      'Breast Cancer Surgery',
+      'Gynecological Procedures',
+      'Minimally Invasive Surgery',
+      'Women\'s Health Surgery',
+    ],
+  },
 ];
 
-export default function Founder() {
-  const [showServices, setShowServices] = useState(true);
-
+function DoctorCard({ doctor }) {
   return (
-    <section
-      id="founder"
-      className="relative isolate overflow-hidden pt-4 pb-5 md:pt-12 md:pb-24 -mt-12"
-    >
-      <div className="mx-auto grid max-w-7xl items-start gap-10 px-4 md:grid-cols-12 md:px-6">
-        {/* Left: portrait / identity card */}
-        <div className="md:col-span-5">
-          <div className="group relative overflow-hidden rounded-3xl border border-white/60 bg-white/70 p-6 shadow-xl backdrop-blur-md">
-            {/* avatar */}
-            <div className="mx-auto flex h-28 w-28 items-center justify-center rounded-full ">
-              <img
-                src="/pramod_kadam.jpg"
-                alt="Dr. Pramod Kadam"
-                className="h-24 w-24 rounded-full object-cover"
-              />
+    <div className="group relative bg-slate-900 rounded-3xl overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-sky-900/30 to-teal-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+      <div className="relative p-8 text-white">
+        <div className="flex items-start gap-6 mb-6">
+          <div className="relative flex-shrink-0">
+            <img
+              src={doctor.image}
+              alt={doctor.name}
+              className="h-28 w-28 rounded-2xl object-cover ring-2 ring-white/10 shadow-lg"
+            />
+            <div className="absolute -bottom-2 -right-2 bg-gradient-to-br from-teal-400 to-sky-500 rounded-lg p-1.5 shadow-lg">
+              <Shield className="h-4 w-4 text-white" />
             </div>
-            <div className="mt-5 text-center">
-              <div className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white/70 px-3 py-1 text-xs text-stone-700">
-                <BadgeCheckIcon className="h-4 w-4 text-teal-700" />
-                Founder & Lead Surgeon
-              </div>
-              <h3 className="mt-3 font-display text-2xl text-stone-900 md:text-3xl">
-                Dr. Pramod Kadam
-              </h3>
-              <p className="mt-2 text-sm text-stone-600">
-                MBBS, DNB - General Surgery
-              </p>
-              <p className="text-sm text-stone-600">General Surgeon</p>
-            </div>
-
-            {/* credentials highlights */}
-            <div className="mt-6 grid grid-cols-3 gap-3 text-center">
-              <div className="rounded-xl bg-white/80 p-3 shadow-sm">
-                <ClockIcon className="mx-auto h-5 w-5 text-teal-700" />
-                <div className="mt-1 text-xs text-stone-500">Experience</div>
-                <div className="text-sm font-semibold text-stone-900">
-                  15 yrs
-                </div>
-              </div>
-              <div className="rounded-xl bg-white/80 p-3 shadow-sm">
-                <BriefcaseIcon className="mx-auto h-5 w-5 text-amber-600" />
-                <div className="mt-1 text-xs text-stone-500">Specialist</div>
-                <div className="text-sm font-semibold text-stone-900">
-                  11 yrs
-                </div>
-              </div>
-              <div className="rounded-xl bg-white/80 p-3 shadow-sm">
-                <ShieldCheckIcon className="mx-auto h-5 w-5 text-teal-700" />
-                <div className="mt-1 text-xs text-stone-500">Registration</div>
-                <div className="text-sm font-semibold text-stone-900">
-                  Verified
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 rounded-2xl border border-stone-100 bg-white/80 p-4 text-sm text-stone-700">
-              <p>
-                Completed MBBS from Maharashtra University of Health Sciences
-                (2007) and DNB - General Surgery from the National Board of
-                Education, New Delhi (2012).
-              </p>
-              <div className="mt-3 inline-flex items-center gap-2 rounded-full bg-teal-50 px-3 py-1 text-xs font-medium text-teal-800">
-                <AcademicCapIcon className="h-4 w-4" /> Credentials verified
-              </div>
+          </div>
+          <div className="flex-1 pt-1">
+            <h3 className="text-2xl font-light text-white mb-1">{doctor.name}</h3>
+            <p className="text-sm text-sky-200/80 mb-3">{doctor.title}</p>
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1.5 text-xs text-sky-100 bg-white/10 px-2 py-1 rounded-full">
+                <Clock className="h-3 w-3" />
+                {doctor.experience} Years
+              </span>
+              <span className="inline-flex items-center gap-1.5 text-xs text-sky-100 bg-white/10 px-2 py-1 rounded-full">
+                <GraduationCap className="h-3 w-3" />
+                {doctor.credentials}
+              </span>
             </div>
           </div>
         </div>
 
-        {/* Right: story, services, actions */}
-        <div className="md:col-span-7">
-          <div className="max-w-2xl">
-            <div className="mb-3 flex items-center gap-2 text-sm font-medium text-stone-700">
-              <span className="inline-block h-2.5 w-2.5 rounded-full bg-amber-500" />
-              Meet the Founder
+        <div className="h-px bg-white/10 my-6"></div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <div>
+            <h4 className="text-xs font-semibold text-sky-200/70 uppercase tracking-wider mb-3">Specializations</h4>
+            <div className="space-y-1.5">
+              {doctor.specializations.slice(0, 4).map((spec, i) => (
+                <div key={i} className="flex items-center gap-3 text-sm text-sky-100/90">
+                  <div className="w-1 h-1 rounded-full bg-teal-400"></div>
+                  {spec}
+                </div>
+              ))}
             </div>
-            <h2 className="font-display text-[38px] leading-[1.15] text-stone-900 sm:text-[48px] md:text-[56px]">
-              Precision-led surgery with compassion at its core
-            </h2>
-
-            <p className="mt-5 text-base leading-relaxed text-stone-700 sm:text-lg">
-              Dr. Pramod Kadam is a General Surgeon with 15 years of experience,
-              known for a patient-first approach and meticulous operative
-              technique. He focuses on minimally invasive procedures that reduce
-              pain, scarring, and recovery time.
-            </p>
-
-            <div className="mt-6 flex flex-wrap gap-3">
-              <a
-                href="/book"
-                className="rounded-full bg-amber-500 px-5 py-3 text-sm font-semibold text-white shadow-sm hover:bg-amber-600"
-              >
-                Book a consultation
-              </a>
-              <a
-                href="#contact"
-                className="rounded-full border border-stone-300 bg-white/80 px-5 py-3 text-sm font-semibold text-stone-800 backdrop-blur-sm hover:border-stone-400"
-              >
-                About Kcare
-              </a>
-            </div>
-
-            {/* Services */}
-            <div className="mt-8">
-              <div className="flex items-center justify-between">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-stone-500">
-                  Key Procedures
-                </h3>
-                <button
-                  onClick={() => setShowServices((v) => !v)}
-                  className="text-xs font-medium text-stone-600 hover:text-stone-900"
-                  aria-expanded={showServices}
-                >
-                  {showServices ? "Hide" : "Show"}
-                </button>
+          </div>
+          <div>
+            <h4 className="text-xs font-semibold text-sky-200/70 uppercase tracking-wider mb-3">Stats</h4>
+            <div className="space-y-4">
+              <div>
+                <div className="text-3xl font-light text-white">{doctor.experience}</div>
+                <div className="text-xs text-sky-200/70 uppercase tracking-wide">Years Experience</div>
               </div>
-              {showServices && (
-                <ul className="mt-3 flex flex-wrap gap-2">
-                  {SERVICES.map((s, i) => (
-                    <li key={i}>
-                      <span className="inline-flex items-center gap-2 rounded-full border border-stone-200 bg-white/70 px-3 py-1.5 text-xs text-stone-700 shadow-sm transition hover:border-stone-300">
-                        <span className="h-1.5 w-1.5 rounded-full bg-teal-600" />
-                        {s}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+              <div>
+                <div className="text-3xl font-light text-white">{doctor.procedures}</div>
+                <div className="text-xs text-sky-200/70 uppercase tracking-wide">Procedures</div>
+              </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-            {/* Trust card */}
-            <div className="mt-8 flex items-center gap-3 rounded-2xl border border-stone-100 bg-white/80 p-4 text-sm text-stone-700 shadow-sm">
-              <ShieldCheckIcon className="h-5 w-5 text-teal-700" />
-              Medical Registration Verified. Evidence‑based care and transparent
-              outcomes.
-            </div>
+export default function MainDoctors() {
+  return (
+    <section id="main-doctors" className="relative bg-white py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl px-6 lg:px-10">
+        <div className="text-center mb-16">
+          <span className="inline-flex items-center gap-2 rounded-full bg-teal-50 px-4 py-2 text-sm font-semibold text-teal-700 mb-4">
+            <Sparkles className="h-4 w-4 text-teal-600" />
+            Medical Excellence
+          </span>
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-4">
+            Our Surgeons
+          </h2>
+          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            Distinguished specialists committed to delivering exceptional surgical care with precision and compassion.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+          {DOCTORS.map((doctor) => (
+            <DoctorCard key={doctor.name} doctor={doctor} />
+          ))}
+        </div>
+
+        <div className="text-center">
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-full mb-8 shadow-sm">
+            <Award className="h-5 w-5 text-slate-500" />
+            <span className="text-sm text-slate-700">Board Certified • Licensed Practitioners • 25+ Years Combined Experience</span>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a
+              href="/book"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-full hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto"
+            >
+              Schedule Consultation
+              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full border border-slate-200 hover:bg-slate-50 transition-all duration-300 w-full sm:w-auto"
+            >
+              <Stethoscope className="h-4 w-4" />
+              Contact Us
+            </a>
           </div>
         </div>
       </div>
