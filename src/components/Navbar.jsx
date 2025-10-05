@@ -4,21 +4,21 @@ import { useLocation } from "react-router-dom";
 import { ChevronDown } from 'lucide-react';
 
 const procedures = [
-  { name: "Diabetic Foot Care", href: '#services' },
-  { name: "Breast Surgery", href: '#services' },
-  { name: "Advanced Thyroid Surgery", href: '#services' },
-  { name: "Laser Fissure Treatment", href: '#services' },
-  { name: "Piles (Hemorrhoids)", href: '#services' },
-  { name: "Fistula Treatment", href: '#services' },
-  { name: "Laparoscopic Appendectomy", href: '#services' },
-  { name: "Robotic Hernia Repair", href: '#services' },
-  { name: "Gall Bladder Removal", href: '#services' },
-  { name: "Hydrocele Surgery", href: '#services' },
-  { name: "Pilonidal Sinus Care", href: '#services' },
-  { name: "Rectal Prolapse Surgery", href: '#services' },
-  { name: "Phimosis Treatment", href: '#services' },
-  { name: "Abscess Drainage", href: '#services' },
-  { name: "Cyst Removal", href: '#services' },
+  { name: "Diabetic Foot Care", href: '/services/diabetic-foot-care' },
+  { name: "Breast Surgery", href: '/services/breast-surgery' },
+  { name: "Advanced Thyroid Surgery", href: '/services/advanced-thyroid-surgery' },
+  { name: "Laser Fissure Treatment", href: '/services/laser-fissure-treatment' },
+  { name: "Piles (Hemorrhoids)", href: '/services/piles-treatment' },
+  { name: "Fistula Treatment", href: '/services/fistula-treatment' },
+  { name: "Laparoscopic Appendectomy", href: '/services/laparoscopic-appendectomy' },
+  { name: "Robotic Hernia Repair", href: '/services/robotic-hernia-repair' },
+  { name: "Gall Bladder Removal", href: '/services/gall-bladder-removal' },
+  { name: "Hydrocele Surgery", href: '/services/hydrocele-surgery' },
+  { name: "Pilonidal Sinus Care", href: '/services/pilonidal-sinus-care' },
+  { name: "Rectal Prolapse Surgery", href: '/services/rectal-prolapse-surgery' },
+  { name: "Phimosis Treatment", href: '/services/phimosis-treatment' },
+  { name: "Abscess Drainage", href: '/services/abscess-drainage' },
+  { name: "Cyst Removal", href: '/services/cyst-removal' },
 ];
 
 const navigation = [
