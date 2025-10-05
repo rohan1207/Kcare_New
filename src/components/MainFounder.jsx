@@ -87,9 +87,9 @@ const MainFounder = () => {
         </div>
 
         {/* Image Content */}
-        <motion.div variants={imageVariants} className="relative w-full h-[500px] sm:h-[650px] lg:h-[550px] self-end">
+        <motion.div variants={imageVariants} className="relative w-full h-[600px] sm:h-[750px] lg:h-[550px] self-end">
             <img
-              src="/pramod2.png"
+              src="/pramod3.png"
               alt="Dr. Pramod Kadam"
               className="absolute bottom-6 left-1/2 -translate-x-1/2 lg:left-auto lg:right-0 lg:translate-x-0 w-full h-full max-w-md object-contain object-bottom drop-shadow-2xl"
             />
