@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Footprints, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -154,7 +158,33 @@ const DiabeticFootCarePage = () => {
     ],
     technology: {
       description: "Our clinic is equipped with advanced wound care technologies, including debridement tools, specialized dressings, and non-invasive vascular assessments to monitor blood flow. For severe cases, we coordinate with facilities offering Hyperbaric Oxygen Therapy (HBOT), a treatment that enhances the body's natural healing processes by delivering 100% oxygen in a pressurized environment."
-    }
+    },
+    timeline: [
+        {
+            title: "Comprehensive Foot Examination",
+            description: "A detailed assessment of nerve function, circulation, and skin integrity to identify risk factors and existing issues."
+        },
+        {
+            title: "Personalized Management Plan",
+            description: "Based on the assessment, we create a tailored plan including wound care protocols, footwear recommendations, and glucose management strategies."
+        },
+        {
+            title: "Advanced Wound Care & Debridement",
+            description: "For existing ulcers, we perform meticulous cleaning and debridement to remove non-viable tissue and promote a healthy wound bed."
+        },
+        {
+            title: "Offloading & Pressure Reduction",
+            description: "Customized offloading devices or footwear are provided to relieve pressure from vulnerable areas, preventing ulcer formation and aiding healing."
+        },
+        {
+            title: "Patient Education & Self-Care Training",
+            description: "We empower you with the knowledge to perform daily foot checks and manage your foot health proactively at home."
+        },
+        {
+            title: "Long-Term Monitoring & Prevention",
+            description: "Regular follow-up appointments are scheduled to monitor progress, prevent recurrence, and ensure lasting foot health."
+        }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

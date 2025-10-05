@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { HeartCrack, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import { Zap, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -59,7 +60,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Benefits Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Key Benefits</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Advantages of Laser Treatment</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {service.benefits.map((benefit, i) => (
                   <div key={i} className="flex items-start space-x-4">
@@ -77,7 +78,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Technology Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.2 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">Advanced Technology</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">The Laser Advantage</h2>
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                 <p>{service.technology.description}</p>
               </div>
@@ -93,8 +94,8 @@ const ServicePageLayout = ({ service }) => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-8 rounded-2xl shadow-xl border border-sky-100/80"
             >
-              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Get Relief Today</h3>
-              <p className="text-center text-gray-600 mb-6">Don't endure the discomfort. Schedule a private consultation.</p>
+              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Find Relief Today</h3>
+              <p className="text-center text-gray-600 mb-6">Don't endure the pain. Schedule a consultation for a lasting solution.</p>
               <Link 
                 to="/contact"
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-sky-700 to-teal-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:from-sky-800 hover:to-teal-700 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -127,34 +131,60 @@ const ServicePageLayout = ({ service }) => {
 const LaserFissureTreatmentPage = () => {
   const serviceData = {
     title: "Laser Fissure Treatment",
-    subtitle: "A quick, painless, and highly effective solution for anal fissures.",
+    subtitle: "A minimally invasive, highly effective solution for anal fissures.",
     image: "/fissure.jpg",
-    Icon: HeartCrack,
+    Icon: Zap,
     overview: [
-      "An anal fissure is a small tear in the lining of the anus, which can cause significant pain and bleeding during bowel movements. While many fissures heal on their own, chronic fissures can be persistent and extremely uncomfortable.",
-      "Laser fissure treatment is a state-of-the-art procedure that offers a minimally invasive and highly effective alternative to traditional surgery. It promotes healing without the need for cuts or stitches, allowing for immediate relief and a rapid return to normal life."
+      "An anal fissure is a small tear in the lining of the anus, which can cause significant pain and bleeding during bowel movements. While many fissures heal with conservative treatment, chronic fissures often require surgical intervention.",
+      "Laser Fissure Treatment, specifically Laser Sphincterotomy, is a state-of-the-art procedure that offers a precise and minimally invasive alternative to traditional surgery. It provides rapid pain relief and promotes quick healing with minimal side effects."
     ],
     benefits: [
       {
-        title: "Immediate Pain Relief",
-        description: "The procedure significantly reduces the anal sphincter spasm, providing instant relief from pain."
+        title: "Minimally Invasive",
+        description: "No cuts or stitches are required, resulting in less pain and a much faster recovery period."
       },
       {
-        title: "Painless & Bloodless",
-        description: "As a minimally invasive procedure, it involves no cuts or stitches, resulting in minimal discomfort and no bleeding."
+        title: "High Precision",
+        description: "The laser precisely targets the internal sphincter muscle, reducing spasm without damaging surrounding tissue."
       },
       {
-        title: "High Success Rate",
-        description: "Laser treatment boasts a success rate of over 95%, making it a reliable solution for chronic fissures."
+        title: "Low Risk of Incontinence",
+        description: "Laser surgery offers better control and significantly lowers the risk of incontinence compared to conventional surgery."
       },
       {
-        title: "Quick Recovery",
-        description: "Patients can typically resume their normal activities within a day or two, with no need for extended downtime."
+        title: "Quick Procedure",
+        description: "The treatment is typically completed as a day-care procedure, allowing you to return home the same day."
       }
     ],
     technology: {
-      description: "The procedure, known as Diode Laser Ablation, involves using a specialized laser fiber to precisely target and ablate the fissure tissue. This process cleans the wound and promotes the growth of fresh, healthy tissue, leading to rapid and effective healing. The laser's energy also helps to relax the internal anal sphincter muscle, which is crucial for pain relief and preventing recurrence."
-    }
+      description: "We use a sophisticated diode laser to perform the Lateral Internal Sphincterotomy (LIS). The laser energy is delivered through a fine probe, allowing for a highly controlled and targeted release of the internal anal sphincter. This reduces the hypertonia (excessive muscle tone) that prevents the fissure from healing, all without the need for a scalpel. The result is immediate relief and a faster, more comfortable recovery."
+    },
+    timeline: [
+      {
+        title: "Consultation and Diagnosis",
+        description: "A gentle physical examination is conducted to confirm the diagnosis of a chronic anal fissure and rule out other conditions."
+      },
+      {
+        title: "Trial of Conservative Management",
+        description: "We may first recommend dietary changes, topical creams, and sitz baths. If these fail, laser surgery is considered."
+      },
+      {
+        title: "Pre-Procedure Assessment",
+        description: "A brief assessment is done to ensure you are fit for the day-care procedure, which is performed under short anesthesia."
+      },
+      {
+        title: "Laser Sphincterotomy",
+        description: "The minimally invasive laser procedure is performed, taking only about 15-20 minutes to complete."
+      },
+      {
+        title: "Immediate Post-Op Care",
+        description: "After a short observation period, you are discharged on the same day with instructions for pain management and sitz baths."
+      },
+      {
+        title: "Full Recovery & Follow-Up",
+        description: "Most patients return to normal activities within a few days. A follow-up visit ensures complete healing and provides long-term dietary advice."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

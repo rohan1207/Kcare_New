@@ -26,6 +26,7 @@ import AbscessDrainagePage from "./pages/AbscessDrainage";
 import CystRemovalPage from "./pages/CystRemoval";
 import BlogsPage from "./pages/Blogs";
 import BlogDetailPage from "./pages/BlogDetailPage";
+import GalleryPage from "./pages/Gallery";
 
 export default function App() {
   return (
@@ -67,6 +68,7 @@ function AppInner() {
           <Route path="/services/cyst-removal" element={<CystRemovalPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
           <Route path="/blogs/:blogId" element={<BlogDetailPage />} />
+          <Route path="/gallery" element={<GalleryPage />} />
         </Routes>
       </main>
       <Footer />

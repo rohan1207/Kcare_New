@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Ribbon, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -154,7 +158,33 @@ const BreastSurgeryPage = () => {
     ],
     technology: {
       description: "Oncoplastic surgery is a sophisticated approach that combines the principles of cancer surgery with plastic surgery. By strategically placing incisions and remodeling breast tissue, we can effectively treat the cancer while minimizing visible scarring and deformity. This technique is central to our philosophy of treating the whole person, not just the disease."
-    }
+    },
+    timeline: [
+        {
+            title: "Consultation & Triple Assessment",
+            description: "Your journey begins with a clinical examination, imaging (mammogram/ultrasound), and biopsy to ensure an accurate diagnosis."
+        },
+        {
+            title: "Multidisciplinary Team Review",
+            description: "Our team of surgeons, oncologists, and radiologists collaborates to create a personalized treatment plan tailored to your specific condition."
+        },
+        {
+            title: "Surgical Planning & Counseling",
+            description: "We discuss all surgical options with you, including breast conservation and oncoplastic techniques, ensuring you are fully informed and comfortable."
+        },
+        {
+            title: "The Surgical Procedure",
+            description: "The surgery is performed with a focus on both complete cancer removal and optimal aesthetic results, often using minimally invasive approaches."
+        },
+        {
+            title: "Post-Operative Recovery & Care",
+            description: "You will receive dedicated care in our recovery unit, with a focus on pain management and comfort. We provide detailed post-op instructions."
+        },
+        {
+            title: "Adjuvant Therapy & Survivorship",
+            description: "We coordinate any necessary follow-up treatments (like radiation or chemotherapy) and provide a long-term survivorship plan for ongoing health."
+        }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

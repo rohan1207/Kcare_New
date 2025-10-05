@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HeartPulse, ShieldCheck, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -154,7 +158,33 @@ const AbscessDrainagePage = () => {
     ],
     technology: {
       description: "For deeper or more complex abscesses, we use ultrasound guidance to precisely locate the fluid pocket. This ensures that the incision is made in the optimal location for complete drainage, improving the effectiveness of the procedure and minimizing trauma to surrounding healthy tissue. The procedure is performed under local anesthesia in a sterile environment to ensure it is both painless and safe."
-    }
+    },
+    timeline: [
+      {
+        title: "Initial Consultation & Diagnosis",
+        description: "Our medical team will conduct a thorough examination of the affected area to confirm the presence of an abscess and determine the best course of action."
+      },
+      {
+        title: "Pre-Procedure Preparation",
+        description: "The area is cleaned with an antiseptic solution, and a local anesthetic is administered to ensure the procedure is completely painless."
+      },
+      {
+        title: "Incision & Drainage (I&D)",
+        description: "A small, precise incision is made over the abscess, allowing the pus to drain completely. For deeper abscesses, ultrasound guidance may be used."
+      },
+      {
+        title: "Wound Care & Packing",
+        description: "The cavity is irrigated with a sterile solution. In some cases, a sterile packing is placed inside to allow it to continue draining and heal from the inside out."
+      },
+      {
+        title: "Post-Procedure Instructions",
+        description: "You will receive detailed instructions on how to care for the wound at home, including dressing changes and signs of complications to watch for."
+      },
+      {
+        title: "Follow-up & Recovery",
+        description: "A follow-up appointment is scheduled to monitor healing and remove any packing. Most patients experience rapid improvement and a smooth recovery."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

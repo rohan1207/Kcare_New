@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Activity, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import { ShieldPlus, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -59,7 +60,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Benefits Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Key Advantages</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Advantages of Our Approach</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {service.benefits.map((benefit, i) => (
                   <div key={i} className="flex items-start space-x-4">
@@ -93,8 +94,8 @@ const ServicePageLayout = ({ service }) => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-8 rounded-2xl shadow-xl border border-sky-100/80"
             >
-              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Book an Appointment</h3>
-              <p className="text-center text-gray-600 mb-6">Discuss your treatment options with our thyroid specialists.</p>
+              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Schedule a Consultation</h3>
+              <p className="text-center text-gray-600 mb-6">Discuss your options with a leading thyroid surgeon.</p>
               <Link 
                 to="/contact"
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-sky-700 to-teal-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:from-sky-800 hover:to-teal-700 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -127,34 +131,60 @@ const ServicePageLayout = ({ service }) => {
 const AdvancedThyroidSurgeryPage = () => {
   const serviceData = {
     title: "Advanced Thyroid Surgery",
-    subtitle: "Precision surgery for thyroid conditions with minimal scarring.",
+    subtitle: "Precision and expertise in treating thyroid conditions.",
     image: "/thyroid.jpg",
-    Icon: Activity,
+    Icon: ShieldPlus,
     overview: [
-      "The thyroid gland, located in the neck, plays a crucial role in regulating the body's metabolism. Surgery may be required for conditions like thyroid nodules, goiter, or cancer. Our advanced surgical approach prioritizes safety and cosmetic outcomes.",
-      "We perform precise removal of thyroid tissue (either a partial or total thyroidectomy) through minimal incisions, taking utmost care to protect the surrounding nerves, particularly those controlling the voice."
+      "The thyroid gland, located in your neck, plays a crucial role in regulating your body's metabolism. Conditions such as thyroid nodules, goiter, or thyroid cancer may require surgical intervention.",
+      "Our advanced surgical approach to thyroidectomy (removal of the thyroid) prioritizes safety and precision. We focus on minimizing scarring, preserving vocal cord function, and ensuring the best possible outcomes for our patients."
     ],
     benefits: [
       {
-        title: "Vocal Cord Protection",
-        description: "Continuous nerve monitoring ensures the recurrent laryngeal nerve is protected, preserving your voice."
+        title: "Nerve Preservation",
+        description: "We use intraoperative nerve monitoring to protect the delicate laryngeal nerves, preserving your voice."
       },
       {
-        title: "Minimal Scarring",
-        description: "We use small, carefully placed incisions in natural skin creases to make scars virtually unnoticeable once healed."
+        title: "Parathyroid Gland Safety",
+        description: "Meticulous surgical technique ensures the preservation of parathyroid glands, which regulate calcium levels."
+      },
+      {
+        title: "Minimally Invasive",
+        description: "We utilize the smallest possible incision, often hidden in a natural skin crease, to ensure an excellent cosmetic result."
       },
       {
         title: "Faster Recovery",
-        description: "Our minimally invasive approach reduces tissue trauma, leading to less pain and a quicker return to normal activities."
-      },
-      {
-        title: "Comprehensive Care",
-        description: "We manage your care from diagnosis through recovery, ensuring a smooth and supported journey."
+        description: "Our precise and efficient surgical methods lead to less postoperative pain and a quicker return to normal activities."
       }
     ],
     technology: {
-      description: "The cornerstone of modern thyroid surgery is intraoperative nerve monitoring (IONM). This technology provides real-time feedback on nerve function during the surgery, allowing us to operate with confidence and significantly reduce the risk of vocal cord injury. For select cases, robotic-assisted options can provide even greater dexterity and visualization through a remote incision, avoiding a neck scar altogether."
-    }
+      description: "Intraoperative Nerve Monitoring (IONM) is a key technology we use to enhance the safety of thyroid surgery. This system provides real-time feedback on nerve function during the procedure, allowing the surgeon to identify and protect the recurrent and external laryngeal nerves, which are critical for voice and swallowing. This significantly reduces the risk of nerve injury."
+    },
+    timeline: [
+        {
+            title: "Initial Evaluation & Diagnostics",
+            description: "A thorough consultation, physical exam, neck ultrasound, and potentially a fine-needle biopsy to accurately diagnose your condition."
+        },
+        {
+            title: "Surgical Decision & Planning",
+            description: "We review your results and discuss the best surgical approach (e.g., lobectomy vs. total thyroidectomy), including the use of nerve monitoring."
+        },
+        {
+            title: "Pre-Operative Preparation",
+            description: "You'll receive standard pre-surgical instructions regarding fasting and medication, along with an anesthesia consultation to ensure your safety."
+        },
+        {
+            title: "The Surgical Procedure",
+            description: "The thyroidectomy is performed using a minimally invasive technique, with careful preservation of the laryngeal nerves and parathyroid glands."
+        },
+        {
+            title: "Post-Operative Monitoring",
+            description: "Close observation in the recovery unit, focusing on monitoring your calcium levels and assessing voice quality."
+        },
+        {
+            title: "Recovery & Follow-Up",
+            description: "Discharge with clear instructions on wound care and hormone replacement therapy. Follow-up appointments ensure proper healing and hormonal balance."
+        }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

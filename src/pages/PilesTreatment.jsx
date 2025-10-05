@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { HeartCrack, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import { Droplets, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -59,7 +60,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Benefits Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Key Benefits</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Benefits of Laser Hemorrhoidoplasty</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {service.benefits.map((benefit, i) => (
                   <div key={i} className="flex items-start space-x-4">
@@ -77,7 +78,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Technology Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.2 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">Advanced Technology</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">Advanced Laser Technology</h2>
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                 <p>{service.technology.description}</p>
               </div>
@@ -93,8 +94,8 @@ const ServicePageLayout = ({ service }) => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-8 rounded-2xl shadow-xl border border-sky-100/80"
             >
-              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Get Relief Today</h3>
-              <p className="text-center text-gray-600 mb-6">Don't endure the discomfort. Schedule a private consultation.</p>
+              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Get Lasting Relief</h3>
+              <p className="text-center text-gray-600 mb-6">Schedule a private consultation to discuss our advanced, painless treatments.</p>
               <Link 
                 to="/contact"
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-sky-700 to-teal-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:from-sky-800 hover:to-teal-700 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -127,34 +131,60 @@ const ServicePageLayout = ({ service }) => {
 const PilesTreatmentPage = () => {
   const serviceData = {
     title: "Piles (Hemorrhoids) Treatment",
-    subtitle: "Advanced, minimally invasive solutions for a comfortable and quick recovery.",
+    subtitle: "Advanced laser solutions for a common and painful condition.",
     image: "/piles.jpg",
-    Icon: HeartCrack,
+    Icon: Droplets,
     overview: [
-      "Hemorrhoids, commonly known as piles, are swollen veins in the lower rectum and anus. They are a common condition that can cause discomfort, pain, and bleeding, significantly impacting quality of life.",
-      "At K-Care, we move beyond traditional treatments to offer advanced, minimally invasive laser procedures that provide a painless and effective solution, ensuring you can return to your daily life without a lengthy recovery."
+      "Piles, or hemorrhoids, are swollen veins in the lower rectum and anus. They are a very common condition that can cause pain, itching, and bleeding, significantly affecting quality of life. While many cases can be managed with lifestyle changes, persistent or severe hemorrhoids require medical intervention.",
+      "We specialize in Laser Hemorrhoidoplasty (LHP), a minimally invasive procedure that offers a quick and virtually painless solution. This advanced technique avoids the cuts and stitches of traditional surgery, leading to a much faster recovery."
     ],
     benefits: [
       {
-        title: "Painless Procedure",
-        description: "The laser treatment is virtually painless, performed as a day-care procedure with no need for general anesthesia."
+        title: "Painless & Bloodless",
+        description: "The laser procedure is precise, involves no cutting, and results in minimal to no post-operative pain."
       },
       {
         title: "Rapid Recovery",
-        description: "With no cuts or stitches, healing is fast. Most patients resume normal activities within 24-48 hours."
+        description: "Patients can typically resume their normal daily activities within 24-48 hours."
       },
       {
-        title: "No Tissue Damage",
-        description: "The laser precisely targets the hemorrhoidal tissue without damaging surrounding healthy tissue or the anal sphincter."
+        title: "No Open Wounds",
+        description: "Unlike traditional surgery, LHP leaves no open wounds, drastically reducing the risk of infection."
       },
       {
         title: "High Success Rate",
-        description: "Our laser procedures have a very high success rate, with a low risk of recurrence."
+        description: "Laser treatment is highly effective for various grades of hemorrhoids, with a very low rate of recurrence."
       }
     ],
     technology: {
-      description: "We specialize in Laser Hemorrhoidoplasty (LHP), a cutting-edge procedure where a laser fiber is inserted into the hemorrhoid. The laser's energy gently closes the vein from the inside, causing the hemorrhoid to shrink and disappear over time. This technique avoids the pain and long recovery associated with traditional surgical excision."
-    }
+      description: "Laser Hemorrhoidoplasty (LHP) uses a specialized radial fiber to deliver laser energy directly into the hemorrhoidal pile. This energy seals the blood vessels from within, causing the hemorrhoid to shrink and eventually disappear. The procedure is performed with high precision, preserving the sensitive anal sphincter muscle and mucosa, which is why it is so well-tolerated by patients."
+    },
+    timeline: [
+      {
+        title: "Consultation and Proctoscopy",
+        description: "A careful examination and proctoscopy are performed to accurately grade the hemorrhoids and confirm the diagnosis."
+      },
+      {
+        title: "Personalized Treatment Plan",
+        description: "We discuss your options and determine if Laser Hemorrhoidoplasty (LHP) is the right choice for your specific condition."
+      },
+      {
+        title: "Day-Care Procedure",
+        description: "The LHP procedure is performed in a day-care setting under short anesthesia and is completed in about 20-30 minutes."
+      },
+      {
+        title: "Post-Procedure Observation",
+        description: "You will be monitored for a few hours before being discharged home with medication and dietary advice."
+      },
+      {
+        title: "Quick Return to Normalcy",
+        description: "Experience minimal discomfort and return to your work and regular life within 1-2 days."
+      },
+      {
+        title: "Follow-Up for Complete Care",
+        description: "A follow-up appointment ensures everything has healed perfectly and provides an opportunity to discuss long-term prevention."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;
