@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { HeartCrack, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import { Scan, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -59,7 +60,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Benefits Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Key Benefits</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Advantages of the Laparoscopic Approach</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {service.benefits.map((benefit, i) => (
                   <div key={i} className="flex items-start space-x-4">
@@ -77,7 +78,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Technology Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.2 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">Advanced Technology</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">Keyhole Surgery Explained</h2>
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                 <p>{service.technology.description}</p>
               </div>
@@ -93,8 +94,8 @@ const ServicePageLayout = ({ service }) => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-8 rounded-2xl shadow-xl border border-sky-100/80"
             >
-              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Emergency & Elective Care</h3>
-              <p className="text-center text-gray-600 mb-6">Contact us for urgent or planned appendectomy procedures.</p>
+              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Schedule a Consultation</h3>
+              <p className="text-center text-gray-600 mb-6">Discuss your symptoms and learn if laparoscopic surgery is right for you.</p>
               <Link 
                 to="/contact"
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-sky-700 to-teal-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:from-sky-800 hover:to-teal-700 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -120,44 +121,73 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
 
-const LaparoscopicAppendectomyPage = () => {
+const LaparoscopicCholecystectomyPage = () => {
   const serviceData = {
-    title: "Laparoscopic Appendectomy",
-    subtitle: "Swift, minimally invasive appendix removal for a fast recovery.",
-    image: "/appendix.jpg",
-    Icon: HeartCrack,
+    title: "Laparoscopic Cholecystectomy",
+    subtitle: "The gold standard for gallbladder removal.",
+    image: "/gallbladder.jpg",
+    Icon: Scan,
     overview: [
-      "Appendicitis, an inflammation of the appendix, is a common surgical emergency that requires prompt treatment to avoid serious complications like a rupture. A laparoscopic appendectomy is the modern standard of care for removing the appendix.",
-      "This 'keyhole' procedure involves making a few tiny incisions in the abdomen to remove the inflamed appendix. This approach avoids the large incision of traditional open surgery, leading to significantly less pain, minimal scarring, and a much faster return to normal activities."
+      "The gallbladder is a small organ that stores bile, a digestive fluid. Gallstones can form in the gallbladder, leading to inflammation, pain, and other complications. When this happens, surgical removal of the gallbladder (cholecystectomy) is the most effective treatment.",
+      "Laparoscopic cholecystectomy is a minimally invasive surgical procedure that has become the gold standard for gallbladder removal. It offers significant advantages over traditional open surgery, including a faster recovery and less pain."
     ],
     benefits: [
       {
         title: "Minimal Pain",
-        description: "Smaller incisions mean less tissue trauma and significantly less post-operative pain."
+        description: "Patients experience significantly less postoperative pain compared to open surgery."
       },
       {
-        title: "Faster Recovery",
-        description: "Most patients are able to leave the hospital within 24 hours and can return to work and daily life in just a few days."
+        title: "Short Hospital Stay",
+        description: "Most patients can go home the same day or the day after the procedure."
       },
       {
-        title: "Less Scarring",
-        description: "The tiny incisions result in scars that are often barely visible once healed, offering a superior cosmetic outcome."
+        title: "Quick Recovery",
+        description: "You can expect to return to your normal daily activities within a week."
       },
       {
-        title: "Lower Infection Risk",
-        description: "Smaller wounds have a lower risk of becoming infected compared to a large open incision."
+        title: "Excellent Cosmetic Results",
+        description: "The small 'keyhole' incisions result in minimal and often barely visible scars."
       }
     ],
     technology: {
-      description: "We use high-definition laparoscopic equipment, including a specialized camera (laparoscope) and long-handled instruments. This technology provides a magnified, clear view of the surgical area, allowing for precise and safe removal of the appendix through incisions that are typically only 5-10mm in size."
-    }
+      description: "The procedure is performed using a laparoscope, a thin tube with a high-definition camera, which is inserted through a small incision near the navel. The abdomen is inflated with carbon dioxide gas to create space for the surgeon to work. Specialized instruments are inserted through 2-3 other small incisions to carefully detach and remove the gallbladder. The surgeon is guided by the magnified, clear view on a video monitor, allowing for extreme precision."
+    },
+    timeline: [
+      {
+        title: "Consultation & Ultrasound",
+        description: "Your symptoms are evaluated, and an abdominal ultrasound is performed to confirm the presence of gallstones and assess the gallbladder."
+      },
+      {
+        title: "Pre-Operative Assessment",
+        description: "A fitness check, including blood tests and an anesthesia consultation, is done to ensure you are ready for surgery."
+      },
+      {
+        title: "The Laparoscopic Procedure",
+        description: "The minimally invasive surgery is performed under general anesthesia and typically takes about 45-90 minutes."
+      },
+      {
+        title: "Post-Anesthesia Care",
+        description: "You will be monitored in a recovery unit as you wake up from anesthesia. Pain is managed with medication."
+      },
+      {
+        title: "Discharge & Home Care",
+        description: "Most patients are discharged within 24 hours with instructions for wound care, diet, and a gradual return to activity."
+      },
+      {
+        title: "Follow-Up Visit",
+        description: "A follow-up appointment is scheduled about a week after surgery to check on your recovery and ensure the incision sites are healing well."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;
 };
 
-export default LaparoscopicAppendectomyPage;
+export default LaparoscopicCholecystectomyPage;

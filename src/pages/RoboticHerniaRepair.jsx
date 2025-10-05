@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Shield, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -154,7 +158,33 @@ const RoboticHerniaRepairPage = () => {
     ],
     technology: {
       description: "The da Vinci Surgical System is the cornerstone of our robotic hernia repair. I control the robotic arms from a console, translating my movements into extremely precise actions inside the body. This technology allows us to dissect tissues and place surgical mesh with a level of accuracy that is beyond the capability of the human hand alone, which is especially beneficial for complex abdominal wall reconstructions."
-    }
+    },
+    timeline: [
+      {
+        title: "Comprehensive Evaluation",
+        description: "Your journey starts with a physical exam and often imaging (like a CT scan) to understand the size and complexity of the hernia."
+      },
+      {
+        title: "Surgical Planning",
+        description: "We determine the best approach for your specific hernia, planning the robotic procedure for optimal mesh placement and reinforcement."
+      },
+      {
+        title: "Pre-Operative Anesthesia Check",
+        description: "You will have a consultation with our anesthesia team to ensure you are fully prepared and safe for surgery."
+      },
+      {
+        title: "Robotic-Assisted Surgery",
+        description: "The hernia is repaired using the da Vinci system through small incisions, allowing for a meticulous and durable reconstruction of the abdominal wall."
+      },
+      {
+        title: "Post-Operative Recovery",
+        description: "You'll be monitored in our recovery unit. Most patients are discharged within 1-2 days, depending on the complexity of the repair."
+      },
+      {
+        title: "Guided Return to Activity",
+        description: "We provide a structured plan for your recovery, including when to resume walking, work, and exercise to ensure a strong, lasting repair."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

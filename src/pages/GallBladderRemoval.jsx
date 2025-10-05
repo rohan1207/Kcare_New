@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HeartCrack, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -154,7 +158,33 @@ const GallBladderRemovalPage = () => {
     ],
     technology: {
       description: "The surgery is performed using advanced laparoscopic instruments passed through small abdominal incisions. A camera provides a magnified view of the internal organs, allowing the surgeon to carefully dissect and remove the gallbladder. The use of 'keyhole' surgery minimizes trauma to the abdominal wall, which is the primary reason for the fast and comfortable recovery."
-    }
+    },
+    timeline: [
+      {
+        title: "Diagnosis & Ultrasound",
+        description: "Your symptoms are evaluated, and an abdominal ultrasound is performed to confirm the presence of gallstones."
+      },
+      {
+        title: "Consultation & Surgical Planning",
+        description: "We discuss the findings with you and schedule the laparoscopic cholecystectomy as the definitive treatment."
+      },
+      {
+        title: "Pre-Operative Assessment",
+        description: "A standard health check and anesthesia consultation are done to ensure you are ready for surgery."
+      },
+      {
+        title: "Laparoscopic Cholecystectomy",
+        description: "The gallbladder is removed through a few small incisions using a camera and specialized surgical tools."
+      },
+      {
+        title: "Post-Anesthesia Care",
+        description: "You will be monitored in the recovery unit for a short period as you wake up from anesthesia."
+      },
+      {
+        title: "Discharge & Home Care",
+        description: "Most patients are discharged the same or the next day with instructions for diet and a quick return to normal life."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

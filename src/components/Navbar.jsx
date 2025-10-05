@@ -47,11 +47,12 @@ export default function Navbar() {
 
   const isHome = location.pathname === '/';
   const transparent = isHome && !scrolled;
-  const linkBase = 'relative text-[15px] font-medium px-3 py-2 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40';
+  const linkBase = 'relative text-[15px] font-medium px-3 py-2 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40 group';
   const linkTheme = transparent
-    ? 'text-white/90 hover:text-white hover:bg-white/15'
-    : 'text-slate-800 hover:text-slate-900 hover:bg-sky-50';
-  const activeTheme = transparent ? 'bg-white/20 text-white' : 'bg-sky-100 text-sky-900';
+    ? 'text-white/90 hover:text-white'
+    : 'text-slate-800 hover:text-slate-900';
+  const underlineClass = `absolute bottom-1 left-0 right-0 h-[2px] origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 ${transparent ? 'bg-white' : 'bg-sky-600'}`;
+  const activeUnderlineClass = `absolute bottom-1 left-0 right-0 h-[2px] scale-x-100 ${transparent ? 'bg-white' : 'bg-sky-600'}`;
   const ctaClasses = transparent
     ? 'text-white border border-white/20 bg-white/10 hover:bg-white/20 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40'
     : 'text-white bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 rounded-full shadow-md shadow-sky-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40';
@@ -63,7 +64,8 @@ export default function Navbar() {
         aria-label="Global"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-6 flex items-center justify-between">
-          <div className="flex lg:flex-1 items-center">
+          {/* Logo */}
+          <div className="flex-shrink-0">
             <a href="#" className="-m-1.5 p-1.5 flex items-center">
               <img
                 src="/logo3.png"
@@ -73,6 +75,7 @@ export default function Navbar() {
             </a>
           </div>
 
+          {/* Mobile Hamburger */}
           <div className="flex lg:hidden">
             <button
               type="button"
@@ -86,7 +89,8 @@ export default function Navbar() {
             </button>
           </div>
 
-          <div className="hidden lg:flex items-center">
+          {/* Desktop Nav - Centered */}
+          <div className="hidden lg:flex flex-1 justify-center">
             <nav className="flex items-center gap-x-8">
               {navigation.map((item, idx) => {
                 const isActive = activeIdx === idx;
@@ -102,9 +106,10 @@ export default function Navbar() {
                       <a
                         href={item.href}
                         onClick={(e) => { e.preventDefault(); setProceduresMenuOpen(!proceduresMenuOpen); }}
-                        className={`${linkBase} ${linkTheme} ${proceduresMenuOpen ? activeTheme : ''} group inline-flex items-center gap-1`}
+                        className={`${linkBase} ${linkTheme} group inline-flex items-center gap-1`}
                       >
                         <span>{item.name}</span>
+                        <span className={proceduresMenuOpen ? activeUnderlineClass : underlineClass} />
                         <ChevronDown
                           className={`h-4 w-4 transition-transform duration-200 ${proceduresMenuOpen ? 'rotate-180' : ''}`}
                           aria-hidden="true"
@@ -139,22 +144,22 @@ export default function Navbar() {
                   );
                 }
 
-
                 return (
                   <a
                     key={item.name}
                     href={item.href}
                     onClick={() => setActiveIdx(idx)}
-                    className={`${linkBase} ${linkTheme} ${isActive ? activeTheme : ''}`}
-                  >
+                    className={`${linkBase} ${linkTheme}`}>
                     {item.name}
+                    <span className={isActive ? activeUnderlineClass : underlineClass} />
                   </a>
                 );
               })}
             </nav>
           </div>
 
-          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+          {/* CTA Button */}
+          <div className="hidden lg:flex flex-shrink-0">
             <a
               href="#"
               className={`text-sm font-semibold leading-6 px-5 py-2.5 transition-colors ${ctaClasses}`}

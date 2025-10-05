@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HeartCrack, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -154,7 +158,33 @@ const RectalProlapseSurgeryPage = () => {
     ],
     technology: {
       description: "Our preferred technique is the Robotic-Assisted Ventral Mesh Rectopexy. Using the da Vinci surgical system, we lift the rectum and secure it back into its correct anatomical position using a piece of surgical mesh. The robotic platform's precision and 3D visualization are critical for performing this delicate procedure safely and effectively through small incisions, ensuring an excellent and lasting outcome."
-    }
+    },
+    timeline: [
+      {
+        title: "Diagnostic Evaluation",
+        description: "A thorough clinical exam, often supplemented by tests like defecography, is done to assess the severity of the prolapse and pelvic floor function."
+      },
+      {
+        title: "Tailored Surgical Planning",
+        description: "We determine the most appropriate surgical approach (e.g., robotic rectopexy) based on your health and the specifics of the prolapse."
+      },
+      {
+        title: "Pre-Operative Optimization",
+        description: "Bowel preparation and a pre-anesthesia check-up are completed to ensure you are ready for surgery."
+      },
+      {
+        title: "Minimally Invasive Surgery",
+        description: "The prolapse is repaired through small abdominal incisions using robotic or laparoscopic techniques to restore the rectum's natural position."
+      },
+      {
+        title: "Post-Surgical Recovery",
+        description: "You will be monitored in the hospital for a few days, with a focus on pain management and a gradual return to a normal diet."
+      },
+      {
+        title: "Rehabilitation and Follow-Up",
+        description: "We provide guidance on pelvic floor exercises and dietary management to support a full recovery and prevent recurrence."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

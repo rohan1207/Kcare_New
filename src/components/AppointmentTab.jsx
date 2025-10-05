@@ -37,7 +37,7 @@ const conditions = [
 ];
 const times = ["09:00 AM", "11:00 AM", "02:00 PM", "04:00 PM"];
 
-function CalendarDatePicker({ selectedDate, onDateChange, close, dropdownPosition }) {
+function CalendarDatePicker({ selectedDate, onDateChange, close }) {
   const [currentMonth, setCurrentMonth] = useState(startOfMonth(new Date()));
 
   const daysInMonth = eachDayOfInterval({
@@ -52,7 +52,7 @@ function CalendarDatePicker({ selectedDate, onDateChange, close, dropdownPositio
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className="absolute bottom-full w-72 bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg p-4 z-20 border border-gray-200/80"
+      className="absolute top-full mt-2 w-72 bg-white/95 backdrop-blur-lg rounded-2xl shadow-lg p-4 z-20 border border-gray-200/80"
       onClick={(e) => e.stopPropagation()}
     >
       <div className="flex items-center justify-between mb-3">
@@ -83,14 +83,13 @@ function CalendarDatePicker({ selectedDate, onDateChange, close, dropdownPositio
   );
 }
 
-function Dropdown({ options, selected, onSelect, close, dropdownPosition }) {
+function Dropdown({ options, selected, onSelect, close, isScrollable = false }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -10 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -10 }}
-      className="absolute mt-2 w-full bg-white/95 backdrop-blur-lg rounded-xl shadow-lg p-2 z-20 border border-gray-200/80"
-      style={{ top: dropdownPosition === 'up' ? 'auto' : '100%', bottom: dropdownPosition === 'up' ? '100%' : 'auto' }}
+      className={`absolute mt-2 w-full bg-white/95 backdrop-blur-lg rounded-xl shadow-lg p-2 z-20 border border-gray-200/80 ${isScrollable ? 'h-48 overflow-y-auto' : ''}`}
       onClick={(e) => e.stopPropagation()}
     >
       {options.map((option) => (
@@ -124,21 +123,6 @@ export default function AppointmentTab() {
   const [openDropdown, setOpenDropdown] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [formError, setFormError] = useState('');
-  const [dropdownPosition, setDropdownPosition] = useState('down');
-  const tabRef = useRef(null);
-
-  useEffect(() => {
-    function checkPosition() {
-      if (tabRef.current) {
-        const rect = tabRef.current.getBoundingClientRect();
-        const spaceBelow = window.innerHeight - rect.bottom;
-        setDropdownPosition(spaceBelow < 250 ? 'up' : 'down');
-      }
-    }
-    checkPosition();
-    window.addEventListener('scroll', checkPosition, true);
-    return () => window.removeEventListener('scroll', checkPosition, true);
-  }, []);
 
   const handleSelect = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
@@ -184,7 +168,6 @@ export default function AppointmentTab() {
   return (
     <>
       <motion.div
-        ref={tabRef}
         variants={tabVariants}
         initial="hidden"
         animate="visible"
@@ -209,13 +192,13 @@ export default function AppointmentTab() {
               <AnimatePresence>
                 {openDropdown === field &&
                   (field === "doctor" ? (
-                    <Dropdown options={doctors} selected={formData.doctor} onSelect={(v) => handleSelect("doctor", v)} close={() => setOpenDropdown(null)} dropdownPosition={dropdownPosition} />
+                    <Dropdown options={doctors} selected={formData.doctor} onSelect={(v) => handleSelect("doctor", v)} close={() => setOpenDropdown(null)} />
                   ) : field === "condition" ? (
-                    <Dropdown options={conditions} selected={formData.condition} onSelect={(v) => handleSelect("condition", v)} close={() => setOpenDropdown(null)} dropdownPosition={dropdownPosition} />
+                    <Dropdown options={conditions} selected={formData.condition} onSelect={(v) => handleSelect("condition", v)} close={() => setOpenDropdown(null)} isScrollable={true} />
                   ) : field === "date" ? (
-                    <CalendarDatePicker selectedDate={formData.date} onDateChange={(v) => handleSelect("date", v)} close={() => setOpenDropdown(null)} dropdownPosition={dropdownPosition} />
+                    <CalendarDatePicker selectedDate={formData.date} onDateChange={(v) => handleSelect("date", v)} close={() => setOpenDropdown(null)} />
                   ) : field === "time" ? (
-                    <Dropdown options={times} selected={formData.time} onSelect={(v) => handleSelect("time", v)} close={() => setOpenDropdown(null)} dropdownPosition={dropdownPosition} />
+                    <Dropdown options={times} selected={formData.time} onSelect={(v) => handleSelect("time", v)} close={() => setOpenDropdown(null)} />
                   ) : null)}
               </AnimatePresence>
             </div>

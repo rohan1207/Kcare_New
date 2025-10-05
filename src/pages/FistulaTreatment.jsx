@@ -1,7 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { HeartCrack, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import { Spline, ShieldCheck, HeartPulse, Stethoscope, ArrowRight } from 'lucide-react';
+import ProcedureTimeline from '../components/Timeline';
 
 const ServicePageLayout = ({ service }) => {
   return (
@@ -59,7 +60,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Benefits Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.1 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Key Benefits</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-6 font-display">Advantages of Laser Fistula Repair</h2>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {service.benefits.map((benefit, i) => (
                   <div key={i} className="flex items-start space-x-4">
@@ -77,7 +78,7 @@ const ServicePageLayout = ({ service }) => {
 
             {/* Technology Section */}
             <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.5 }} transition={{ duration: 0.5, delay: 0.2 }}>
-              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">Advanced Technology</h2>
+              <h2 className="text-3xl font-bold text-sky-900 mb-4 font-display">Advanced FiLaC® Technology</h2>
               <div className="prose prose-lg max-w-none text-gray-700 leading-relaxed">
                 <p>{service.technology.description}</p>
               </div>
@@ -93,8 +94,8 @@ const ServicePageLayout = ({ service }) => {
               transition={{ duration: 0.5, delay: 0.3 }}
               className="bg-white p-8 rounded-2xl shadow-xl border border-sky-100/80"
             >
-              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Seek Lasting Relief</h3>
-              <p className="text-center text-gray-600 mb-6">Our specialists offer effective, sphincter-saving fistula treatments.</p>
+              <h3 className="text-2xl font-bold text-sky-900 mb-6 text-center">Heal Completely</h3>
+              <p className="text-center text-gray-600 mb-6">Our sphincter-preserving techniques offer the best chance for a full recovery.</p>
               <Link 
                 to="/contact"
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-sky-700 to-teal-600 text-white px-6 py-3 rounded-full text-lg font-semibold hover:from-sky-800 hover:to-teal-700 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
@@ -120,6 +121,9 @@ const ServicePageLayout = ({ service }) => {
           </aside>
         </div>
       </div>
+
+      {/* Timeline Section */}
+      {service.timeline && <ProcedureTimeline steps={service.timeline} />}
     </div>
   );
 };
@@ -127,34 +131,60 @@ const ServicePageLayout = ({ service }) => {
 const FistulaTreatmentPage = () => {
   const serviceData = {
     title: "Fistula Treatment",
-    subtitle: "Effective, sphincter-saving solutions for anal fistulas.",
+    subtitle: "Sphincter-preserving laser surgery for a complex condition.",
     image: "/fistula.jpg",
-    Icon: HeartCrack,
+    Icon: Spline,
     overview: [
-      "An anal fistula is an abnormal tunnel that forms between the inside of the anus and the skin outside. It is a challenging condition that can cause persistent drainage, pain, and recurrent abscesses, and it will not heal on its own.",
-      "Traditional fistula surgery often carries a risk of damaging the anal sphincter muscles, which can lead to incontinence. At K-Care, we specialize in advanced, sphincter-preserving techniques that effectively treat the fistula while protecting this crucial function."
+      "An anal fistula is an abnormal tunnel that forms between the inside of the anus and the skin outside. It is a complex condition that does not heal on its own and requires surgical treatment. Traditional surgeries can carry a risk of damage to the anal sphincter muscles, which control bowel movements.",
+      "We specialize in advanced, sphincter-preserving laser surgery (FiLaC® - Fistula-tract Laser Closure). This minimally invasive technique effectively closes the fistula tract from the inside out, preserving muscle function and ensuring a high success rate with minimal pain."
     ],
     benefits: [
       {
         title: "Sphincter Preservation",
-        description: "Our primary goal is to cure the fistula without compromising your control over bowel movements."
+        description: "Our primary goal is to heal the fistula while completely preserving the integrity of the anal sphincter muscles, eliminating the risk of incontinence."
+      },
+      {
+        title: "Minimal Pain & Discomfort",
+        description: "The laser procedure is gentle, involving no large cuts, which translates to significantly less postoperative pain."
+      },
+      {
+        title: "Faster Healing & Recovery",
+        description: "Patients experience a much quicker recovery and can return to normal life faster than with conventional surgery."
       },
       {
         title: "High Success Rate",
-        description: "Advanced techniques like FiLaC offer a high rate of success and significantly reduce the chance of recurrence."
-      },
-      {
-        title: "Minimal Pain & Recovery",
-        description: "Laser procedures are minimally invasive, resulting in less post-operative pain and a faster return to daily life."
-      },
-      {
-        title: "Improved Quality of Life",
-        description: "A successful fistula treatment resolves chronic discomfort and drainage, restoring your comfort and confidence."
+        description: "FiLaC® has demonstrated high success rates for even complex fistulas, offering a reliable and definitive cure."
       }
     ],
     technology: {
-      description: "We are proficient in Fistula-tract Laser Closure (FiLaC), a cutting-edge procedure that uses a radial laser fiber to seal the fistula tract from the inside. The laser's energy destroys the tract lining and promotes controlled healing, closing the tunnel without the need for large cuts or complex reconstructions. This sphincter-saving approach is a game-changer for fistula treatment."
-    }
+      description: "The FiLaC® procedure involves passing a radial laser fiber through the fistula tract. The laser's energy is applied circumferentially to the tract wall, causing the tissue to shrink and close in a controlled manner. This process destroys the fistula epithelium and seals the tract without the need for cutting or stitches, making it an exceptionally safe and effective treatment."
+    },
+    timeline: [
+      {
+        title: "Consultation & Advanced Imaging",
+        description: "A clinical evaluation is followed by an MRI or fistulogram to precisely map the fistula's path, which is crucial for successful treatment."
+      },
+      {
+        title: "Strategic Treatment Planning",
+        description: "We review the imaging to plan the procedure, confirming that a sphincter-preserving laser approach like FiLaC® is the optimal choice."
+      },
+      {
+        title: "Minimally Invasive Laser Procedure",
+        description: "The FiLaC® procedure is performed under anesthesia as a day-care case, gently sealing the fistula tract from within."
+      },
+      {
+        title: "Post-Operative Care",
+        description: "After a brief recovery period, you are discharged with instructions for local wound care and hygiene to support healing."
+      },
+      {
+        title: "Healing Phase",
+        description: "The treated tract heals gradually over several weeks. You will be able to resume most activities with minimal discomfort."
+      },
+      {
+        title: "Follow-Up & Confirmation of Closure",
+        description: "Follow-up visits are scheduled to monitor the healing process and confirm that the fistula has closed completely, ensuring a lasting cure."
+      }
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

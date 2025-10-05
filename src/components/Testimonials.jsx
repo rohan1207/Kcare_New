@@ -25,7 +25,7 @@ const TESTIMONIALS = [
     avatar:
       "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
     quote:
-      "I've been a patient for years. Consistent high‑quality care keeps me coming back. Professionalism and empathy are evident in every visit.",
+      "I've been a patient for years. Consistent high‑quality care keeps me coming back. Professionalism and empathy are evident in every visit. I highly recommend this clinic to anyone in need of surgical care. The staff is always friendly and helpful. The clinic is also very affordable. I would highly recommend this clinic to anyone in need of surgical care.",
     tone: "mint",
   },
 ];
@@ -83,6 +83,12 @@ export default function Testimonials() {
   return (
     <section id="testimonials" className="relative isolate py-20 sm:py-28 bg-sky-50/30">
       {/* Pattern overlay */}
+      <div className="text-center mb-12">
+          <p className="text-sm font-semibold text-sky-600">Patient Testimonials</p>
+          <h2 className="mt-2 text-3xl font-bold tracking-tight text-sky-900 sm:text-4xl">
+          Trust in our expertise
+          </h2>
+        </div>
       <div className="pointer-events-none absolute inset-0 opacity-50" aria-hidden="true">
         <div
           className="w-full h-full"
@@ -93,14 +99,16 @@ export default function Testimonials() {
           }}
         />
       </div>
+      
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
+        
         {/* Top header and hero image */}
         <div className="grid items-center gap-8 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <div className="flex items-center justify-between text-gray-500 text-sm">
               <span>Patient Stories</span>
-              <span className="hidden sm:block">2024</span>
+             
             </div>
             <h2 className="mt-3 text-sky-900 text-3xl sm:text-4xl font-bold tracking-tight">
               Patients Gave
@@ -133,7 +141,7 @@ export default function Testimonials() {
         </div>
 
         {/* Second wave on scroll: pop up from below */}
-        <div className="mt-6 grid gap-6 lg:grid-cols-12">
+        <div className="mt-8 grid gap-6 lg:grid-cols-12">
           <motion.div
             variants={popUp}
             initial="hidden"
