@@ -131,13 +131,13 @@ const AboutUs = () => {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50">
+    <div className="min-h-screen bg-white">
       {/* Hero Section */}
       <motion.div
         initial="hidden"
         animate="visible"
         variants={fadeInUp}
-        className="relative bg-gradient-to-r from-teal-600/70 via-teal-600/80 to-teal-600 text-white overflow-hidden"
+        className="relative bg-gradient-to-r from-sky-800 to-teal-700 text-white overflow-hidden"
       >
         <div className="absolute inset-0 bg-black/10"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24">
@@ -148,7 +148,7 @@ const AboutUs = () => {
               transition={{ delay: 0.2 }}
               className="inline-flex items-center bg-white/20 rounded-full px-4 py-2 mb-6 sm:mt-20 mt-5"
             >
-              <Heart className="w-5 h-5 mr-2 text-teal-300" />
+              <Heart className="w-5 h-5 mr-2 text-sky-200" />
               <span className="text-sm font-medium">
                 Advanced Surgical Care
               </span>
@@ -159,13 +159,13 @@ const AboutUs = () => {
               transition={{ delay: 0.3 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 font-display"
             >
-              About <span className="text-teal-300">Kcare Clinic</span>
+              About <span className="text-sky-200">Kcare Clinic</span>
             </motion.h1>
             <motion.p
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed text-teal-300/90"
+              className="text-xl sm:text-2xl max-w-3xl mx-auto leading-relaxed text-sky-200/90"
             >
               Pioneering the future of surgical care with robotic and
               laparoscopic expertise.
@@ -187,13 +187,13 @@ const AboutUs = () => {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.1 * index }}
-              className="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-teal-600 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+              className="bg-white rounded-2xl p-6 shadow-xl border-t-4 border-sky-600 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
             >
-              <stat.icon className="w-8 h-8 text-teal-600 mb-3" />
-              <div className="text-3xl sm:text-4xl font-bold text-stone-800 mb-1">
+              <stat.icon className="w-8 h-8 text-sky-700 mb-3" />
+              <div className="text-3xl sm:text-4xl font-bold text-sky-900 mb-1">
                 {stat.number}
               </div>
-              <div className="text-stone-600 text-sm sm:text-base font-medium">
+              <div className="text-sky-800/90 text-sm sm:text-base font-medium">
                 {stat.label}
               </div>
             </motion.div>
@@ -222,8 +222,8 @@ const AboutUs = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full font-medium transition-all duration-300 text-sm sm:text-base ${
                   activeTab === tab.id
-                    ? "bg-gradient-to-r from-teal-600 to-teal-500 text-white shadow-lg"
-                    : "bg-stone-100 text-stone-600 hover:bg-stone-200"
+                    ? "bg-gradient-to-r from-sky-700 to-teal-600 text-white shadow-lg"
+                    : "bg-sky-50/70 text-sky-800 hover:bg-sky-100"
                 }`}
               >
                 {tab.label}
@@ -240,10 +240,10 @@ const AboutUs = () => {
             >
               {" "}
               <div className="flex flex-col h-full">
-                <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 mb-8 font-display">
+                <h2 className="text-3xl sm:text-4xl font-bold text-sky-900 mb-8 font-display">
                   About <span className="text-teal-600">Kcare Clinic</span>
                 </h2>
-                <div className="flex-grow space-y-6 text-stone-600 leading-relaxed">
+                <div className="flex-grow space-y-6 text-sky-800/90 leading-relaxed">
                   <p className="text-lg">
                     Kcare Clinic is a premier surgical facility in Pune,
                     specializing in advanced robotic and laparoscopic
@@ -259,12 +259,12 @@ const AboutUs = () => {
                     className="bg-teal-500/5 rounded-xl p-6 border border-teal-500/20 flex flex-col items-center sm:items-start text-center sm:text-left"
                   >
                     <div className="bg-white/80 rounded-full p-3 mb-3">
-                      <MapPin className="w-6 h-6 text-teal-600" />
+                      <MapPin className="w-6 h-6 text-sky-700" />
                     </div>
-                    <h3 className="font-semibold text-stone-800 mb-2">
+                    <h3 className="font-semibold text-sky-900 mb-2">
                       Location
                     </h3>
-                    <p className="text-stone-600">Pune, Maharashtra</p>
+                    <p className="text-sky-800/90">Pune, Maharashtra</p>
                   </motion.div>
                   <motion.div
                     whileHover={{ scale: 1.02 }}
@@ -272,12 +272,12 @@ const AboutUs = () => {
                     className="bg-teal-500/5 rounded-xl p-6 border border-teal-500/20 flex flex-col items-center sm:items-start text-center sm:text-left"
                   >
                     <div className="bg-white/80 rounded-full p-3 mb-3">
-                      <Award className="w-6 h-6 text-teal-600" />
+                      <Award className="w-6 h-6 text-sky-700" />
                     </div>
-                    <h3 className="font-semibold text-stone-800 mb-2">
+                    <h3 className="font-semibold text-sky-900 mb-2">
                       Accreditation
                     </h3>
-                    <p className="text-stone-600">NABH Accredited Facility</p>
+                    <p className="text-sky-800/90">NABH Accredited Facility</p>
                   </motion.div>
                 </div>
               </div>
@@ -287,7 +287,7 @@ const AboutUs = () => {
                 transition={{ duration: 0.5 }}
                 className="h-full"
               >
-                <div className="bg-gradient-to-br from-teal-600 to-teal-500 rounded-3xl p-8 text-white h-full flex flex-col">
+                <div className="bg-gradient-to-br from-sky-800 to-teal-700 rounded-3xl p-8 text-white h-full flex flex-col">
                   <div className="bg-white/20 rounded-2xl p-6 backdrop-blur-sm flex-grow">
                     <h3 className="text-2xl font-bold mb-6 font-display">
                       Why Choose Us?
@@ -311,7 +311,7 @@ const AboutUs = () => {
                           transition={{ delay: index * 0.1 }}
                           className="flex items-start"
                         >
-                          <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-green-300 flex-shrink-0" />
+                          <CheckCircle className="w-5 h-5 mr-3 mt-0.5 text-sky-200 flex-shrink-0" />
                           <span className="text-sm">{item}</span>
                         </motion.li>
                       ))}
@@ -332,7 +332,7 @@ const AboutUs = () => {
               <div className="grid lg:grid-cols-2 gap-8">
                 <motion.div
                   whileHover={{ y: -5 }}
-                  className="bg-gradient-to-br from-teal-600/95 to-teal-500/80 backdrop-blur-lg rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden"
+                  className="bg-gradient-to-br from-sky-800 to-teal-700 backdrop-blur-lg rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden"
                 >
                   <div className="absolute inset-0 bg-[url('/logo.png')] opacity-5 bg-center bg-no-repeat bg-contain"></div>
                   <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-16 translate-x-16"></div>
@@ -355,21 +355,21 @@ const AboutUs = () => {
 
                 <motion.div
                   whileHover={{ y: -5 }}
-                  className="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-stone-100 relative overflow-hidden"
+                  className="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-sky-100/80 relative overflow-hidden"
                 >
                   {" "}
-                  <div className="absolute inset-0 bg-gradient-to-br from-teal-500/5 to-teal-500/10"></div>
-                  <div className="absolute top-0 right-0 w-32 h-32 bg-teal-500/10 rounded-full -translate-y-16 translate-x-16"></div>
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-teal-500/20 rounded-full translate-y-12 -translate-x-12"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-sky-50/50 to-sky-100/50"></div>
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-sky-200/20 rounded-full -translate-y-16 translate-x-16"></div>
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-sky-200/30 rounded-full translate-y-12 -translate-x-12"></div>
                   <div className="relative">
                     {" "}
-                    <div className="bg-gradient-to-br from-teal-600 to-teal-500 rounded-full w-16 h-16 flex items-center justify-center mb-8">
+                    <div className="bg-gradient-to-br from-sky-700 to-teal-600 rounded-full w-16 h-16 flex items-center justify-center mb-8">
                       <Heart className="w-8 h-8 text-white" />
                     </div>
-                    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-stone-900 font-display">
+                    <h2 className="text-3xl sm:text-4xl font-bold mb-6 text-sky-900 font-display">
                       Our Mission & Objectives
                     </h2>
-                    <p className="text-lg sm:text-xl leading-relaxed text-stone-600">
+                    <p className="text-lg sm:text-xl leading-relaxed text-sky-800/90">
                       Our mission is to provide accessible, affordable, and
                       high-quality surgical care. We aim to leverage advanced
                       technology to minimize patient discomfort, reduce
@@ -385,12 +385,12 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="bg-white rounded-3xl shadow-xl border border-stone-100 overflow-hidden"
+                className="bg-white rounded-3xl shadow-xl border border-sky-100/80 overflow-hidden"
               >
                 <div className="relative p-8 sm:p-12">
-                  <div className="absolute inset-0 bg-gradient-to-br from-stone-50/80 to-white/80"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-sky-50/80 to-white"></div>
                   <div className="relative">
-                    <h3 className="text-2xl sm:text-3xl font-bold text-stone-900 mb-8 text-center font-display">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-sky-900 mb-8 text-center font-display">
                       Our Core Values
                     </h3>
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -399,29 +399,29 @@ const AboutUs = () => {
                           icon: Heart,
                           title: "Compassion",
                           desc: "Caring with empathy",
-                          gradient: "from-teal-600 to-teal-500",
-                          bg: "from-teal-500/5 to-teal-500/10",
+                          gradient: "from-sky-700 to-teal-600",
+                          bg: "from-sky-100/50 to-teal-100/50",
                         },
                         {
                           icon: Shield,
                           title: "Safety",
                           desc: "Ensuring patient safety",
-                          gradient: "from-teal-400 to-teal-500",
-                          bg: "from-teal-50 to-teal-100",
+                          gradient: "from-sky-600 to-teal-500",
+                          bg: "from-sky-100/50 to-teal-100/50",
                         },
                         {
                           icon: Award,
                           title: "Excellence",
                           desc: "Striving for the best",
-                          gradient: "from-teal-500 to-teal-600",
-                          bg: "from-teal-50 to-teal-100",
+                          gradient: "from-sky-700 to-teal-600",
+                          bg: "from-sky-100/50 to-teal-100/50",
                         },
                         {
                           icon: Users,
                           title: "Respect",
                           desc: "Treating all with dignity",
-                          gradient: "from-teal-400 to-teal-500",
-                          bg: "from-teal-50 to-teal-100",
+                          gradient: "from-sky-600 to-teal-500",
+                          bg: "from-sky-100/50 to-teal-100/50",
                         },
                       ].map((value, index) => (
                         <motion.div
@@ -444,10 +444,10 @@ const AboutUs = () => {
                             >
                               <value.icon className="w-6 h-6 text-white" />
                             </div>
-                            <h4 className="font-semibold text-stone-900 mb-2 text-center">
+                            <h4 className="font-semibold text-sky-900 mb-2 text-center">
                               {value.title}
                             </h4>
-                            <p className="text-sm text-stone-600 text-center">
+                            <p className="text-sm text-sky-800/90 text-center">
                               {value.desc}
                             </p>
                           </div>
@@ -467,11 +467,11 @@ const AboutUs = () => {
               transition={{ duration: 0.5 }}
             >
               <div className="text-center mb-12">
-                <h2 className="text-3xl sm:text-4xl font-bold text-stone-800 mb-4 font-display">
+                <h2 className="text-3xl sm:text-4xl font-bold text-sky-900 mb-4 font-display">
                   World-Class{" "}
                   <span className="text-teal-600">Facilities & Services</span>
                 </h2>
-                <p className="text-lg text-stone-600 max-w-3xl mx-auto">
+                <p className="text-lg text-sky-800/90 max-w-3xl mx-auto">
                   State-of-the-art infrastructure and advanced medical equipment
                   to provide the best possible care
                 </p>
@@ -479,7 +479,7 @@ const AboutUs = () => {
 
               <div className="grid lg:grid-cols-2 gap-8">
                 <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-stone-800 mb-6 font-display">
+                  <h3 className="text-2xl font-bold text-sky-900 mb-6 font-display">
                     Key Facilities
                   </h3>
                   {facilities.map((facility, index) => (
@@ -489,17 +489,16 @@ const AboutUs = () => {
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: index * 0.1 }}
                       whileHover={{ scale: 1.02 }}
-                      className="flex items-start space-x-4 bg-white p-6 rounded-2xl shadow-sm border border-stone-100 hover:shadow-md transition-all"
+                      className="flex items-start space-x-4 bg-white p-6 rounded-2xl shadow-sm border border-sky-100/80 hover:shadow-md transition-all"
                     >
-                      {" "}
-                      <div className="bg-teal-500/5 p-3 rounded-xl">
-                        <facility.icon className="w-6 h-6 text-teal-600" />
+                      <div className="bg-sky-100/70 p-3 rounded-xl">
+                        <facility.icon className="w-6 h-6 text-sky-700" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-stone-800 mb-1">
+                        <h4 className="font-semibold text-sky-900 mb-1">
                           {facility.title}
                         </h4>
-                        <p className="text-stone-600 text-sm">
+                        <p className="text-sky-800/90 text-sm">
                           {facility.desc}
                         </p>
                       </div>
@@ -508,14 +507,14 @@ const AboutUs = () => {
                 </div>
 
                 <div className="space-y-6">
-                  <h3 className="text-2xl font-bold text-stone-800 mb-6 font-display">
+                  <h3 className="text-2xl font-bold text-sky-900 mb-6 font-display">
                     Our Specialties
                   </h3>
                   <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
-                    className="bg-gradient-to-br from-stone-50 to-stone-100 rounded-3xl p-8"
+                    className="bg-gradient-to-br from-sky-50/70 to-sky-100/70 rounded-3xl p-8"
                   >
                     <div className="grid grid-cols-2 gap-4">
                       {specialties.map((service, index) => (
@@ -526,8 +525,8 @@ const AboutUs = () => {
                           transition={{ delay: index * 0.05 }}
                           className="flex items-center space-x-3"
                         >
-                          <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0" />
-                          <span className="text-stone-700 text-sm sm:text-base">
+                          <CheckCircle className="w-5 h-5 text-teal-600 flex-shrink-0" />
+                          <span className="text-sky-900 text-sm sm:text-base">
                             {service}
                           </span>
                         </motion.div>
@@ -537,84 +536,31 @@ const AboutUs = () => {
                 </div>
               </div>
             </motion.div>
-          )}{" "}
-          {/* Founder Tab */}
-          {activeTab === "founder" && (
+          )}
+          {/* Founder & Team Tab */}
+          {(activeTab === "founder" || activeTab === "team") && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="max-w-6xl mx-auto py-8"
+              className="max-w-7xl mx-auto"
             >
-              <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
-                <div className="grid md:grid-cols-2 gap-8">
-                  {/* Image Section */}
-                  <div className="relative h-[400px] md:h-full">
-                    <img
-                      src="/pramod_kadam.jpg"
-                      alt="Dr. Pramod Kadam"
-                      className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-                  </div>
-
-                  {/* Content Section */}
-                  <div className="p-8 md:p-12">
-                    <div className="mb-8">
-                      <h2 className="text-3xl sm:text-4xl font-bold text-stone-900 mb-4 font-display">
-                        Dr. Pramod Kadam
-                      </h2>
-                      <p className="text-lg text-stone-600 mb-6">
-                        Dr. Pramod Kadam is a renowned General Surgeon with 15
-                        years of experience, including 11 years as a
-                        specialist. He is dedicated to providing the highest
-                        standard of surgical care.
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      {[
-                        {
-                          label: "Speciality",
-                          value: "General Surgeon",
-                        },
-                        {
-                          label: "Education",
-                          value: "MBBS, DNB (General Surgery)",
-                        },
-                        { label: "Experience", value: "15 years" },
-                        {
-                          label: "Services",
-                          value:
-                            "Umbilical Hernia Surgery, Laser Treatment for Varicose Veins, Benign and Cancer Surgeries, Colorectal Surgery and Total Thyroidectomy.",
-                        },
-                      ].map((item, index) => (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, x: -20 }}
-                          animate={{ opacity: 1, x: 0 }}
-                          transition={{ delay: index * 0.1 }}
-                          className="flex items-start border-b border-stone-100 pb-4"
-                        >
-                          <span className="text-stone-600 min-w-[120px] font-semibold">
-                            {item.label}
-                          </span>
-                          <span className="text-stone-800 ml-4">
-                            {item.value}
-                          </span>
-                        </motion.div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+              <div className="text-center mb-12">
+                <h2 className="text-3xl sm:text-4xl font-bold text-sky-900 mb-4 font-display">
+                  Our Expert Team
+                </h2>
+                <p className="text-lg text-sky-800/90 max-w-3xl mx-auto">
+                  Led by our founder, our team is composed of dedicated professionals committed to excellence in surgical care.
+                </p>
               </div>
+              <OurTeam />
             </motion.div>
           )}
-          {activeTab === "team" && <OurTeam />}
         </motion.div>
       </div>
 
       {/* Contact Strip */}
-      <div className="mt-8 sm:mt-16 bg-gradient-to-r from-teal-500/5 to-teal-500/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden">
+      <div className="mt-16 sm:mt-24 bg-gradient-to-r from-sky-50/70 to-teal-50/70 rounded-xl sm:rounded-2xl p-6 sm:p-8 relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div
@@ -627,10 +573,10 @@ const AboutUs = () => {
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative">
-          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-stone-800 mb-3 sm:mb-4 font-display">
+          <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-sky-900 mb-3 sm:mb-4 font-display">
             Have any questions or need a consultation?
           </h3>
-          <p className="text-stone-600 mb-4 sm:mb-6 text-sm sm:text-base md:text-lg">
+          <p className="text-sky-800/90 mb-4 sm:mb-6 text-sm sm:text-base md:text-lg">
             Our medical experts are here to help. Get in touch with us for any
             medical queries or appointment scheduling.
           </p>
@@ -638,7 +584,7 @@ const AboutUs = () => {
           <Link
             to="/contact"
             href="#"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-amber-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold hover:from-amber-600/90 hover:to-amber-500/70 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-sky-700 to-teal-600 text-white px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm sm:text-base font-semibold hover:from-sky-800 hover:to-teal-700 transform transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
           >
             Contact Us
             <svg

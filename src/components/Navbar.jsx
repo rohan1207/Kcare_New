@@ -1,19 +1,41 @@
-import { useState } from "react";
-import { Dialog } from '@headlessui/react';
-import { useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
+import { Dialog, Popover, Transition } from '@headlessui/react';
 import { useLocation } from "react-router-dom";
+import { ChevronDown } from 'lucide-react';
+
+const procedures = [
+  { name: "Diabetic Foot Care", href: '#services' },
+  { name: "Breast Surgery", href: '#services' },
+  { name: "Advanced Thyroid Surgery", href: '#services' },
+  { name: "Laser Fissure Treatment", href: '#services' },
+  { name: "Piles (Hemorrhoids)", href: '#services' },
+  { name: "Fistula Treatment", href: '#services' },
+  { name: "Laparoscopic Appendectomy", href: '#services' },
+  { name: "Robotic Hernia Repair", href: '#services' },
+  { name: "Gall Bladder Removal", href: '#services' },
+  { name: "Hydrocele Surgery", href: '#services' },
+  { name: "Pilonidal Sinus Care", href: '#services' },
+  { name: "Rectal Prolapse Surgery", href: '#services' },
+  { name: "Phimosis Treatment", href: '#services' },
+  { name: "Abscess Drainage", href: '#services' },
+  { name: "Cyst Removal", href: '#services' },
+];
 
 const navigation = [
-  { name: 'Services', href: '#' },
-  { name: 'Implants', href: '#' },
-  { name: 'Price', href: '#' },
-  { name: 'Preventive Care', href: '#' },
+  { name: 'Home', href: '/' },
+  { name: 'Procedures', href: '#', children: procedures },
+  { name: 'About Us', href: '/about' },
+  { name: 'Blogs', href: '/blogs' },
+  { name: 'Gallery', href: '/gallery' },
+  { name: 'Recognitions', href: '#recognitions' },
+  { name: 'Contact Us', href: '#contact' },
 ];
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [proceduresMenuOpen, setProceduresMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -25,29 +47,29 @@ export default function Navbar() {
 
   const isHome = location.pathname === '/';
   const transparent = isHome && !scrolled;
-  const linkBase = 'relative text-[15px] font-medium px-2 py-1 rounded-md after:content-[""] after:absolute after:left-2 after:right-2 after:-bottom-0.5 after:h-[2px] after:rounded-full after:transition-transform after:duration-300 after:scale-x-0';
+  const linkBase = 'relative text-[15px] font-medium px-3 py-2 rounded-full transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40';
   const linkTheme = transparent
-    ? 'text-white hover:bg-white/10 hover:after:scale-x-100 after:bg-teal-200'
-    : 'text-slate-900 hover:bg-sky-50 hover:after:scale-x-100 after:bg-sky-600';
+    ? 'text-white/90 hover:text-white hover:bg-white/15'
+    : 'text-slate-800 hover:text-slate-900 hover:bg-sky-50';
+  const activeTheme = transparent ? 'bg-white/20 text-white' : 'bg-sky-100 text-sky-900';
   const ctaClasses = transparent
-    ? 'text-white border border-white/20 bg-white/10 hover:bg-white/20 rounded-full'
-    : 'text-white bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 rounded-full shadow-md shadow-sky-900/10';
+    ? 'text-white border border-white/20 bg-white/10 hover:bg-white/20 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40'
+    : 'text-white bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 rounded-full shadow-md shadow-sky-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40';
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <nav
-        className={`${transparent ? 'bg-transparent' : 'bg-white/60 backdrop-blur-md border-b border-white/20 shadow-[0_8px_32px_rgba(2,132,199,0.15)]'} transition-colors duration-300`}
+        className={`${transparent ? 'bg-transparent' : 'bg-white/60 backdrop-blur-md backdrop-saturate-150 border-b border-white/20 shadow-[0_8px_32px_rgba(2,132,199,0.15)]'} transition-colors duration-300`}
         aria-label="Global"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-6 flex items-center justify-between">
           <div className="flex lg:flex-1 items-center">
-            <a href="#" className="-m-1.5 p-1.5 flex items-center gap-3">
-              <div className="w-9 h-9 rounded-md bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center ring-1 ring-white/40">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-              </div>
-              <span className={`text-2xl font-bold tracking-tight ${transparent ? 'text-white' : 'text-sky-900'}`}>Kcare</span>
+            <a href="#" className="-m-1.5 p-1.5 flex items-center">
+              <img
+                src="/logo3.png"
+                alt="Kcare"
+                className={`h-14 sm:h-14 md:h-14 w-auto object-contain ${transparent ? 'drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]' : ''}`}
+              />
             </a>
           </div>
 
@@ -68,12 +90,62 @@ export default function Navbar() {
             <nav className="flex items-center gap-x-8">
               {navigation.map((item, idx) => {
                 const isActive = activeIdx === idx;
+
+                if (item.children) {
+                  return (
+                    <div 
+                      key={item.name} 
+                      className="relative"
+                      onMouseEnter={() => setProceduresMenuOpen(true)}
+                      onMouseLeave={() => setProceduresMenuOpen(false)}
+                    >
+                      <a
+                        href={item.href}
+                        onClick={(e) => { e.preventDefault(); setProceduresMenuOpen(!proceduresMenuOpen); }}
+                        className={`${linkBase} ${linkTheme} ${proceduresMenuOpen ? activeTheme : ''} group inline-flex items-center gap-1`}
+                      >
+                        <span>{item.name}</span>
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform duration-200 ${proceduresMenuOpen ? 'rotate-180' : ''}`}
+                          aria-hidden="true"
+                        />
+                      </a>
+                      <Transition
+                        as={Fragment}
+                        show={proceduresMenuOpen}
+                        enter="transition ease-out duration-200"
+                        enterFrom="opacity-0 translate-y-1"
+                        enterTo="opacity-100 translate-y-0"
+                        leave="transition ease-in duration-150"
+                        leaveFrom="opacity-100 translate-y-0"
+                        leaveTo="opacity-0 translate-y-1"
+                      >
+                        <div className="absolute -left-8 top-full z-10 mt-5 w-screen max-w-md overflow-hidden rounded-2xl bg-white/80 shadow-lg ring-1 ring-gray-900/5 backdrop-blur-md">
+                          <div className="p-4 grid grid-cols-2 gap-x-6 gap-y-2">
+                            {item.children.map((child) => (
+                              <a
+                                key={child.name}
+                                href={child.href}
+                                onClick={() => setProceduresMenuOpen(false)}
+                                className="block p-2 text-sm font-medium text-sky-800 rounded-lg hover:bg-sky-100/70"
+                              >
+                                {child.name}
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      </Transition>
+                    </div>
+                  );
+                }
+
+
                 return (
                   <a
                     key={item.name}
                     href={item.href}
                     onClick={() => setActiveIdx(idx)}
-                    className={`${linkBase} ${linkTheme} ${isActive ? 'after:scale-x-100' : ''}`}
+                    className={`${linkBase} ${linkTheme} ${isActive ? activeTheme : ''}`}
                   >
                     {item.name}
                   </a>
@@ -97,13 +169,8 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/80 backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5 flex items-center gap-2">
-              <div className="w-8 h-8 rounded-md bg-gradient-to-br from-sky-500 to-teal-500 flex items-center justify-center">
-                <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
-                </svg>
-              </div>
-              <span className="text-2xl font-bold text-sky-900 tracking-tight">Kcare</span>
+            <a href="#" className="-m-1.5 p-1.5 flex items-center">
+              <img src="/logo3.png" alt="Kcare" className="h-9 w-auto object-contain" />
             </a>
             <button
               type="button"
@@ -123,7 +190,7 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-sky-900 hover:bg-slate-100"
+                    className="-mx-3 block rounded-full px-4 py-2.5 text-base font-semibold leading-7 text-sky-900 hover:bg-slate-100"
                   >
                     {item.name}
                   </a>

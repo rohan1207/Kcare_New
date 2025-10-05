@@ -2,9 +2,9 @@ import { ArrowRight } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-20 bg-slate-50">
+    <section id="about" className="relative py-20 sm:py-28 bg-sky-50/20">
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="rounded-3xl bg-white ring-1 ring-slate-200 shadow-sm p-6 md:p-10">
+        <div className="rounded-3xl bg-white ring-1 ring-sky-100/80 shadow-sm p-8">
           <div className="grid gap-8 lg:gap-12 md:grid-cols-2 items-center">
             {/* Left copy */}
             <div>
@@ -22,20 +22,20 @@ export default function AboutSection() {
                 />
               </div>
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-light tracking-tight text-slate-900">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-sky-900">
                 The Future of Surgery,
                 <br />
                 Delivered with Care.
               </h2>
 
-              <p className="mt-6 text-slate-600 max-w-xl leading-relaxed">
+              <p className="mt-6 text-sky-900/80 max-w-xl leading-relaxed">
                 We are a team of dedicated specialists committed to providing personalized, top-quality surgical care. By blending state-of-the-art robotic and laparoscopic technology with a human touch, we ensure better outcomes and a seamless patient experience.
               </p>
 
               <div className="mt-8">
                 <a
                   href="#"
-                  className="inline-flex items-center gap-2 rounded-full border border-slate-300 px-5 py-2.5 text-sm font-medium text-slate-800 hover:bg-slate-50"
+                  className="inline-flex items-center gap-2 rounded-full border border-sky-300 px-5 py-2.5 text-sm font-medium text-sky-800 hover:bg-sky-50/50"
                 >
                   About Clinic <ArrowRight className="h-4 w-4" />
                 </a>
@@ -48,7 +48,7 @@ export default function AboutSection() {
                 <img
                   src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1600&auto=format&fit=crop"
                   alt="Surgical team in operating room"
-                  className="w-full h-[360px] sm:h-[460px] lg:h-[520px] object-cover rounded-2xl ring-1 ring-slate-200"
+                  className="w-full h-[320px] sm:h-[400px] lg:h-[420px] object-cover rounded-2xl ring-1 ring-sky-100/80"
                 />
               </div>
             </div>

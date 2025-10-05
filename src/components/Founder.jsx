@@ -35,7 +35,7 @@ const DOCTORS = [
 
 function DoctorCard({ doctor }) {
   return (
-    <div className="group relative bg-slate-900 rounded-3xl overflow-hidden">
+    <div className="group relative bg-sky-900/90 rounded-3xl overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-t from-sky-900/30 to-teal-800/20 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
       <div className="relative p-8 text-white">
         <div className="flex items-start gap-6 mb-6">
@@ -107,10 +107,10 @@ export default function MainDoctors() {
             <Sparkles className="h-4 w-4 text-teal-600" />
             Medical Excellence
           </span>
-          <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold tracking-tight text-sky-900 mb-4">
             Our Surgeons
           </h2>
-          <p className="mt-4 text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          <p className="mt-4 text-lg text-sky-800/80 max-w-2xl mx-auto leading-relaxed">
             Distinguished specialists committed to delivering exceptional surgical care with precision and compassion.
           </p>
         </div>
@@ -122,22 +122,22 @@ export default function MainDoctors() {
         </div>
 
         <div className="text-center">
-          <div className="inline-flex items-center gap-3 px-6 py-3 bg-slate-50 border border-slate-200 rounded-full mb-8 shadow-sm">
-            <Award className="h-5 w-5 text-slate-500" />
-            <span className="text-sm text-slate-700">Board Certified • Licensed Practitioners • 25+ Years Combined Experience</span>
+          <div className="inline-flex items-center gap-3 px-6 py-3 bg-sky-50 border border-sky-200 rounded-full mb-8 shadow-sm">
+            <Award className="h-5 w-5 text-sky-500" />
+            <span className="text-sm text-sky-700">Board Certified • Licensed Practitioners • 25+ Years Combined Experience</span>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <a
               href="/book"
-              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-slate-900 text-white font-semibold rounded-full hover:bg-slate-800 transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto"
+              className="group inline-flex items-center justify-center gap-2 px-8 py-4 bg-sky-900 text-white font-semibold rounded-full hover:bg-sky-800 transition-all duration-300 shadow-lg hover:shadow-xl w-full sm:w-auto"
             >
               Schedule Consultation
               <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-full border border-slate-200 hover:bg-slate-50 transition-all duration-300 w-full sm:w-auto"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-sky-900 font-semibold rounded-full border border-sky-200 hover:bg-sky-50 transition-all duration-300 w-full sm:w-auto"
             >
               <Stethoscope className="h-4 w-4" />
               Contact Us
