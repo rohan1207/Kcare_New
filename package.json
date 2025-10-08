@@ -21,7 +21,7 @@
     "@tinymce/tinymce-react": "^6.2.1",
     "axios": "^1.10.0",
     "date-fns": "^4.1.0",
-    "framer-motion": "^12.6.2",
+    "framer-motion": "^12.23.22",
     "gsap": "^3.13.0",
     "heroicons": "^2.2.0",
     "lucide-react": "^0.483.0",

@@ -47,20 +47,20 @@ export default function Navbar() {
 
   const isHome = location.pathname === '/';
   const transparent = isHome && !scrolled;
-  const linkBase = 'relative text-[15px] font-medium px-3 py-2 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40 group';
+  const linkBase = 'relative text-[15px] font-medium px-3 py-2 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 group';
   const linkTheme = transparent
     ? 'text-white/90 hover:text-white'
-    : 'text-slate-800 hover:text-slate-900';
-  const underlineClass = `absolute bottom-1 left-0 right-0 h-[2px] origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 ${transparent ? 'bg-white' : 'bg-sky-600'}`;
-  const activeUnderlineClass = `absolute bottom-1 left-0 right-0 h-[2px] scale-x-100 ${transparent ? 'bg-white' : 'bg-sky-600'}`;
+    : 'text-stone-800 hover:text-stone-900';
+  const underlineClass = `absolute bottom-1 left-0 right-0 h-[2px] origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 ${transparent ? 'bg-white' : 'bg-emerald-400'}`;
+  const activeUnderlineClass = `absolute bottom-1 left-0 right-0 h-[2px] scale-x-100 ${transparent ? 'bg-white' : 'bg-emerald-400'}`;
   const ctaClasses = transparent
     ? 'text-white border border-white/20 bg-white/10 hover:bg-white/20 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40'
-    : 'text-white bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 rounded-full shadow-md shadow-sky-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/40';
+    : 'text-stone-900 bg-emerald-400 hover:bg-emerald-300 rounded-full shadow-md shadow-emerald-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40';
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <nav
-        className={`${transparent ? 'bg-transparent' : 'bg-white/60 backdrop-blur-md backdrop-saturate-150 border-b border-white/20 shadow-[0_8px_32px_rgba(2,132,199,0.15)]'} transition-colors duration-300`}
+        className={`${transparent ? 'bg-transparent' : 'bg-white/60 backdrop-blur-md backdrop-saturate-150 border-b border-emerald-200/20 shadow-[0_8px_32px_rgba(16,185,129,0.15)]'} transition-colors duration-300`}
         aria-label="Global"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-6 flex items-center justify-between">
@@ -68,7 +68,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <a href="#" className="-m-1.5 p-1.5 flex items-center">
               <img
-                src="/logo3.png"
+                src="/logo4.png"
                 alt="Kcare"
                 className={`h-14 sm:h-14 md:h-14 w-auto object-contain ${transparent ? 'drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]' : ''}`}
               />
@@ -125,14 +125,14 @@ export default function Navbar() {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <div className="absolute -left-8 top-full z-10 mt-5 w-screen max-w-md overflow-hidden rounded-2xl bg-white/80 shadow-lg ring-1 ring-gray-900/5 backdrop-blur-md">
+                        <div className="absolute -left-8 top-full z-10 mt-5 w-screen max-w-md overflow-hidden rounded-2xl bg-white/90 shadow-lg ring-1 ring-emerald-900/5 backdrop-blur-md">
                           <div className="p-4 grid grid-cols-2 gap-x-6 gap-y-2">
                             {item.children.map((child) => (
                               <a
                                 key={child.name}
                                 href={child.href}
                                 onClick={() => setProceduresMenuOpen(false)}
-                                className="block p-2 text-sm font-medium text-sky-800 rounded-lg hover:bg-sky-100/70"
+                                className="block p-2 text-sm font-medium text-stone-800 rounded-lg hover:bg-emerald-50/70"
                               >
                                 {child.name}
                               </a>
@@ -164,7 +164,7 @@ export default function Navbar() {
               href="#"
               className={`text-sm font-semibold leading-6 px-5 py-2.5 transition-colors ${ctaClasses}`}
             >
-              Health Check
+              Contact Us
             </a>
           </div>
         </div>
@@ -172,14 +172,14 @@ export default function Navbar() {
 
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/80 backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/90 backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-emerald-900/10">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5 flex items-center">
-              <img src="/logo3.png" alt="Kcare" className="h-9 w-auto object-contain" />
+              <img src="/logo4.png" alt="Kcare" className="h-9 w-auto object-contain" />
             </a>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-sky-900"
+              className="-m-2.5 rounded-md p-2.5 text-stone-900"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -195,7 +195,7 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-full px-4 py-2.5 text-base font-semibold leading-7 text-sky-900 hover:bg-slate-100"
+                    className="-mx-3 block rounded-full px-4 py-2.5 text-base font-semibold leading-7 text-stone-800 hover:bg-emerald-50"
                   >
                     {item.name}
                   </a>
@@ -204,9 +204,9 @@ export default function Navbar() {
               <div className="py-6">
                 <a
                   href="#"
-                  className="block text-center rounded-full px-5 py-2.5 text-base font-semibold leading-7 text-white bg-gradient-to-r from-sky-500 to-teal-500 hover:from-sky-600 hover:to-teal-600 shadow-md shadow-sky-900/10"
+                  className="block text-center rounded-full px-5 py-2.5 text-base font-semibold leading-7 text-stone-900 bg-emerald-400 hover:bg-emerald-300 shadow-md shadow-emerald-900/10"
                 >
-                  Health Check
+                Contact US
                 </a>
               </div>
             </div>
