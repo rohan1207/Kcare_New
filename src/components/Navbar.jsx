@@ -34,7 +34,6 @@ const navigation = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [activeIdx, setActiveIdx] = useState(0);
   const [proceduresMenuOpen, setProceduresMenuOpen] = useState(false);
   const location = useLocation();
 
@@ -48,19 +47,30 @@ export default function Navbar() {
   const isHome = location.pathname === '/';
   const transparent = isHome && !scrolled;
   const linkBase = 'relative text-[15px] font-medium px-3 py-2 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 group';
-  const linkTheme = transparent
-    ? 'text-white/90 hover:text-white'
-    : 'text-stone-800 hover:text-stone-900';
-  const underlineClass = `absolute bottom-1 left-0 right-0 h-[2px] origin-left transform scale-x-0 transition-transform duration-300 ease-out group-hover:scale-x-100 ${transparent ? 'bg-white' : 'bg-emerald-400'}`;
-  const activeUnderlineClass = `absolute bottom-1 left-0 right-0 h-[2px] scale-x-100 ${transparent ? 'bg-white' : 'bg-emerald-400'}`;
-  const ctaClasses = transparent
-    ? 'text-white border border-white/20 bg-white/10 hover:bg-white/20 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40'
-    : 'text-stone-900 bg-emerald-400 hover:bg-emerald-300 rounded-full shadow-md shadow-emerald-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40';
+  const linkTheme = 'text-white hover:text-emerald-600';
+  const underlineBase = 'absolute bottom-1 left-0 right-0 h-[2px] origin-left transform transition-transform duration-300 ease-out';
+  const underlineClass = `${underlineBase} scale-x-0 group-hover:scale-x-100 bg-emerald-400`;
+  const activeUnderlineClass = `${underlineBase} scale-x-100 bg-emerald-400`;
+  const ctaClasses = 'text-white bg-emerald-400 hover:bg-emerald-300 rounded-full shadow-md shadow-emerald-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40';
+
+  // Active link detection based on current route/hash (only one active at a time)
+  const isServices = location.pathname.startsWith('/services');
+  const hasHash = !!location.hash;
+  const isItemActive = (item) => {
+    if (hasHash) {
+      // When a hash is present, only the matching hash link is active
+      return item.href === location.hash;
+    }
+    if (item.children) return isServices;
+    if (item.href.startsWith('/')) return location.pathname === item.href;
+    if (item.href.startsWith('#')) return false;
+    return false;
+  };
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
       <nav
-        className={`${transparent ? 'bg-transparent' : 'bg-white/60 backdrop-blur-md backdrop-saturate-150 border-b border-emerald-200/20 shadow-[0_8px_32px_rgba(16,185,129,0.15)]'} transition-colors duration-300`}
+        className={`bg-[#041f1c] bg-gradient-to-br from-emerald-600/20 to-transparent mix-blend-overlay backdrop-blur-lg border-b border-emerald-200/20 rounded-b-3xl overflow-hidden transition-colors duration-300`}
         aria-label="Global"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-6 flex items-center justify-between">
@@ -68,7 +78,7 @@ export default function Navbar() {
           <div className="flex-shrink-0">
             <a href="#" className="-m-1.5 p-1.5 flex items-center">
               <img
-                src="/logo4.png"
+                src="/logo_white.png"
                 alt="Kcare"
                 className={`h-14 sm:h-14 md:h-14 w-auto object-contain ${transparent ? 'drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]' : ''}`}
               />
@@ -79,7 +89,7 @@ export default function Navbar() {
           <div className="flex lg:hidden">
             <button
               type="button"
-              className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 ${transparent ? 'text-white' : 'text-sky-900'}`}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
@@ -93,7 +103,7 @@ export default function Navbar() {
           <div className="hidden lg:flex flex-1 justify-center">
             <nav className="flex items-center gap-x-8">
               {navigation.map((item, idx) => {
-                const isActive = activeIdx === idx;
+                const isActive = isItemActive(item);
 
                 if (item.children) {
                   return (
@@ -109,7 +119,7 @@ export default function Navbar() {
                         className={`${linkBase} ${linkTheme} group inline-flex items-center gap-1`}
                       >
                         <span>{item.name}</span>
-                        <span className={proceduresMenuOpen ? activeUnderlineClass : underlineClass} />
+                        <span className={(proceduresMenuOpen || isActive) ? activeUnderlineClass : underlineClass} />
                         <ChevronDown
                           className={`h-4 w-4 transition-transform duration-200 ${proceduresMenuOpen ? 'rotate-180' : ''}`}
                           aria-hidden="true"
@@ -125,14 +135,14 @@ export default function Navbar() {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <div className="absolute -left-8 top-full z-10 mt-5 w-screen max-w-md overflow-hidden rounded-2xl bg-white/90 shadow-lg ring-1 ring-emerald-900/5 backdrop-blur-md">
+                        <div className="absolute -left-8 top-full z-10 mt-5 w-screen max-w-md overflow-hidden rounded-2xl bg-white/90 backdrop-blur-md shadow-xl shadow-emerald-900/10 ring-1 ring-emerald-200/30">
                           <div className="p-4 grid grid-cols-2 gap-x-6 gap-y-2">
                             {item.children.map((child) => (
                               <a
                                 key={child.name}
                                 href={child.href}
                                 onClick={() => setProceduresMenuOpen(false)}
-                                className="block p-2 text-sm font-medium text-stone-800 rounded-lg hover:bg-emerald-50/70"
+                                className="block p-2 text-sm font-medium text-white rounded-lg hover:bg-emerald-50/70 hover:text-emerald-700"
                               >
                                 {child.name}
                               </a>
@@ -148,7 +158,6 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    onClick={() => setActiveIdx(idx)}
                     className={`${linkBase} ${linkTheme}`}>
                     {item.name}
                     <span className={isActive ? activeUnderlineClass : underlineClass} />
@@ -172,14 +181,14 @@ export default function Navbar() {
 
       <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
         <div className="fixed inset-0 z-50" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white/90 backdrop-blur-md px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-emerald-900/10">
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gradient-to-b from-white/95 to-[#F9FAFB]/90 backdrop-blur-lg px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-emerald-200/30">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5 flex items-center">
               <img src="/logo4.png" alt="Kcare" className="h-9 w-auto object-contain" />
             </a>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-stone-900"
+              className="-m-2.5 rounded-md p-2.5 text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
@@ -195,7 +204,7 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="-mx-3 block rounded-full px-4 py-2.5 text-base font-semibold leading-7 text-stone-800 hover:bg-emerald-50"
+                    className="-mx-3 block rounded-full px-4 py-2.5 text-base font-semibold leading-7 text-white hover:bg-emerald-50 hover:text-emerald-700"
                   >
                     {item.name}
                   </a>
@@ -204,9 +213,9 @@ export default function Navbar() {
               <div className="py-6">
                 <a
                   href="#"
-                  className="block text-center rounded-full px-5 py-2.5 text-base font-semibold leading-7 text-stone-900 bg-emerald-400 hover:bg-emerald-300 shadow-md shadow-emerald-900/10"
+                  className="block text-center rounded-full px-5 py-2.5 text-base font-semibold leading-7 text-white bg-emerald-400 hover:bg-emerald-300 shadow-md shadow-emerald-900/10"
                 >
-                Contact US
+                  Contact Us
                 </a>
               </div>
             </div>

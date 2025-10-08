@@ -8,15 +8,19 @@ import AboutSection from "../components/AboutSection";
 import ModernDentistrySection from "../components/ModernDentistrySection";
 import Testimonials from "../components/Testimonials";
 import Services from "../components/Services";
+import Our_Experties from "../components/Our_Experties"
+import ScrollStatsOverlay from "../components/ScrollStatsOverlay";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <MainFounder />
+      <Our_Experties/>
       <Services/>
-      <New_Services />
+      
       <AboutSection />
+      <ScrollStatsOverlay/>
       <ModernDentistrySection />
      
       

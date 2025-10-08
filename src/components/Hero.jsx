@@ -26,23 +26,53 @@ const slides = [
 
 
 
-// SVG path definitions (short curvy segments that will progressively extend)
-// We'll morph by revealing more of each path via stroke-dashoffset
+// SVG path definitions (wavy lines)
+// We reveal each path to a given progress via stroke-dashoffset
 const PATHS = [
-  // start short, becomes long
-  "M0 60 C 120 20, 260 100, 380 60 C 500 20, 640 100, 780 60",
-  "M0 90 C 140 140, 300 40, 460 110 C 640 180, 760 40, 900 90",
-  "M0 120 C 200 40, 360 180, 540 80 C 720 0, 880 160, 950 100",
+  "M0 60 C 120 20, 260 100, 380 60 C 500 20, 640 100, 780 60 C 920 20, 1080 100, 1180 60",
+  "M0 90 C 140 140, 300 40, 460 110 C 640 180, 760 40, 900 90 C 1040 140, 1180 60, 1190 110",
+  "M0 120 C 200 40, 360 180, 540 80 C 720 0, 880 160, 950 100 C 1100 40, 1260 180, 1200 120",
+  "M0 150 C 180 100, 320 200, 480 140 C 660 80, 820 220, 1080 160 C 1220 120, 1380 220, 1100 170",
+];
+
+const COLORS = ["#45d6c3", "#ffc857", "#b59bff", "#7ce4a9"];
+const INITIAL_PROGRESS = 0.30; // just left of center
+const VIEWBOX_WIDTH = 1080; // must match the SVG viewBox width
+const VIEWBOX_HEIGHT = 200; // must match the SVG viewBox height
+// Desired fixed end progress for each wave (will be clamped to visible bounds)
+const TARGET_PROGRESS = [0.78, 0.70, 0.65, 0.60];
+
+// Per-wave card content
+const WAVE_DATA = [
+  { image: slides[0].image, feature: slides[0].feature, color: COLORS[0] },
+  { image: slides[1].image, feature: slides[1].feature, color: COLORS[1] },
+  { image: slides[2].image, feature: slides[2].feature, color: COLORS[2] },
+  {
+    image:
+      "https://images.unsplash.com/photo-1519494080410-f9aa76cb4283?q=80&w=2080&auto=format&fit=crop",
+    feature: "ADVANCED CARE • HUMAN TOUCH",
+    color: COLORS[3],
+  },
 ];
 
 // We'll progressively extend one line per slide; once a line finishes extending we reveal the pill at its head.
 const Hero = () => {
   const [index, setIndex] = useState(0);
   const containerRef = useRef(null);
-  const lineRefs = useRef([]); // store path elements
-  const dotRefs = useRef([]); // store moving dot heads
-  const pillRef = useRef(null);
-  const masterTl = useRef(null);
+  const pathRefs = useRef([]); // path elements
+  const headRefs = useRef([]); // interactive heads (g)
+  const animRefs = useRef([]); // per-wave tweens
+  const revertTimerRef = useRef(null);
+  const cardRef = useRef(null);
+  const wavesRef = useRef(null);
+  const svgRef = useRef(null);
+
+  const [activeWave, setActiveWave] = useState(null);
+  const [cardPos, setCardPos] = useState({ x: 0, y: 0 });
+  const [isCardVisible, setIsCardVisible] = useState(false);
+  const [isCardHovered, setIsCardHovered] = useState(false);
+  const [isHeadHovered, setIsHeadHovered] = useState(false);
+  const switchingRef = useRef(false); // prevents multiple simultaneous activations
 
   // Auto-advance slides
   useEffect(() => {
@@ -52,62 +82,201 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
-  // Build GSAP timeline for progressive line growth triggered on index change
+  // Initialize lines at a fixed progress and place heads
   useEffect(() => {
     if (!containerRef.current) return;
-
-    // kill previous timeline to avoid memory leak
-    if (masterTl.current) masterTl.current.kill();
-
-    masterTl.current = gsap.timeline();
-
-    // Decide which line to extend this cycle (cycle through PATHS)
-    const lineToExtend = index % PATHS.length; // which line
-    const pathEl = lineRefs.current[lineToExtend];
-    const dotEl = dotRefs.current[lineToExtend];
-
-    if (pathEl) {
+    PATHS.forEach((_, i) => {
+      const pathEl = pathRefs.current[i];
+      const headEl = headRefs.current[i];
+      if (!pathEl || !headEl) return;
       const length = pathEl.getTotalLength();
-      // Prepare stroke-dash values (start hidden -> reveal)
       gsap.set(pathEl, {
         strokeDasharray: length,
-        strokeDashoffset: length * 0.7, // start partially short (~30% visible)
-        opacity: 1,
+        strokeDashoffset: length * (1 - INITIAL_PROGRESS),
+        opacity: 0.6,
       });
-      gsap.set(dotEl, { opacity: 0, scale: 0.4 });
-      gsap.set(pillRef.current, { autoAlpha: 0 });
-
-      masterTl.current
-        .to(pathEl, {
-          strokeDashoffset: 0, // reveal full path
-          duration: 2.4,
-          ease: "power2.out",
-          onUpdate: () => {
-            // Move dot along the visible portion
-            const progress = 1 - gsap.getProperty(pathEl, "strokeDashoffset") / length;
-            const point = pathEl.getPointAtLength(length * progress);
-            if (dotEl) {
-              gsap.set(dotEl, { x: point.x, y: point.y });
-            }
-          },
-        })
-        .to(dotEl, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, "<70%")
-        .add(() => {
-          // position pill near dot
-            if (!dotEl) return;
-            const rect = dotEl.getBoundingClientRect();
-            const containerRect = containerRef.current.getBoundingClientRect();
-            const offsetX = rect.left - containerRect.left + 16; // small shift right of dot
-            const offsetY = rect.top - containerRect.top - 10; // slight above line
-            gsap.set(pillRef.current, { x: offsetX, y: offsetY });
-        })
-        .to(pillRef.current, { autoAlpha: 1, y: "+=0", duration: 0.5, ease: "power2.out" }, "-=0.2");
-    }
+      const pt = pathEl.getPointAtLength(length * INITIAL_PROGRESS);
+      gsap.set(headEl, { x: pt.x, y: pt.y, opacity: 1 });
+    });
 
     return () => {
-      if (masterTl.current) masterTl.current.kill();
+      animRefs.current.forEach((t) => t && t.kill && t.kill());
+      if (revertTimerRef.current) clearTimeout(revertTimerRef.current);
     };
-  }, [index]);
+  }, []);
+
+  // Helpers
+  const moveWaveTo = (i, targetProgress, { duration = 1.6, ease = "sine.inOut", onComplete } = {}) => {
+    const pathEl = pathRefs.current[i];
+    const headEl = headRefs.current[i];
+    if (!pathEl || !headEl) return;
+    const length = pathEl.getTotalLength();
+    if (animRefs.current[i]) animRefs.current[i].kill();
+    animRefs.current[i] = gsap.to(pathEl, {
+      strokeDashoffset: length * (1 - targetProgress),
+      duration,
+      ease,
+      onUpdate: () => {
+        const progress = 1 - gsap.getProperty(pathEl, "strokeDashoffset") / length;
+        const pt = pathEl.getPointAtLength(length * progress);
+        gsap.set(headEl, { x: pt.x, y: pt.y });
+      },
+      onComplete,
+    });
+  };
+
+  // Find the max progress that keeps the head within right bound of the viewBox
+  const maxProgressWithinRightBound = (i, margin = 24) => {
+    const pathEl = pathRefs.current[i];
+    if (!pathEl) return 0.92;
+    const length = pathEl.getTotalLength();
+    const boundX = VIEWBOX_WIDTH - margin;
+    // binary search along the path length
+    let lo = 0, hi = length;
+    for (let k = 0; k < 18; k++) {
+      const mid = (lo + hi) / 2;
+      const pt = pathEl.getPointAtLength(mid);
+      if (pt.x <= boundX) lo = mid; else hi = mid;
+    }
+    const progress = lo / length;
+    return Math.max(progress, INITIAL_PROGRESS);
+  };
+
+  // Collapse any other waves to their initial state quickly
+  const collapseOthers = (keepIndex) => {
+    PATHS.forEach((_, j) => {
+      if (j === keepIndex) return;
+      const p = pathRefs.current[j];
+      const h = headRefs.current[j];
+      if (!p || !h) return;
+      const length = p.getTotalLength();
+      if (animRefs.current[j]) animRefs.current[j].kill();
+      gsap.to(p, {
+        strokeDashoffset: length * (1 - INITIAL_PROGRESS),
+        duration: 0.3,
+        ease: "power1.out",
+        onUpdate: () => {
+          const prog = 1 - gsap.getProperty(p, "strokeDashoffset") / length;
+          const pt = p.getPointAtLength(length * prog);
+          gsap.set(h, { x: pt.x, y: pt.y });
+        },
+      });
+    });
+  };
+
+  const showCardAt = (i) => {
+    if (!wavesRef.current || !svgRef.current || !pathRefs.current[i]) return;
+    const svgRect = svgRef.current.getBoundingClientRect();
+    const ptCalc = () => {
+      const pathEl = pathRefs.current[i];
+      const length = pathEl.getTotalLength();
+      const sd = parseFloat(gsap.getProperty(pathEl, "strokeDashoffset")) || 0;
+      const prog = 1 - sd / length;
+      const pt = pathEl.getPointAtLength(length * prog);
+      const cx = (pt.x / VIEWBOX_WIDTH) * svgRect.width;
+      const cy = (pt.y / VIEWBOX_HEIGHT) * svgRect.height;
+      return { cx, cy };
+    };
+    const { cx, cy } = ptCalc();
+    // initial placement very close to head; adjustment effect will clamp
+    setCardPos({ x: cx + 10, y: cy - 8 });
+    setActiveWave(i);
+    setIsCardVisible(true);
+  };
+
+  // After card mounts, nudge position to keep it on-screen but still close to the head
+  useEffect(() => {
+    if (!isCardVisible || activeWave === null) return;
+    const id = requestAnimationFrame(() => {
+      if (!wavesRef.current || !svgRef.current || !pathRefs.current[activeWave] || !cardRef.current) return;
+      const layerRect = wavesRef.current.getBoundingClientRect();
+      const svgRect = svgRef.current.getBoundingClientRect();
+      const pathEl = pathRefs.current[activeWave];
+      const length = pathEl.getTotalLength();
+      const sd = parseFloat(gsap.getProperty(pathEl, "strokeDashoffset")) || 0;
+      const prog = 1 - sd / length;
+      const pt = pathEl.getPointAtLength(length * prog);
+      const cx = (pt.x / VIEWBOX_WIDTH) * svgRect.width;
+      const cy = (pt.y / VIEWBOX_HEIGHT) * svgRect.height;
+      const cardRect = cardRef.current.getBoundingClientRect();
+      let x = cx + 10; // prefer to the right of the dot
+      let y = cy - cardRect.height / 2; // center vertically around the dot
+      const margin = 12;
+      if (x + cardRect.width + margin > layerRect.width) x = cx - cardRect.width - 10; // flip left
+      if (x < margin) x = margin;
+      if (y < margin) y = margin;
+      if (y + cardRect.height + margin > layerRect.height) y = layerRect.height - cardRect.height - margin;
+      setCardPos({ x, y });
+    });
+    return () => cancelAnimationFrame(id);
+  }, [isCardVisible, activeWave]);
+
+  const hideCard = () => {
+    setIsCardVisible(false);
+    setActiveWave(null);
+  };
+
+  const scheduleRevert = (i, delay = 3000) => {
+    if (revertTimerRef.current) clearTimeout(revertTimerRef.current);
+    revertTimerRef.current = setTimeout(() => {
+      if (!isCardHovered && !isHeadHovered) {
+        hideCard();
+        moveWaveTo(i, INITIAL_PROGRESS, { duration: 1.2, ease: "power2.out" });
+      }
+    }, delay);
+  };
+
+  const handleActivate = (i) => {
+    // Clamp a fixed target per wave to ensure it stays within the right bound
+    const maxP = maxProgressWithinRightBound(i, 28);
+    const minP = Math.max(0.56, INITIAL_PROGRESS + 0.08);
+    const desired = TARGET_PROGRESS[i % TARGET_PROGRESS.length] ?? 0.8;
+    const target = Math.max(minP, Math.min(maxP, desired));
+    moveWaveTo(i, target, {
+      duration: 1.8,
+      ease: "power2.inOut",
+      onComplete: () => {
+        showCardAt(i);
+        scheduleRevert(i, 3000);
+        switchingRef.current = false;
+      },
+    });
+  };
+
+  // Hover/click handlers for the glowing heads
+  const handleHeadEnter = (i) => {
+    setIsHeadHovered(true);
+    if (revertTimerRef.current) clearTimeout(revertTimerRef.current);
+    if (switchingRef.current) return; // avoid re-entrancy while switching
+    // If a different wave is active, revert it first then open the new one
+    if (activeWave !== null && activeWave !== i) {
+      switchingRef.current = true;
+      const prev = activeWave;
+      setActiveWave(i); // mark next as intended active immediately
+      if (animRefs.current[prev]) animRefs.current[prev].kill();
+      hideCard();
+      moveWaveTo(prev, INITIAL_PROGRESS, {
+        duration: 0.5,
+        ease: "power2.out",
+        onComplete: () => {
+          collapseOthers(i);
+          handleActivate(i);
+        },
+      });
+    } else if (activeWave !== i) {
+      setActiveWave(i);
+      collapseOthers(i);
+      handleActivate(i);
+    } else {
+      // keep current open while hovering
+      if (revertTimerRef.current) clearTimeout(revertTimerRef.current);
+    }
+  };
+
+  const handleHeadLeave = (i) => {
+    setIsHeadHovered(false);
+    if (activeWave === i) scheduleRevert(i, 1500);
+  };
 
   return (
     <div ref={containerRef} className="relative h-screen bg-gray-900 text-white overflow-hidden select-none">
@@ -127,7 +296,7 @@ const Hero = () => {
           }}
         />
       </AnimatePresence>
-      <div className="absolute inset-0 bg-[#041f1c]/50" />
+      <div className="absolute inset-0 bg-[#041f1c]/30 pointer-events-none" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-24">
@@ -150,18 +319,19 @@ const Hero = () => {
           Delivering precision-driven care with compassion and excellence.
         </motion.p>
         <div className="mt-10 flex gap-4">
-          <button className="bg-emerald-400 hover:bg-emerald-300 text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors">
+          <button className="cursor-pointer bg-emerald-400 hover:bg-emerald-300 text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors">
             Book appointment
           </button>
-          <button className="border border-emerald-400/70 text-emerald-300 hover:bg-white hover:text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors backdrop-blur-sm">
+          <button className="cursor-pointer border bg-emerald-400/30 border-emerald-400/90 text-emerald-300 hover:bg-white hover:text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors backdrop-blur-sm cursor-pointer">
            Enquiry
           </button>
         </div>
       </div>
 
-      {/* Progressive Wavy Lines Layer */}
-      <div className="pointer-events-none absolute bottom-0 left-0 right-0 h-56 md:h-64">
+      {/* Progressive Wavy Lines Layer (interactive) */}
+      <div ref={wavesRef} className="pointer-events-auto absolute bottom-0 left-0 right-0 h-56 md:h-64 z-20">
         <svg
+          ref={svgRef}
           className="w-full h-full"
           viewBox="0 0 1080 200"
           preserveAspectRatio="none"
@@ -169,33 +339,32 @@ const Hero = () => {
           {PATHS.map((d, i) => (
             <g key={i}>
               <path
-                ref={(el) => (lineRefs.current[i] = el)}
+                ref={(el) => (pathRefs.current[i] = el)}
                 d={d}
                 fill="none"
                 strokeWidth={2}
                 strokeLinecap="round"
-                stroke={
-                  i === 0
-                    ? "#45d6c3"
-                    : i === 1
-                    ? "#ffc857"
-                    : "#b59bff"
-                }
-                style={{ opacity: 0.6 }}
+                stroke={COLORS[i % COLORS.length]}
+                style={{ opacity: 0.6, pointerEvents: "none" }}
               />
-              {/* moving dot */}
-              <circle
-                ref={(el) => (dotRefs.current[i] = el)}
-                r={5}
-                fill={
-                  i === 0
-                    ? "#45d6c3"
-                    : i === 1
-                    ? "#ffc857"
-                    : "#b59bff"
-                }
-                filter="url(#glow)"
-              />
+              {/* glowing, pulsing interactive head */}
+              <g
+                ref={(el) => (headRefs.current[i] = el)}
+                onMouseEnter={() => handleHeadEnter(i)}
+                onMouseLeave={() => handleHeadLeave(i)}
+                onClick={() => handleHeadEnter(i)}
+                onTouchStart={() => handleHeadEnter(i)}
+                style={{ pointerEvents: "auto", cursor: "pointer" }}
+              >
+                <motion.circle
+                  r={11}
+                  fill={COLORS[i % COLORS.length]}
+                  initial={{ scale: 0.9, opacity: 0.35 }}
+                  animate={{ scale: [0.9, 1.6, 0.9], opacity: [0.45, 0, 0.45] }}
+                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <circle r={5} fill={COLORS[i % COLORS.length]} filter="url(#glow)" />
+              </g>
             </g>
           ))}
           <defs>
@@ -208,15 +377,43 @@ const Hero = () => {
             </filter>
           </defs>
         </svg>
-
-        {/* Feature Pill */}
-        <div
-          ref={pillRef}
-          className="absolute top-0 left-0 -translate-x-1/2 -translate-y-1/2 bg-white/10 backdrop-blur-md text-[11px] tracking-wide px-4 py-2 rounded-full border border-white/20 shadow-[0_0_0_1px_rgba(255,255,255,0.1)] text-white font-medium whitespace-nowrap"
-          style={{ pointerEvents: "none" }}
-        >
-          {slides[index].feature}
-        </div>
+        {/* Image-Text Card tied to active wave head */}
+        <AnimatePresence>
+          {isCardVisible && activeWave !== null && (
+            <motion.div
+              ref={cardRef}
+              key="wave-card"
+              className="absolute top-0 left-0 pointer-events-auto rounded-xl overflow-hidden bg-white/10 backdrop-blur-lg border border-white/20 text-white shadow-xl"
+              style={{ left: cardPos.x, top: cardPos.y }}
+              initial={{ opacity: 0, y: 10, scale: 0.96 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 6, scale: 0.98 }}
+              transition={{ duration: 0.25 }}
+              onMouseEnter={() => {
+                setIsCardHovered(true);
+                if (revertTimerRef.current) clearTimeout(revertTimerRef.current);
+              }}
+              onMouseLeave={() => {
+                setIsCardHovered(false);
+                if (activeWave !== null) scheduleRevert(activeWave, 1500);
+              }}
+            >
+              <div className="flex items-center gap-3 p-3 pr-4">
+                <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 ring-1 ring-white/20" style={{ backgroundColor: "#000" }}>
+                  <img
+                    src={(WAVE_DATA[activeWave] || WAVE_DATA[0]).image}
+                    alt="feature"
+                    className="w-full h-full object-cover opacity-90"
+                  />
+                </div>
+                <div className="text-xs md:text-[11px] tracking-wide">
+                  <span className="font-medium">{(WAVE_DATA[activeWave] || WAVE_DATA[0]).feature}</span>
+                </div>
+              </div>
+              <div className="h-1" style={{ background: (WAVE_DATA[activeWave] || WAVE_DATA[0]).color }} />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </div>
   );

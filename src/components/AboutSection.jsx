@@ -12,15 +12,16 @@ const Blur = () => (
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-32 bg-gradient-to-b from-white to-slate-50/30 overflow-hidden">
+    <section id="about" className="relative py-28 bg-[#041f1c] overflow-hidden">
       <Blur />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.8, type: "spring", stiffness: 50, damping: 15 }}
-          className="rounded-[2.5rem] bg-gradient-to-br from-white to-slate-50/80 ring-1 ring-emerald-100/80 shadow-xl p-12 lg:p-14"
+          className="rounded-[2.5rem] bg-gradient-to-br from-white to-slate-50/80 ring-1 ring-emerald-100/80 shadow-xl p-12 lg:p-14 backdrop-blur-sm"
         >
           <div className="grid gap-8 lg:gap-12 md:grid-cols-2 items-center">
             {/* Left copy */}
@@ -85,7 +86,7 @@ export default function AboutSection() {
                 <div className="mt-10 flex gap-4">
                   <a
                     href="#"
-                    className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-8 py-3.5 text-[15px] font-medium tracking-wide text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-8 py-3.5 text-[15px] font-semibold tracking-wide text-stone-900 shadow-md shadow-emerald-900/20 transition-all duration-300 hover:bg-emerald-300 hover:-translate-y-0.5"
                   >
                     Learn About Our Clinic <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
                   </a>
