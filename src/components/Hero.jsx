@@ -279,7 +279,7 @@ const Hero = () => {
   };
 
   return (
-    <div ref={containerRef} className="relative h-screen bg-gray-900 text-white overflow-hidden select-none">
+  <div ref={containerRef} className="relative h-screen bg-gray-900 text-white overflow-hidden select-none">
       {/* Background image crossfade */}
       <AnimatePresence>
         <motion.div
@@ -296,7 +296,7 @@ const Hero = () => {
           }}
         />
       </AnimatePresence>
-      <div className="absolute inset-0 bg-[#041f1c]/30 pointer-events-none" />
+  <div className="absolute inset-0 bg-[#041f1c]/30 pointer-events-none z-0" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-24">
@@ -322,14 +322,14 @@ const Hero = () => {
           <button className="cursor-pointer bg-emerald-400 hover:bg-emerald-300 text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors">
             Book appointment
           </button>
-          <button className="cursor-pointer border bg-emerald-400/30 border-emerald-400/90 text-emerald-300 hover:bg-white hover:text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors backdrop-blur-sm cursor-pointer">
+          <button className="cursor-pointer border bg-emerald-400/30 border-emerald-400/90 text-emerald-300 hover:bg-white hover:text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors backdrop-blur-sm">
            Enquiry
           </button>
         </div>
       </div>
 
       {/* Progressive Wavy Lines Layer (interactive) */}
-      <div ref={wavesRef} className="pointer-events-auto absolute bottom-0 left-0 right-0 h-56 md:h-64 z-20">
+  <div ref={wavesRef} className="pointer-events-auto absolute bottom-0 left-0 right-0 h-56 md:h-64 z-10">
         <svg
           ref={svgRef}
           className="w-full h-full"

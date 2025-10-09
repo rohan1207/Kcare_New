@@ -68,9 +68,9 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
+    <header className="fixed inset-x-0 top-0 z-[120]">
       <nav
-        className={`bg-[#041f1c] bg-gradient-to-br from-emerald-600/20 to-transparent mix-blend-overlay backdrop-blur-lg border-b border-emerald-200/20 rounded-b-3xl overflow-hidden transition-colors duration-300`}
+        className={`bg-[#041f1c] bg-gradient-to-br from-emerald-600/20 to-transparent mix-blend-overlay backdrop-blur-lg border-b border-emerald-200/20 rounded-b-3xl overflow-visible transition-colors duration-300`}
         aria-label="Global"
       >
         <div className="mx-auto max-w-7xl px-6 lg:px-10 py-4 lg:py-6 flex items-center justify-between">
@@ -135,14 +135,14 @@ export default function Navbar() {
                         leaveFrom="opacity-100 translate-y-0"
                         leaveTo="opacity-0 translate-y-1"
                       >
-                        <div className="absolute -left-8 top-full z-10 mt-5 w-screen max-w-md overflow-hidden rounded-2xl bg-white/90 backdrop-blur-md shadow-xl shadow-emerald-900/10 ring-1 ring-emerald-200/30">
+                        <div className="absolute -left-8 top-full z-[200] mt-5 w-screen max-w-md overflow-hidden rounded-2xl bg-white/90 backdrop-blur-md shadow-xl shadow-emerald-900/10 ring-1 ring-emerald-200/30">
                           <div className="p-4 grid grid-cols-2 gap-x-6 gap-y-2">
                             {item.children.map((child) => (
                               <a
                                 key={child.name}
                                 href={child.href}
                                 onClick={() => setProceduresMenuOpen(false)}
-                                className="block p-2 text-sm font-medium text-white rounded-lg hover:bg-emerald-50/70 hover:text-emerald-700"
+                                className="block p-2 text-sm font-medium text-stone-800 rounded-lg hover:bg-emerald-50/70 hover:text-emerald-700"
                               >
                                 {child.name}
                               </a>
