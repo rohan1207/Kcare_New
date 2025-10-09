@@ -136,9 +136,9 @@ function ServiceCard({ service, index }) {
       </div>
 
       {/* Content container */}
-      <div className="absolute inset-0 p-7 flex flex-col justify-end">
+      <div className="absolute inset-0 p-7 pr-24 flex flex-col justify-end">
         {/* Default state content */}
-        <div className="transition-opacity duration-300 ease-in-out group-hover:opacity-0">
+        <div className="transition-opacity transition-transform duration-300 ease-in-out group-hover:opacity-0 group-hover:-translate-y-12">
           <span className="inline-flex rounded-full bg-emerald-500/90 text-white backdrop-blur-md px-4 py-1.5 text-xs font-medium tracking-wide mb-3.5 shadow-lg shadow-emerald-500/20">
             {service.category}
           </span>
@@ -148,7 +148,7 @@ function ServiceCard({ service, index }) {
         </div>
 
         {/* Hover state content */}
-        <div className="absolute inset-0 p-7 flex flex-col justify-end opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100">
+        <div className="absolute inset-0 p-7 flex flex-col justify-end opacity-0 transition-opacity transition-transform duration-300 ease-in-out group-hover:opacity-100 group-hover:-translate-y-12">
           <div className="flex items-center gap-2.5 text-sm mb-3.5">
             <span className="inline-flex rounded-full bg-emerald-500/90 text-white backdrop-blur-md px-4 py-1.5 font-medium tracking-wide shadow-lg shadow-emerald-500/20">
               {service.category}
@@ -161,18 +161,18 @@ function ServiceCard({ service, index }) {
           <p className="text-slate-300/90 leading-relaxed line-clamp-2 text-[15px] mb-5 font-light">
             {service.description}
           </p>
-          <a
-            href="#"
-            className="inline-flex items-center gap-2.5 self-start rounded-full bg-emerald-500 text-white px-6 py-2.5 text-[15px] font-medium tracking-wide shadow-lg transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/20"
-          >
-            Learn more <ArrowRight className="h-4 w-4" />
-          </a>
         </div>
 
-        {/* Static circle button - visible in default state */}
-        <div className="absolute bottom-7 right-7 h-14 w-14 rounded-full bg-gradient-to-br from-white to-white/90 flex items-center justify-center transition-all duration-300 ease-in-out group-hover:opacity-0 group-hover:scale-90 shadow-lg">
-          <ArrowUpRight className="h-6 w-6 text-slate-900" strokeWidth={2.5} />
-        </div>
+        {/* Morphing CTA button */}
+        <a
+          href="#"
+          className="absolute bottom-7 right-7 inline-flex items-center justify-center gap-2 h-14 w-14 rounded-full bg-white group-hover:bg-emerald-400 text-slate-900 group-hover:text-white shadow-lg overflow-hidden px-0 transition-all duration-300 ease-out group-hover:w-44 group-hover:px-5"
+        >
+          <span className="mr-1 text-sm font-medium opacity-0 w-0 overflow-hidden transition-all duration-300 group-hover:opacity-100 group-hover:w-auto">
+            Learn more
+          </span>
+          <ArrowRight className="h-6 w-6 transition-transform duration-300" strokeWidth={2.5} />
+        </a>
       </div>
     </motion.article>
   );

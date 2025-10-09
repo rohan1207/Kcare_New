@@ -132,7 +132,7 @@ const MainFounder = () => {
             <img
               src="/pramod3.png"
               alt="Dr. Pramod Kadam"
-              className="absolute bottom-0 right-0 w-full h-full object-cover object-bottom lg:object-right-bottom drop-shadow-2xl scale-110 lg:scale-100"
+              className="absolute bottom-0 right-0 w-full h-full object-contain object-bottom lg:object-right-bottom  scale-110 lg:scale-100"
             />
             <div className="absolute top-4 right-4 z-20 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-lg">
               <span className="text-emerald-600 font-semibold text-sm">Expert Surgeon</span>

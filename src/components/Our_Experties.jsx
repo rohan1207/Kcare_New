@@ -91,7 +91,7 @@ const ExpertiseCards = () => {
                 alt={card.title}
                 className="w-full h-full object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#041f1c]/90 via-[#041f1c]/40 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#041f1c]/50 via-[#041f1c]/40 to-transparent" />
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
             </motion.div>
 

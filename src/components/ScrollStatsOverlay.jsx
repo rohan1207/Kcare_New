@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -9,6 +9,8 @@ const ScrollStatsOverlay = () => {
   const imageRef = useRef(null);
   const statsRef = useRef(null);
   const statsContentRef = useRef(null);
+  const [animatedValues, setAnimatedValues] = useState([0, 0, 0, 0]);
+  const [hasAnimated, setHasAnimated] = useState(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -16,13 +18,19 @@ const ScrollStatsOverlay = () => {
     const stats = statsRef.current;
     const statsContent = statsContentRef.current;
 
-    // Pin the image when scrolling
+    // Move image with stats overlay (parallax effect)
     ScrollTrigger.create({
       trigger: container,
       start: 'top top',
       end: 'bottom bottom',
-      pin: image,
-      pinSpacing: false,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        gsap.to(image, {
+          y: progress * -100,
+          duration: 0.3,
+          ease: 'none'
+        });
+      }
     });
 
     // Animate stats overlay
@@ -40,86 +48,107 @@ const ScrollStatsOverlay = () => {
       }
     );
 
-    // Fade in stats content
-    gsap.fromTo(
-      statsContent,
-      { opacity: 1 },
-      {
-        opacity: 1,
-        scrollTrigger: {
-          trigger: container,
-          start: 'top top',
-          end: 'center top',
-          scrub: 1,
-        },
+    // Trigger number animation when stats are in view
+    ScrollTrigger.create({
+      trigger: statsContent,
+      start: 'top 80%',
+      onEnter: () => {
+        if (!hasAnimated) {
+          animateNumbers();
+          setHasAnimated(true);
+        }
       }
-    );
+    });
 
     return () => {
       ScrollTrigger.getAll().forEach(trigger => trigger.kill());
     };
-  }, []);
+  }, [hasAnimated]);
+
+  const animateNumbers = () => {
+    const finalValues = [98, 65, 90, 75];
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const stepDuration = duration / steps;
+
+    let currentStep = 0;
+    const interval = setInterval(() => {
+      currentStep++;
+      const progress = currentStep / steps;
+      
+      setAnimatedValues(finalValues.map(val => Math.floor(val * progress)));
+      
+      if (currentStep >= steps) {
+        setAnimatedValues(finalValues);
+        clearInterval(interval);
+      }
+    }, stepDuration);
+  };
 
   const statItems = [
     {
-      percentage: '27%',
-      description: 'Up to 27% lower NICU admissions',
-      color: 'from-emerald-500 to-teal-600',
+      percentage: '98%',
+      value: 98,
+      description: 'Successful outcomes in robotic and laparoscopic procedures',
+      gradient: ['#10b981', '#14b8a6'], // emerald to teal
     },
     {
-      percentage: '57%',
-      description: 'Up to 57% of members report Maven helped them return to work after having a baby',
-      color: 'from-blue-400 to-blue-500',
+      percentage: '65%',
+      value: 65,
+      description: 'Faster recovery compared to traditional open surgery',
+      gradient: ['#60a5fa', '#3b82f6'], // blue
     },
     {
-      percentage: '30%',
-      description: 'Among fertility members, 30% achieve pregnancy without Assisted Reproductive Technology',
-      color: 'from-emerald-600 to-teal-700',
+      percentage: '90%',
+      value: 90,
+      description: 'Reduction in post-surgery pain and complications',
+      gradient: ['#059669', '#0f766e'], // emerald to teal dark
     },
     {
-      percentage: '21%',
-      description: 'Up to 21% of members reported an improved state of maternal mental health',
-      color: 'from-cyan-500 to-blue-600',
+      percentage: '75%',
+      value: 75,
+      description: 'Shorter hospital stays due to minimally invasive techniques',
+      gradient: ['#06b6d4', '#2563eb'], // cyan to blue
     },
   ];
+  
 
   return (
-    <div className="bg-gray-100">
-     
-
+    <div className="bg-white">
       {/* Main scroll component */}
-      <div ref={containerRef} className="relative h-[200vh]">
+      <div ref={containerRef} className="relative h-[110vh]">
         {/* Fixed background image */}
         <div ref={imageRef} className="absolute inset-0 w-full h-screen">
           <img
-            src="/stats.jpeg"
+            src="/stats2.png"
             alt="Family moment"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-20"></div>
+          
         </div>
 
         {/* Stats overlay that scrolls over image */}
         <div
           ref={statsRef}
-          className="absolute inset-0 w-full h-screen flex items-center justify-center"
+          className="absolute inset-0 w-full h-screen flex items-center justify-center mb-20"
         >
           <div
             ref={statsContentRef}
-            className="bg-gray-50 rounded-t-3xl w-full h-full flex flex-col items-center justify-start pt-20 px-8"
+            className="bg-white rounded-t-[3rem] w-full min-h-screen flex flex-col items-center justify-center py-16 px-8"
           >
             {/* Header */}
             <div className="text-center mb-16 max-w-3xl">
               <h2 className="text-5xl md:text-6xl font-light text-gray-800 mb-4">
-                Lowering costs by
+                Transforming Surgery with
               </h2>
               <h2 className="text-5xl md:text-6xl italic font-light text-gray-700 mb-8">
-                improving care
+                Precision & innovation
               </h2>
               <p className="text-lg text-gray-600 leading-relaxed">
-                By guiding members through more intuitive paths to health,
+                Our advanced robotic and laparoscopic systems enable surgeons to perform
+                complex procedures with minimal incisions, ensuring faster recovery,
                 <br />
-                we help reduce costly interventions and improve outcomes.
+                reduced pain, and exceptional surgical accuracy.
               </p>
             </div>
 
@@ -129,24 +158,28 @@ const ScrollStatsOverlay = () => {
                 <div key={index} className="flex flex-col items-center">
                   {/* Circular progress indicator */}
                   <div className="relative w-48 h-48 mb-6">
-                    <svg className="w-full h-full transform -rotate-90">
+                    <svg className="w-full h-full transform -rotate-90" viewBox="0 0 192 192">
                       <circle
                         cx="96"
                         cy="96"
                         r="88"
                         stroke="#e5e7eb"
-                        strokeWidth="8"
+                        strokeWidth="10"
                         fill="none"
                       />
                       <circle
                         cx="96"
                         cy="96"
                         r="88"
-                        stroke="url(#gradient-${index})"
-                        strokeWidth="8"
+                        stroke={`url(#gradient-${index})`}
+                        strokeWidth="10"
                         fill="none"
-                        strokeDasharray={`${parseInt(stat.percentage) * 5.5} 552`}
-                        className="transition-all duration-1000"
+                        strokeDasharray={`${(animatedValues[index] / 100) * 552} 552`}
+                        strokeLinecap="round"
+                        className="transition-all duration-75 ease-out"
+                        style={{
+                          filter: 'drop-shadow(0 0 8px rgba(16, 185, 129, 0.4))'
+                        }}
                       />
                       <defs>
                         <linearGradient
@@ -158,20 +191,18 @@ const ScrollStatsOverlay = () => {
                         >
                           <stop
                             offset="0%"
-                            className={stat.color.includes('emerald') ? 'text-emerald-500' : stat.color.includes('blue-4') ? 'text-blue-400' : stat.color.includes('emerald-6') ? 'text-emerald-600' : 'text-cyan-500'}
-                            stopColor="currentColor"
+                            stopColor={stat.gradient[0]}
                           />
                           <stop
                             offset="100%"
-                            className={stat.color.includes('teal-6') ? 'text-teal-600' : stat.color.includes('blue-5') ? 'text-blue-500' : stat.color.includes('teal-7') ? 'text-teal-700' : 'text-blue-600'}
-                            stopColor="currentColor"
+                            stopColor={stat.gradient[1]}
                           />
                         </linearGradient>
                       </defs>
                     </svg>
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="text-5xl font-light text-gray-800">
-                        {stat.percentage}
+                      <span className="text-5xl font-bold text-gray-800 tabular-nums">
+                        {animatedValues[index]}%
                       </span>
                     </div>
                   </div>

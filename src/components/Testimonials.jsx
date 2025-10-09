@@ -59,14 +59,13 @@ const popUp = {
       type: "spring",
       stiffness: 200,
       damping: 25,
-      mass: 0.5,
     },
   }),
 };
 
 function YouTubeEmbed({ embedId }) {
   return (
-    <div className="relative w-full pb-[56.25%] rounded-2xl overflow-hidden bg-gray-100">
+    <div className="relative w-full pb-[56.25%] rounded-xl overflow-hidden bg-stone-100">
       <iframe
         className="absolute top-0 left-0 w-full h-full"
         src={`https://www.youtube.com/embed/${embedId}`}
@@ -81,9 +80,9 @@ function YouTubeEmbed({ embedId }) {
 function TestimonialCard({ t, index }) {
   const base = "rounded-3xl p-8 shadow-lg ring-1 text-gray-700 leading-relaxed backdrop-blur-sm h-full flex flex-col";
   const tones = {
-    lightBlue: "bg-emerald-50/90 ring-emerald-200/80 hover:bg-emerald-100/90 transition-colors",
-    white: "bg-white/90 ring-stone-200/80 hover:bg-stone-50/90 transition-colors",
-    mint: "bg-stone-50/90 ring-stone-200/80 hover:bg-stone-100/90 transition-colors",
+    lightBlue: "bg-white/90 backdrop-blur-sm ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
+    white: "bg-gradient-to-br from-emerald-50 to-blue-50/50 ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
+    mint: "bg-white/90 backdrop-blur-sm ring-1 ring-stone-200/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
   };
   return (
     <motion.article
@@ -92,18 +91,18 @@ function TestimonialCard({ t, index }) {
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.35 }}
-      className={`${base} ${tones[t.tone]} transform hover:scale-[1.02] transition-all duration-300`}
+      className={`${base} ${tones[t.tone]}`}
     >
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
           <img
             src={t.avatar}
             alt={t.name}
-            className="h-12 w-12 rounded-full object-cover ring-2 ring-white shadow-md"
+            className="h-12 w-12 rounded-full object-cover ring-2 ring-white shadow-lg"
           />
           <div>
-            <div className="font-medium text-gray-900">{t.name}</div>
-            <div className="text-sm text-gray-500">{t.procedure}</div>
+            <div className="font-semibold text-stone-900">{t.name}</div>
+            <div className="text-sm text-stone-600">{t.procedure}</div>
           </div>
         </div>
         <div className="flex gap-1">
@@ -113,21 +112,22 @@ function TestimonialCard({ t, index }) {
         </div>
       </div>
       <div className="mt-6 relative">
-        <Quote className="absolute -top-2 -left-2 w-8 h-8 text-emerald-200/50" />
-        <p className="text-stone-700 relative z-10 leading-relaxed">{t.quote}</p>
+        <Quote className="absolute -top-2 -left-2 w-8 h-8 text-emerald-300/60" />
+        <p className="text-stone-700 relative z-10 leading-relaxed font-light">{t.quote}</p>
       </div>
-      <div className="mt-4 text-sm text-stone-500 font-medium">{t.role}</div>
+      <div className="mt-4 text-sm text-stone-600 font-medium">{t.role}</div>
     </motion.article>
   );
 }
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative isolate py-20 sm:py-28 bg-gradient-to-b from-emerald-50/30 to-white">
+    <section id="testimonials" className="relative isolate py-20 sm:py-28 bg-gradient-to-b from-white to-slate-50/30 overflow-hidden">
       {/* Decorative elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-br from-emerald-100/20 to-transparent blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-stone-100/20 to-transparent blur-3xl" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-emerald-50/40 to-transparent blur-3xl opacity-60" />
       </div>
       
       {/* Header */}
@@ -141,15 +141,15 @@ export default function Testimonials() {
             ease: [0.22, 1, 0.36, 1]
           }}
         >
-          <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-6 py-2.5 text-sm font-medium text-emerald-700 shadow-sm shadow-emerald-100/50 ring-1 ring-emerald-100">
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-5 py-2.5 text-sm font-medium text-emerald-700 mb-6 shadow-sm shadow-emerald-100/50 ring-1 ring-emerald-100">
             <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
             Patient Stories
           </span>
-          <h2 className="mt-6 text-4xl font-extralight tracking-tight text-stone-900 sm:text-5xl">
-            Trust in our <span className="font-semibold">Expertise</span>
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-stone-900 mb-6">
+            Trust in our <span className="font-medium">Expertise</span>
           </h2>
-          <p className="mt-4 text-lg text-stone-600/80 max-w-2xl mx-auto font-light leading-relaxed">
-            Hear directly from our patients about their experiences and successful recoveries
+          <p className="text-lg text-stone-600/90 max-w-3xl mx-auto leading-relaxed font-light">
+            Hear directly from our patients about their experiences and successful recoveries with our advanced surgical care
           </p>
         </motion.div>
       </div>
@@ -164,10 +164,10 @@ export default function Testimonials() {
               <span>Patient Stories</span>
              
             </div>
-            <h2 className="mt-3 text-stone-900 text-3xl sm:text-4xl font-semibold tracking-tight">
+            <h2 className="mt-3 text-stone-900 text-3xl sm:text-4xl font-light tracking-tight">
               Patients Gave
               <br />
-              <span className="font-light">Lots of Love</span>
+              <span className="font-medium">Lots of Love</span>
             </h2>
 
             {/* First row cards (visible as soon as section is in view) */}
@@ -184,10 +184,10 @@ export default function Testimonials() {
             viewport={{ once: true, amount: 0.4 }}
             className="lg:col-span-5 h-full"
           >
-            <div className="rounded-3xl ring-1 ring-gray-200/80 shadow-xl overflow-hidden bg-white p-6 h-full flex flex-col">
+            <div className="rounded-[2rem] ring-1 ring-emerald-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               <div className="mb-4">
-                <div className="text-lg font-medium text-gray-900 mb-1">{VIDEO_TESTIMONIALS[0].name}</div>
-                <div className="text-sm text-gray-500">{VIDEO_TESTIMONIALS[0].procedure}</div>
+                <div className="text-lg font-semibold text-stone-900 mb-1">{VIDEO_TESTIMONIALS[0].name}</div>
+                <div className="text-sm text-stone-600">{VIDEO_TESTIMONIALS[0].procedure}</div>
               </div>
               <div className="flex-1">
                 <YouTubeEmbed embedId={VIDEO_TESTIMONIALS[0].embedId} />
@@ -204,11 +204,11 @@ export default function Testimonials() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
             custom={0}
-            className="lg:col-span-7 rounded-3xl ring-1 ring-gray-200/80 shadow-xl overflow-hidden bg-white p-6 h-full flex flex-col"
+            className="lg:col-span-7 rounded-[2rem] ring-1 ring-emerald-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
           >
             <div className="mb-4">
-              <div className="text-lg font-medium text-gray-900 mb-1">{VIDEO_TESTIMONIALS[1].name}</div>
-              <div className="text-sm text-gray-500">{VIDEO_TESTIMONIALS[1].procedure}</div>
+              <div className="text-lg font-semibold text-stone-900 mb-1">{VIDEO_TESTIMONIALS[1].name}</div>
+              <div className="text-sm text-stone-600">{VIDEO_TESTIMONIALS[1].procedure}</div>
             </div>
             <div className="flex-1">
               <YouTubeEmbed embedId={VIDEO_TESTIMONIALS[1].embedId} />
@@ -230,7 +230,7 @@ export default function Testimonials() {
         >
           <a
             href="#"
-            className="inline-flex items-center gap-2 rounded-full border border-emerald-300 px-4 py-2 text-sm font-medium text-emerald-700 hover:bg-emerald-50 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-stone-900 px-6 py-3 text-sm font-semibold shadow-md shadow-emerald-900/10 transition-colors"
           >
             View all testimonials <ArrowRight className="h-4 w-4" />
           </a>

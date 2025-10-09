@@ -178,8 +178,9 @@ export default function NewServices() {
 
 
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-to-b from-white to-slate-50/30 overflow-hidden relative">
+    <section ref={sectionRef} className="py-24 sm:py-32 bg-[#041f1c] overflow-hidden relative">
       <Blur />
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 30 }}
@@ -190,17 +191,17 @@ export default function NewServices() {
             stiffness: 50,
             damping: 15
           }}
-          className="text-center mb-20"
+          className="text-center mb-16"
         >
-          <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-5 py-2.5 text-sm font-medium text-emerald-700 mb-6 shadow-sm shadow-emerald-100/50">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-400/15 px-5 py-2.5 text-sm font-medium text-emerald-300 ring-1 ring-emerald-400/30 mb-6">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
             Our Services
           </span>
-          <h2 className="text-5xl md:text-[4.5rem] font-light tracking-tight text-slate-900 mb-6">
+          <h2 className="text-4xl md:text-5xl font-light tracking-tight text-white mb-6">
             Advanced <span className="font-medium">Surgical</span> Solutions
           </h2>
-          <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
-            Cutting-edge procedures with precision technology for better outcomes
+          <p className="mt-6 text-lg text-white/80 max-w-3xl mx-auto leading-relaxed font-light">
+            Cutting-edge procedures with precision technology for better outcomes, ensuring faster recovery and minimal discomfort.
           </p>
         </motion.div>
 
@@ -219,7 +220,7 @@ export default function NewServices() {
           {/* Left: Service List */}
           <div 
             ref={tabsRef}
-            className="lg:col-span-1 h-full lg:max-h-[580px] overflow-y-auto space-y-3 pr-3 scrollbar-thin scrollbar-thumb-emerald-200 scrollbar-track-emerald-50/50"
+            className="lg:col-span-1 h-full lg:max-h-[580px] overflow-y-auto space-y-3 pr-3 scrollbar-thin scrollbar-thumb-emerald-400/50 scrollbar-track-white/10"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
           >
@@ -237,18 +238,18 @@ export default function NewServices() {
                   }}
                   className={`w-full flex items-center text-left p-4 rounded-2xl transition-all duration-300 ${
                     isActive 
-                      ? 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-white shadow-lg shadow-emerald-500/15' 
-                      : 'bg-gradient-to-br from-emerald-50 to-white hover:shadow-md hover:shadow-emerald-500/10 border border-emerald-100/50'
+                      ? 'bg-emerald-400 text-stone-900 shadow-lg shadow-emerald-900/20' 
+                      : 'bg-white/5 hover:bg-white/10 border border-white/10'
                   }`}
                 >
-                  <div className={`p-2 rounded-xl ${isActive ? 'bg-white/20' : 'bg-emerald-100/50'}`}>
-                    <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-emerald-600'}`} strokeWidth={2.5} />
+                  <div className={`p-2 rounded-xl ${isActive ? 'bg-black/10' : 'bg-emerald-400/10'}`}>
+                    <Icon className={`w-5 h-5 ${isActive ? 'text-stone-900' : 'text-emerald-300'}`} strokeWidth={2} />
                   </div>
                   <div className="ml-4">
-                    <span className={`block font-medium text-sm tracking-wide ${isActive ? 'text-white' : 'text-slate-900'}`}>
+                    <span className={`block font-semibold text-sm tracking-wide ${isActive ? 'text-stone-900' : 'text-white'}`}>
                       {item.title}
                     </span>
-                    <span className={`text-xs mt-0.5 block ${isActive ? 'text-emerald-50' : 'text-slate-500'}`}>
+                    <span className={`text-xs mt-0.5 block ${isActive ? 'text-stone-900/70' : 'text-white/60'}`}>
                       {item.category}
                     </span>
                   </div>
@@ -258,7 +259,7 @@ export default function NewServices() {
           </div>
 
           {/* Right: Content Display */}
-          <div className=" max-h-[600px] lg:col-span-2 bg-gradient-to-br from-white to-slate-50/80 rounded-[2rem] shadow-xl overflow-hidden ring-1 ring-emerald-100/80">
+          <div className="max-h-[600px] lg:col-span-2 bg-black/20 backdrop-blur-sm rounded-[2rem] shadow-xl overflow-hidden ring-1 ring-white/10">
             <AnimatePresence mode="wait">
               <motion.div
                 key={selectedTab.title}
@@ -282,34 +283,33 @@ export default function NewServices() {
                     src={selectedTab.image}
                     alt={selectedTab.title}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
-                  <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-transparent mix-blend-overlay" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 </div>
                 <div className="p-10 md:p-14">
-                  <span className="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 mb-4">
+                  <span className="inline-flex rounded-full bg-emerald-400/15 px-3 py-1 text-xs font-medium text-emerald-300 ring-1 ring-emerald-400/30 mb-4">
                     {selectedTab.category}
                   </span>
-                  <h3 className="text-3xl font-light text-slate-900 tracking-tight">{selectedTab.title}</h3>
-                  <p className="mt-5 text-lg text-slate-600 leading-relaxed min-h-[8rem] font-light">
+                  <h3 className="text-3xl font-light text-white tracking-tight">{selectedTab.title}</h3>
+                  <p className="mt-5 text-lg text-white/80 leading-relaxed min-h-[8rem] font-light">
                     {selectedTab.description}
                   </p>
                   <div className="mt-8 space-y-4">
                     <div className="flex items-center gap-3 text-[15px]">
-                      <div className="p-2 rounded-lg bg-emerald-50">
-                        <ChevronRight className="w-5 h-5 text-emerald-500" strokeWidth={2.5} />
+                      <div className="p-2 rounded-lg bg-emerald-400/10">
+                        <ChevronRight className="w-5 h-5 text-emerald-300" strokeWidth={2} />
                       </div>
-                      <p><span className="font-medium text-slate-900">Key Benefit:</span> <span className="text-slate-600">{selectedTab.benefit}</span></p>
+                      <p><span className="font-medium text-white">Key Benefit:</span> <span className="text-white/80">{selectedTab.benefit}</span></p>
                     </div>
                     <div className="flex items-center gap-3 text-[15px]">
-                      <div className="p-2 rounded-lg bg-emerald-50">
-                        <ChevronRight className="w-5 h-5 text-emerald-500" strokeWidth={2.5} />
+                      <div className="p-2 rounded-lg bg-emerald-400/10">
+                        <ChevronRight className="w-5 h-5 text-emerald-300" strokeWidth={2} />
                       </div>
-                      <p><span className="font-medium text-slate-900">Technology:</span> <span className="text-slate-600">{selectedTab.technology}</span></p>
+                      <p><span className="font-medium text-white">Technology:</span> <span className="text-white/80">{selectedTab.technology}</span></p>
                     </div>
                   </div>
                   <Link 
                     to={selectedTab.path} 
-                    className="mt-10 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-8 py-3.5 text-[15px] font-medium tracking-wide text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                    className="mt-10 inline-flex items-center gap-2 rounded-full bg-emerald-400 px-8 py-3.5 text-[15px] font-semibold tracking-wide text-stone-900 shadow-md shadow-emerald-900/20 transition-all duration-300 hover:bg-emerald-300 hover:-translate-y-0.5"
                   >
                     Learn More 
                     <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
