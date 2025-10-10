@@ -7,23 +7,25 @@ const VIDEO_TESTIMONIALS = [
     embedId: "1SF1pCvJJnM", // Replace with actual YouTube video ID
     name: "John Smith",
     procedure: "Laparoscopic Surgery",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
+    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
   },
   {
     id: "video2",
     embedId: "Bo6Q0liuOgc", // Replace with actual YouTube video ID
     name: "Mary Johnson",
     procedure: "Robotic Surgery",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
-  }
+    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
+  },
 ];
 
 const TESTIMONIALS = [
   {
     name: "Sarah Johnson",
     role: "Recovery Patient",
-    avatar: "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200&auto=format&fit=crop",
-    quote: "It was the best decision I made for my health. The team is caring and precise. They explained everything and made me comfortable every step of the way.",
+    avatar:
+      "https://images.unsplash.com/photo-1544723795-3fb6469f5b39?q=80&w=200&auto=format&fit=crop",
+    quote:
+      "It was the best decision I made for my health. The team is caring and precise. They explained everything and made me comfortable every step of the way.",
     rating: 5,
     procedure: "Laparoscopic Surgery",
     tone: "lightBlue",
@@ -31,8 +33,10 @@ const TESTIMONIALS = [
   {
     name: "Emily Davis",
     role: "Recent Patient",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
-    quote: "As someone with surgical anxiety, finding a clinic where I felt at ease was crucial. The robotic approach made recovery smoother than I imagined.",
+    avatar:
+      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200&auto=format&fit=crop",
+    quote:
+      "As someone with surgical anxiety, finding a clinic where I felt at ease was crucial. The robotic approach made recovery smoother than I imagined.",
     rating: 5,
     procedure: "Robotic Surgery",
     tone: "white",
@@ -40,8 +44,10 @@ const TESTIMONIALS = [
   {
     name: "Michael Chen",
     role: "Regular Patient",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
-    quote: "Consistent high‑quality care keeps me coming back. Professionalism and empathy are evident in every visit. The team's expertise is unmatched.",
+    avatar:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+    quote:
+      "Consistent high‑quality care keeps me coming back. Professionalism and empathy are evident in every visit. The team's expertise is unmatched.",
     rating: 5,
     procedure: "General Surgery",
     tone: "mint",
@@ -78,10 +84,13 @@ function YouTubeEmbed({ embedId }) {
 }
 
 function TestimonialCard({ t, index }) {
-  const base = "rounded-3xl p-8 shadow-lg ring-1 text-gray-700 leading-relaxed backdrop-blur-sm h-full flex flex-col";
+  const base =
+    "rounded-3xl p-8 shadow-lg ring-1 text-gray-700 leading-relaxed backdrop-blur-sm h-full flex flex-col";
   const tones = {
-    lightBlue: "bg-white/90 backdrop-blur-sm ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
-    white: "bg-gradient-to-br from-emerald-50 to-blue-50/50 ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
+    lightBlue:
+      "bg-white/90 backdrop-blur-sm ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
+    white:
+      "bg-gradient-to-br from-emerald-50 to-blue-50/50 ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
     mint: "bg-white/90 backdrop-blur-sm ring-1 ring-stone-200/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
   };
   return (
@@ -113,7 +122,9 @@ function TestimonialCard({ t, index }) {
       </div>
       <div className="mt-6 relative">
         <Quote className="absolute -top-2 -left-2 w-8 h-8 text-emerald-300/60" />
-        <p className="text-stone-700 relative z-10 leading-relaxed font-light">{t.quote}</p>
+        <p className="text-stone-700 relative z-10 leading-relaxed font-light">
+          {t.quote}
+        </p>
       </div>
       <div className="mt-4 text-sm text-stone-600 font-medium">{t.role}</div>
     </motion.article>
@@ -122,23 +133,26 @@ function TestimonialCard({ t, index }) {
 
 export default function Testimonials() {
   return (
-    <section id="testimonials" className="relative isolate py-20 sm:py-28 bg-gradient-to-b from-white to-slate-50/30 overflow-hidden">
+    <section
+      id="testimonials"
+      className="relative isolate py-20 sm:py-28 bg-gradient-to-b from-white to-slate-50/30 overflow-hidden"
+    >
       {/* Decorative elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
         <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-emerald-50/40 to-transparent blur-3xl opacity-60" />
       </div>
-      
+
       {/* Header */}
       <div className="text-center mb-16">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ 
+          transition={{
             duration: 0.8,
-            ease: [0.22, 1, 0.36, 1]
+            ease: [0.22, 1, 0.36, 1],
           }}
         >
           <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-5 py-2.5 text-sm font-medium text-emerald-700 mb-6 shadow-sm shadow-emerald-100/50 ring-1 ring-emerald-100">
@@ -149,20 +163,18 @@ export default function Testimonials() {
             Trust in our <span className="font-medium">Expertise</span>
           </h2>
           <p className="text-lg text-stone-600/90 max-w-3xl mx-auto leading-relaxed font-light">
-            Hear directly from our patients about their experiences and successful recoveries with our advanced surgical care
+            Hear directly from our patients about their experiences and
+            successful recoveries with our advanced surgical care
           </p>
         </motion.div>
       </div>
-      
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        
         {/* Top header and hero image */}
         <div className="grid items-center gap-8 lg:grid-cols-12">
           <div className="lg:col-span-7">
             <div className="flex items-center justify-between text-gray-500 text-sm">
               <span>Patient Stories</span>
-             
             </div>
             <h2 className="mt-3 text-stone-900 text-3xl sm:text-4xl font-light tracking-tight">
               Patients Gave
@@ -186,8 +198,12 @@ export default function Testimonials() {
           >
             <div className="rounded-[2rem] ring-1 ring-emerald-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               <div className="mb-4">
-                <div className="text-lg font-semibold text-stone-900 mb-1">{VIDEO_TESTIMONIALS[0].name}</div>
-                <div className="text-sm text-stone-600">{VIDEO_TESTIMONIALS[0].procedure}</div>
+                <div className="text-lg font-semibold text-stone-900 mb-1">
+                  {VIDEO_TESTIMONIALS[0].name}
+                </div>
+                <div className="text-sm text-stone-600">
+                  {VIDEO_TESTIMONIALS[0].procedure}
+                </div>
               </div>
               <div className="flex-1">
                 <YouTubeEmbed embedId={VIDEO_TESTIMONIALS[0].embedId} />
@@ -207,8 +223,12 @@ export default function Testimonials() {
             className="lg:col-span-7 rounded-[2rem] ring-1 ring-emerald-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
           >
             <div className="mb-4">
-              <div className="text-lg font-semibold text-stone-900 mb-1">{VIDEO_TESTIMONIALS[1].name}</div>
-              <div className="text-sm text-stone-600">{VIDEO_TESTIMONIALS[1].procedure}</div>
+              <div className="text-lg font-semibold text-stone-900 mb-1">
+                {VIDEO_TESTIMONIALS[1].name}
+              </div>
+              <div className="text-sm text-stone-600">
+                {VIDEO_TESTIMONIALS[1].procedure}
+              </div>
             </div>
             <div className="flex-1">
               <YouTubeEmbed embedId={VIDEO_TESTIMONIALS[1].embedId} />

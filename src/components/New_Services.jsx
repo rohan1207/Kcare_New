@@ -1,8 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { 
-  ChevronLeft, 
+import { useState, useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronLeft,
   ChevronRight,
   HeartPulse as PilesIcon,
   GitBranch as FistulaIcon,
@@ -12,8 +12,8 @@ import {
   PersonStanding as ThyroidIcon,
   Heart as BreastIcon,
   Footprints as DiabeticFootIcon,
-  MinusCircle as FissureIcon
-} from 'lucide-react';
+  MinusCircle as FissureIcon,
+} from "lucide-react";
 
 // Decorative elements
 const Blur = () => (
@@ -30,7 +30,8 @@ const servicesData = [
     icon: PilesIcon,
     title: "Piles Treatment",
     path: "/services/piles-treatment",
-    description: "Comprehensive care for hemorrhoids, focusing on minimally invasive techniques for rapid relief and recovery.",
+    description:
+      "Comprehensive care for hemorrhoids, focusing on minimally invasive techniques for rapid relief and recovery.",
     benefit: "Pain-free procedures with same-day discharge.",
     technology: "Advanced laser and stapler techniques.",
     image: "/piles.jpg",
@@ -40,7 +41,8 @@ const servicesData = [
     icon: FissureIcon,
     title: "Laser Fissure Treatment",
     path: "/services/laser-fissure-treatment",
-    description: "A modern, sphincter-saving laser procedure to heal anal fissures without the risks of traditional surgery.",
+    description:
+      "A modern, sphincter-saving laser procedure to heal anal fissures without the risks of traditional surgery.",
     benefit: "Quick healing with preservation of muscle function.",
     technology: "Precision laser ablation.",
     image: "/fissure.jpg",
@@ -50,7 +52,8 @@ const servicesData = [
     icon: FistulaIcon,
     title: "Fistula Treatment",
     path: "/services/fistula-treatment",
-    description: "Advanced treatments for anal fistulas, including LIFT and VAAFT procedures, to ensure high success rates.",
+    description:
+      "Advanced treatments for anal fistulas, including LIFT and VAAFT procedures, to ensure high success rates.",
     benefit: "High success rate with minimal recurrence.",
     technology: "VAAFT, LIFT, and laser procedures.",
     image: "/fistula.jpg",
@@ -60,7 +63,8 @@ const servicesData = [
     icon: HerniaIcon,
     title: "Robotic Hernia Repair",
     path: "/services/robotic-hernia-repair",
-    description: "Utilizing the da Vinci system for intricate hernia repairs, offering unmatched precision and faster recovery.",
+    description:
+      "Utilizing the da Vinci system for intricate hernia repairs, offering unmatched precision and faster recovery.",
     benefit: "Reduced pain and quicker return to normal activities.",
     technology: "da Vinci Xi Robotic System.",
     image: "/hernia.jpg",
@@ -70,7 +74,8 @@ const servicesData = [
     icon: GallBladderIcon,
     title: "Gall Bladder Removal",
     path: "/services/gall-bladder-removal",
-    description: "Minimally invasive cholecystectomy for gallstone disease, ensuring a safe and swift recovery process.",
+    description:
+      "Minimally invasive cholecystectomy for gallstone disease, ensuring a safe and swift recovery process.",
     benefit: "Minimal scarring and short hospital stay.",
     technology: "High-definition laparoscopic equipment.",
     image: "/gall_bladder.jpg",
@@ -80,7 +85,8 @@ const servicesData = [
     icon: AppendixIcon,
     title: "Laparoscopic Appendectomy",
     path: "/services/laparoscopic-appendectomy",
-    description: "Emergency and elective laparoscopic removal of the appendix to treat and prevent appendicitis.",
+    description:
+      "Emergency and elective laparoscopic removal of the appendix to treat and prevent appendicitis.",
     benefit: "Low risk of infection and fast recovery.",
     technology: "Advanced laparoscopic tools.",
     image: "/appendicitis.jpg",
@@ -90,7 +96,8 @@ const servicesData = [
     icon: ThyroidIcon,
     title: "Advanced Thyroid Surgery",
     path: "/services/advanced-thyroid-surgery",
-    description: "Specialized surgical care for thyroid disorders, including cancer and goiter, with a focus on nerve preservation.",
+    description:
+      "Specialized surgical care for thyroid disorders, including cancer and goiter, with a focus on nerve preservation.",
     benefit: "Excellent cosmetic outcomes and voice preservation.",
     technology: "Intraoperative nerve monitoring.",
     image: "/thyroid.jpg",
@@ -100,7 +107,8 @@ const servicesData = [
     icon: BreastIcon,
     title: "Breast Surgery",
     path: "/services/breast-surgery",
-    description: "A comprehensive approach to breast conditions, from benign lumps to breast cancer, including conservation surgery.",
+    description:
+      "A comprehensive approach to breast conditions, from benign lumps to breast cancer, including conservation surgery.",
     benefit: "Focus on oncological safety and aesthetic results.",
     technology: "Sentinel lymph node biopsy.",
     image: "/breast_cancer.jpg",
@@ -110,7 +118,8 @@ const servicesData = [
     icon: DiabeticFootIcon,
     title: "Diabetic Foot Care",
     path: "/services/diabetic-foot-care",
-    description: "Multidisciplinary care to manage and treat diabetic foot ulcers and prevent amputations.",
+    description:
+      "Multidisciplinary care to manage and treat diabetic foot ulcers and prevent amputations.",
     benefit: "Limb salvage and improved quality of life.",
     technology: "Advanced wound care and revascularization.",
     image: "/diabetic_foot.jpg",
@@ -162,9 +171,9 @@ export default function NewServices() {
       const activeTab = tabsRef.current?.children[selectedIndex];
       if (activeTab) {
         activeTab.scrollIntoView({
-          behavior: 'smooth',
-          inline: 'center',
-          block: 'nearest',
+          behavior: "smooth",
+          inline: "center",
+          block: "nearest",
         });
       }
     }
@@ -176,19 +185,21 @@ export default function NewServices() {
     setTimeout(() => setIsPaused(false), 5000); // Pause for 5 seconds on interaction
   };
 
-
   return (
-    <section ref={sectionRef} className="py-32 bg-gradient-to-b from-white to-slate-50/30 overflow-hidden relative">
+    <section
+      ref={sectionRef}
+      className="py-32 bg-gradient-to-b from-white to-slate-50/30 overflow-hidden relative"
+    >
       <Blur />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ 
+          transition={{
             duration: 0.8,
             type: "spring",
             stiffness: 50,
-            damping: 15
+            damping: 15,
           }}
           className="text-center mb-20"
         >
@@ -200,24 +211,25 @@ export default function NewServices() {
             Advanced <span className="font-medium">Surgical</span> Solutions
           </h2>
           <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
-            Cutting-edge procedures with precision technology for better outcomes
+            Cutting-edge procedures with precision technology for better
+            outcomes
           </p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ 
+          transition={{
             duration: 0.8,
             delay: 0.2,
             type: "spring",
             stiffness: 50,
-            damping: 15
+            damping: 15,
           }}
           className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12 items-start"
         >
           {/* Left: Service List */}
-          <div 
+          <div
             ref={tabsRef}
             className="lg:col-span-1 h-full lg:max-h-[580px] overflow-y-auto space-y-3 pr-3 scrollbar-thin scrollbar-thumb-emerald-200 scrollbar-track-emerald-50/50"
             onMouseEnter={() => setIsPaused(true)}
@@ -233,22 +245,39 @@ export default function NewServices() {
                   initial={false}
                   animate={{
                     scale: isActive ? 1.02 : 1,
-                    y: isActive ? -2 : 0
+                    y: isActive ? -2 : 0,
                   }}
                   className={`w-full flex items-center text-left p-4 rounded-2xl transition-all duration-300 ${
-                    isActive 
-                      ? 'bg-gradient-to-r from-emerald-500 to-emerald-400 text-white shadow-lg shadow-emerald-500/15' 
-                      : 'bg-gradient-to-br from-emerald-50 to-white hover:shadow-md hover:shadow-emerald-500/10 border border-emerald-100/50'
+                    isActive
+                      ? "bg-gradient-to-r from-emerald-500 to-emerald-400 text-white shadow-lg shadow-emerald-500/15"
+                      : "bg-gradient-to-br from-emerald-50 to-white hover:shadow-md hover:shadow-emerald-500/10 border border-emerald-100/50"
                   }`}
                 >
-                  <div className={`p-2 rounded-xl ${isActive ? 'bg-white/20' : 'bg-emerald-100/50'}`}>
-                    <Icon className={`w-5 h-5 ${isActive ? 'text-white' : 'text-emerald-600'}`} strokeWidth={2.5} />
+                  <div
+                    className={`p-2 rounded-xl ${
+                      isActive ? "bg-white/20" : "bg-emerald-100/50"
+                    }`}
+                  >
+                    <Icon
+                      className={`w-5 h-5 ${
+                        isActive ? "text-white" : "text-emerald-600"
+                      }`}
+                      strokeWidth={2.5}
+                    />
                   </div>
                   <div className="ml-4">
-                    <span className={`block font-medium text-sm tracking-wide ${isActive ? 'text-white' : 'text-slate-900'}`}>
+                    <span
+                      className={`block font-medium text-sm tracking-wide ${
+                        isActive ? "text-white" : "text-slate-900"
+                      }`}
+                    >
                       {item.title}
                     </span>
-                    <span className={`text-xs mt-0.5 block ${isActive ? 'text-emerald-50' : 'text-slate-500'}`}>
+                    <span
+                      className={`text-xs mt-0.5 block ${
+                        isActive ? "text-emerald-50" : "text-slate-500"
+                      }`}
+                    >
                       {item.category}
                     </span>
                   </div>
@@ -265,11 +294,11 @@ export default function NewServices() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   type: "spring",
                   stiffness: 100,
-                  damping: 20
+                  damping: 20,
                 }}
                 className="grid grid-cols-1 md:grid-cols-2 items-center"
               >
@@ -289,29 +318,51 @@ export default function NewServices() {
                   <span className="inline-flex rounded-full bg-emerald-50 px-3 py-1 text-xs font-medium text-emerald-700 mb-4">
                     {selectedTab.category}
                   </span>
-                  <h3 className="text-3xl font-light text-slate-900 tracking-tight">{selectedTab.title}</h3>
+                  <h3 className="text-3xl font-light text-slate-900 tracking-tight">
+                    {selectedTab.title}
+                  </h3>
                   <p className="mt-5 text-lg text-slate-600 leading-relaxed min-h-[8rem] font-light">
                     {selectedTab.description}
                   </p>
                   <div className="mt-8 space-y-4">
                     <div className="flex items-center gap-3 text-[15px]">
                       <div className="p-2 rounded-lg bg-emerald-50">
-                        <ChevronRight className="w-5 h-5 text-emerald-500" strokeWidth={2.5} />
+                        <ChevronRight
+                          className="w-5 h-5 text-emerald-500"
+                          strokeWidth={2.5}
+                        />
                       </div>
-                      <p><span className="font-medium text-slate-900">Key Benefit:</span> <span className="text-slate-600">{selectedTab.benefit}</span></p>
+                      <p>
+                        <span className="font-medium text-slate-900">
+                          Key Benefit:
+                        </span>{" "}
+                        <span className="text-slate-600">
+                          {selectedTab.benefit}
+                        </span>
+                      </p>
                     </div>
                     <div className="flex items-center gap-3 text-[15px]">
                       <div className="p-2 rounded-lg bg-emerald-50">
-                        <ChevronRight className="w-5 h-5 text-emerald-500" strokeWidth={2.5} />
+                        <ChevronRight
+                          className="w-5 h-5 text-emerald-500"
+                          strokeWidth={2.5}
+                        />
                       </div>
-                      <p><span className="font-medium text-slate-900">Technology:</span> <span className="text-slate-600">{selectedTab.technology}</span></p>
+                      <p>
+                        <span className="font-medium text-slate-900">
+                          Technology:
+                        </span>{" "}
+                        <span className="text-slate-600">
+                          {selectedTab.technology}
+                        </span>
+                      </p>
                     </div>
                   </div>
-                  <Link 
-                    to={selectedTab.path} 
+                  <Link
+                    to={selectedTab.path}
                     className="mt-10 inline-flex items-center gap-2 rounded-full bg-emerald-500 px-8 py-3.5 text-[15px] font-medium tracking-wide text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:bg-emerald-400 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                   >
-                    Learn More 
+                    Learn More
                     <ChevronRight className="w-4 h-4" strokeWidth={2.5} />
                   </Link>
                 </div>

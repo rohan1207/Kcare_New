@@ -24,8 +24,6 @@ const slides = [
   },
 ];
 
-
-
 // SVG path definitions (wavy lines)
 // We reveal each path to a given progress via stroke-dashoffset
 const PATHS = [
@@ -36,11 +34,11 @@ const PATHS = [
 ];
 
 const COLORS = ["#45d6c3", "#ffc857", "#b59bff", "#7ce4a9"];
-const INITIAL_PROGRESS = 0.30; // just left of center
+const INITIAL_PROGRESS = 0.3; // just left of center
 const VIEWBOX_WIDTH = 1080; // must match the SVG viewBox width
 const VIEWBOX_HEIGHT = 200; // must match the SVG viewBox height
 // Desired fixed end progress for each wave (will be clamped to visible bounds)
-const TARGET_PROGRESS = [0.78, 0.70, 0.65, 0.60];
+const TARGET_PROGRESS = [0.78, 0.7, 0.65, 0.6];
 
 // Per-wave card content
 const WAVE_DATA = [
@@ -106,7 +104,11 @@ const Hero = () => {
   }, []);
 
   // Helpers
-  const moveWaveTo = (i, targetProgress, { duration = 1.6, ease = "sine.inOut", onComplete } = {}) => {
+  const moveWaveTo = (
+    i,
+    targetProgress,
+    { duration = 1.6, ease = "sine.inOut", onComplete } = {}
+  ) => {
     const pathEl = pathRefs.current[i];
     const headEl = headRefs.current[i];
     if (!pathEl || !headEl) return;
@@ -117,7 +119,8 @@ const Hero = () => {
       duration,
       ease,
       onUpdate: () => {
-        const progress = 1 - gsap.getProperty(pathEl, "strokeDashoffset") / length;
+        const progress =
+          1 - gsap.getProperty(pathEl, "strokeDashoffset") / length;
         const pt = pathEl.getPointAtLength(length * progress);
         gsap.set(headEl, { x: pt.x, y: pt.y });
       },
@@ -132,11 +135,13 @@ const Hero = () => {
     const length = pathEl.getTotalLength();
     const boundX = VIEWBOX_WIDTH - margin;
     // binary search along the path length
-    let lo = 0, hi = length;
+    let lo = 0,
+      hi = length;
     for (let k = 0; k < 18; k++) {
       const mid = (lo + hi) / 2;
       const pt = pathEl.getPointAtLength(mid);
-      if (pt.x <= boundX) lo = mid; else hi = mid;
+      if (pt.x <= boundX) lo = mid;
+      else hi = mid;
     }
     const progress = lo / length;
     return Math.max(progress, INITIAL_PROGRESS);
@@ -188,7 +193,13 @@ const Hero = () => {
   useEffect(() => {
     if (!isCardVisible || activeWave === null) return;
     const id = requestAnimationFrame(() => {
-      if (!wavesRef.current || !svgRef.current || !pathRefs.current[activeWave] || !cardRef.current) return;
+      if (
+        !wavesRef.current ||
+        !svgRef.current ||
+        !pathRefs.current[activeWave] ||
+        !cardRef.current
+      )
+        return;
       const layerRect = wavesRef.current.getBoundingClientRect();
       const svgRect = svgRef.current.getBoundingClientRect();
       const pathEl = pathRefs.current[activeWave];
@@ -202,10 +213,12 @@ const Hero = () => {
       let x = cx + 10; // prefer to the right of the dot
       let y = cy - cardRect.height / 2; // center vertically around the dot
       const margin = 12;
-      if (x + cardRect.width + margin > layerRect.width) x = cx - cardRect.width - 10; // flip left
+      if (x + cardRect.width + margin > layerRect.width)
+        x = cx - cardRect.width - 10; // flip left
       if (x < margin) x = margin;
       if (y < margin) y = margin;
-      if (y + cardRect.height + margin > layerRect.height) y = layerRect.height - cardRect.height - margin;
+      if (y + cardRect.height + margin > layerRect.height)
+        y = layerRect.height - cardRect.height - margin;
       setCardPos({ x, y });
     });
     return () => cancelAnimationFrame(id);
@@ -279,15 +292,18 @@ const Hero = () => {
   };
 
   return (
-  <div ref={containerRef} className="relative h-screen bg-gray-900 text-white overflow-hidden select-none">
+    <div
+      ref={containerRef}
+      className="relative h-screen bg-gray-900 text-white overflow-hidden select-none"
+    >
       {/* Background image crossfade */}
       <AnimatePresence>
         <motion.div
           key={index}
           className="absolute inset-0"
           initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
           transition={{ duration: 1.2 }}
           style={{
             backgroundImage: `url(${slides[index].image})`,
@@ -296,7 +312,7 @@ const Hero = () => {
           }}
         />
       </AnimatePresence>
-  <div className="absolute inset-0 bg-[#041f1c]/30 pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-[#041f1c]/30 pointer-events-none z-0" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col justify-center h-full px-8 md:px-24">
@@ -307,7 +323,8 @@ const Hero = () => {
           transition={{ duration: 0.9, ease: "easeOut" }}
           className="text-4xl md:text-[64px] font-light leading-[1.05] tracking-tight max-w-3xl"
         >
-          <span className="font-medium">Redefining</span> surgery with technology and <span className="italic font-serif">trust</span>
+          <span className="font-medium">Redefining</span> surgery with
+          technology and <span className="italic font-serif">trust</span>
         </motion.h1>
         <motion.p
           key={index + "sub"}
@@ -323,13 +340,16 @@ const Hero = () => {
             Book appointment
           </button>
           <button className="cursor-pointer border bg-emerald-400/30 border-emerald-400/90 text-emerald-300 hover:bg-white hover:text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors backdrop-blur-sm">
-           Enquiry
+            Enquiry
           </button>
         </div>
       </div>
 
       {/* Progressive Wavy Lines Layer (interactive) */}
-  <div ref={wavesRef} className="pointer-events-auto absolute bottom-0 left-0 right-0 h-56 md:h-64 z-10">
+      <div
+        ref={wavesRef}
+        className="pointer-events-auto absolute bottom-0 left-0 right-0 h-56 md:h-64 z-10"
+      >
         <svg
           ref={svgRef}
           className="w-full h-full"
@@ -345,7 +365,8 @@ const Hero = () => {
                 strokeWidth={2}
                 strokeLinecap="round"
                 stroke={COLORS[i % COLORS.length]}
-                style={{ opacity: 0.6, pointerEvents: "none" }}
+                filter="url(#wave-shadow)"
+                style={{ opacity: 1, pointerEvents: "none" }}
               />
               {/* glowing, pulsing interactive head */}
               <g
@@ -361,9 +382,17 @@ const Hero = () => {
                   fill={COLORS[i % COLORS.length]}
                   initial={{ scale: 0.9, opacity: 0.35 }}
                   animate={{ scale: [0.9, 1.6, 0.9], opacity: [0.45, 0, 0.45] }}
-                  transition={{ duration: 1.6, repeat: Infinity, ease: "easeInOut" }}
+                  transition={{
+                    duration: 1.6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
                 />
-                <circle r={5} fill={COLORS[i % COLORS.length]} filter="url(#glow)" />
+                <circle
+                  r={5}
+                  fill={COLORS[i % COLORS.length]}
+                  filter="url(#glow)"
+                />
               </g>
             </g>
           ))}
@@ -372,6 +401,16 @@ const Hero = () => {
               <feGaussianBlur stdDeviation="3" result="coloredBlur" />
               <feMerge>
                 <feMergeNode in="coloredBlur" />
+                <feMergeNode in="SourceGraphic" />
+              </feMerge>
+            </filter>
+            <filter id="wave-shadow" x="-10%" y="-10%" width="120%" height="120%">
+              <feOffset dy="2" />
+              <feGaussianBlur stdDeviation="2" result="shadow" />
+              <feFlood flood-color="#000000" flood-opacity="0.3" />
+              <feComposite operator="in" in2="shadow" />
+              <feMerge>
+                <feMergeNode />
                 <feMergeNode in="SourceGraphic" />
               </feMerge>
             </filter>
@@ -391,26 +430,39 @@ const Hero = () => {
               transition={{ duration: 0.25 }}
               onMouseEnter={() => {
                 setIsCardHovered(true);
-                if (revertTimerRef.current) clearTimeout(revertTimerRef.current);
+                if (revertTimerRef.current)
+                  clearTimeout(revertTimerRef.current);
               }}
               onMouseLeave={() => {
                 setIsCardHovered(false);
                 if (activeWave !== null) scheduleRevert(activeWave, 1500);
               }}
             >
-              <div className="flex items-center gap-3 p-3 pr-4">
-                <div className="w-10 h-10 rounded-md overflow-hidden flex-shrink-0 ring-1 ring-white/20" style={{ backgroundColor: "#000" }}>
+              <div className="flex flex-col w-48">
+                <div
+                  className="w-full h-28 overflow-hidden ring-1 ring-white/20"
+                  style={{ backgroundColor: "#000" }}
+                >
                   <img
                     src={(WAVE_DATA[activeWave] || WAVE_DATA[0]).image}
                     alt="feature"
                     className="w-full h-full object-cover opacity-90"
                   />
                 </div>
-                <div className="text-xs md:text-[11px] tracking-wide">
-                  <span className="font-medium">{(WAVE_DATA[activeWave] || WAVE_DATA[0]).feature}</span>
+                <div className="p-3 pb-4">
+                  <div className="text-xs md:text-sm tracking-wide">
+                    <span className="font-medium leading-relaxed">
+                      {(WAVE_DATA[activeWave] || WAVE_DATA[0]).feature}
+                    </span>
+                  </div>
                 </div>
               </div>
-              <div className="h-1" style={{ background: (WAVE_DATA[activeWave] || WAVE_DATA[0]).color }} />
+              <div
+                className="h-1"
+                style={{
+                  background: (WAVE_DATA[activeWave] || WAVE_DATA[0]).color,
+                }}
+              />
             </motion.div>
           )}
         </AnimatePresence>

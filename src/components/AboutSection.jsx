@@ -16,11 +16,16 @@ export default function AboutSection() {
       <Blur />
       <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.8, type: "spring", stiffness: 50, damping: 15 }}
+          transition={{
+            duration: 0.8,
+            type: "spring",
+            stiffness: 50,
+            damping: 15,
+          }}
           className="rounded-[2.5rem] bg-gradient-to-br from-white to-slate-50/80 ring-1 ring-emerald-100/80 shadow-xl p-12 lg:p-14 backdrop-blur-sm"
         >
           <div className="grid gap-8 lg:gap-12 md:grid-cols-2 items-center">
@@ -40,7 +45,7 @@ export default function AboutSection() {
               </motion.div>
 
               {/* Avatars */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -62,7 +67,9 @@ export default function AboutSection() {
                 <div className="ml-4 pl-2">
                   <div className="flex items-center">
                     <Plus className="w-4 h-4 text-emerald-500 mr-2" />
-                    <span className="text-lg text-slate-600 font-light">Expert Team</span>
+                    <span className="text-lg text-slate-600 font-light">
+                      Expert Team
+                    </span>
                   </div>
                 </div>
               </motion.div>
@@ -80,7 +87,11 @@ export default function AboutSection() {
                 </h2>
 
                 <p className="mt-6 text-lg text-slate-600 max-w-xl leading-relaxed font-light">
-                  We are a team of dedicated specialists committed to providing personalized, top-quality surgical care. By blending state-of-the-art robotic and laparoscopic technology with a human touch, we ensure better outcomes and a seamless patient experience.
+                  We are a team of dedicated specialists committed to providing
+                  personalized, top-quality surgical care. By blending
+                  state-of-the-art robotic and laparoscopic technology with a
+                  human touch, we ensure better outcomes and a seamless patient
+                  experience.
                 </p>
 
                 <div className="mt-10 flex gap-4">
@@ -88,7 +99,8 @@ export default function AboutSection() {
                     href="#"
                     className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-8 py-3.5 text-[15px] font-semibold tracking-wide text-stone-900 shadow-md shadow-emerald-900/20 transition-all duration-300 hover:bg-emerald-300 hover:-translate-y-0.5"
                   >
-                    Learn About Our Clinic <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
+                    Learn About Our Clinic{" "}
+                    <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
                   </a>
                   <a
                     href="#"
@@ -105,13 +117,18 @@ export default function AboutSection() {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.5, duration: 0.8, type: "spring", stiffness: 50 }}
+              transition={{
+                delay: 0.5,
+                duration: 0.8,
+                type: "spring",
+                stiffness: 50,
+              }}
             >
               <div className="relative">
                 {/* Background decorative elements */}
                 <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-full blur-2xl opacity-80" />
                 <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-tr from-sky-100 to-sky-50 rounded-full blur-2xl opacity-80" />
-                
+
                 {/* Main image with overlay */}
                 <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-emerald-900/10">
                   <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent mix-blend-overlay" />
@@ -127,13 +144,21 @@ export default function AboutSection() {
                 <div className="absolute -right-5 -bottom-5 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl ring-1 ring-emerald-100/80">
                   <div className="flex gap-4">
                     <div>
-                      <div className="text-3xl font-medium text-emerald-600">10+</div>
-                      <div className="text-sm text-slate-600 mt-1">Years of Excellence</div>
+                      <div className="text-3xl font-medium text-emerald-600">
+                        10+
+                      </div>
+                      <div className="text-sm text-slate-600 mt-1">
+                        Years of Excellence
+                      </div>
                     </div>
                     <div className="w-px bg-emerald-100" />
                     <div>
-                      <div className="text-3xl font-medium text-emerald-600">2K+</div>
-                      <div className="text-sm text-slate-600 mt-1">Successful Surgeries</div>
+                      <div className="text-3xl font-medium text-emerald-600">
+                        2K+
+                      </div>
+                      <div className="text-sm text-slate-600 mt-1">
+                        Successful Surgeries
+                      </div>
                     </div>
                   </div>
                 </div>

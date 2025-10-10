@@ -1,34 +1,46 @@
 import { useState, useEffect, Fragment } from "react";
-import { Dialog, Popover, Transition } from '@headlessui/react';
+import { Dialog, Popover, Transition } from "@headlessui/react";
 import { useLocation } from "react-router-dom";
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown } from "lucide-react";
 
 const procedures = [
-  { name: "Diabetic Foot Care", href: '/services/diabetic-foot-care' },
-  { name: "Breast Surgery", href: '/services/breast-surgery' },
-  { name: "Advanced Thyroid Surgery", href: '/services/advanced-thyroid-surgery' },
-  { name: "Laser Fissure Treatment", href: '/services/laser-fissure-treatment' },
-  { name: "Piles (Hemorrhoids)", href: '/services/piles-treatment' },
-  { name: "Fistula Treatment", href: '/services/fistula-treatment' },
-  { name: "Laparoscopic Appendectomy", href: '/services/laparoscopic-appendectomy' },
-  { name: "Robotic Hernia Repair", href: '/services/robotic-hernia-repair' },
-  { name: "Gall Bladder Removal", href: '/services/gall-bladder-removal' },
-  { name: "Hydrocele Surgery", href: '/services/hydrocele-surgery' },
-  { name: "Pilonidal Sinus Care", href: '/services/pilonidal-sinus-care' },
-  { name: "Rectal Prolapse Surgery", href: '/services/rectal-prolapse-surgery' },
-  { name: "Phimosis Treatment", href: '/services/phimosis-treatment' },
-  { name: "Abscess Drainage", href: '/services/abscess-drainage' },
-  { name: "Cyst Removal", href: '/services/cyst-removal' },
+  { name: "Diabetic Foot Care", href: "/services/diabetic-foot-care" },
+  { name: "Breast Surgery", href: "/services/breast-surgery" },
+  {
+    name: "Advanced Thyroid Surgery",
+    href: "/services/advanced-thyroid-surgery",
+  },
+  {
+    name: "Laser Fissure Treatment",
+    href: "/services/laser-fissure-treatment",
+  },
+  { name: "Piles (Hemorrhoids)", href: "/services/piles-treatment" },
+  { name: "Fistula Treatment", href: "/services/fistula-treatment" },
+  {
+    name: "Laparoscopic Appendectomy",
+    href: "/services/laparoscopic-appendectomy",
+  },
+  { name: "Robotic Hernia Repair", href: "/services/robotic-hernia-repair" },
+  { name: "Gall Bladder Removal", href: "/services/gall-bladder-removal" },
+  { name: "Hydrocele Surgery", href: "/services/hydrocele-surgery" },
+  { name: "Pilonidal Sinus Care", href: "/services/pilonidal-sinus-care" },
+  {
+    name: "Rectal Prolapse Surgery",
+    href: "/services/rectal-prolapse-surgery",
+  },
+  { name: "Phimosis Treatment", href: "/services/phimosis-treatment" },
+  { name: "Abscess Drainage", href: "/services/abscess-drainage" },
+  { name: "Cyst Removal", href: "/services/cyst-removal" },
 ];
 
 const navigation = [
-  { name: 'Home', href: '/' },
-  { name: 'Procedures', href: '#', children: procedures },
-  { name: 'About Us', href: '/about' },
-  { name: 'Blogs', href: '/blogs' },
-  { name: 'Gallery', href: '/gallery' },
-  { name: 'Recognitions', href: '#recognitions' },
-  { name: 'Contact Us', href: '#contact' },
+  { name: "Home", href: "/" },
+  { name: "Procedures", href: "#", children: procedures },
+  { name: "About Us", href: "/about" },
+  { name: "Blogs", href: "/blogs" },
+  { name: "Gallery", href: "/gallery" },
+  { name: "Recognitions", href: "/recognition" },
+  { name: "Contact Us", href: "/contact" },
 ];
 
 export default function Navbar() {
@@ -40,21 +52,24 @@ export default function Navbar() {
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 10);
     onScroll();
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const isHome = location.pathname === '/';
+  const isHome = location.pathname === "/";
   const transparent = isHome && !scrolled;
-  const linkBase = 'relative text-[15px] font-medium px-3 py-2 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 group';
-  const linkTheme = 'text-white hover:text-emerald-600';
-  const underlineBase = 'absolute bottom-1 left-0 right-0 h-[2px] origin-left transform transition-transform duration-300 ease-out';
+  const linkBase =
+    "relative text-[15px] font-medium px-3 py-2 transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 group";
+  const linkTheme = "text-white hover:text-emerald-600";
+  const underlineBase =
+    "absolute bottom-1 left-0 right-0 h-[2px] origin-left transform transition-transform duration-300 ease-out";
   const underlineClass = `${underlineBase} scale-x-0 group-hover:scale-x-100 bg-emerald-400`;
   const activeUnderlineClass = `${underlineBase} scale-x-100 bg-emerald-400`;
-  const ctaClasses = 'text-white bg-emerald-400 hover:bg-emerald-300 rounded-full shadow-md shadow-emerald-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40';
+  const ctaClasses =
+    "text-white bg-emerald-400 hover:bg-emerald-300 rounded-full shadow-md shadow-emerald-900/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40";
 
   // Active link detection based on current route/hash (only one active at a time)
-  const isServices = location.pathname.startsWith('/services');
+  const isServices = location.pathname.startsWith("/services");
   const hasHash = !!location.hash;
   const isItemActive = (item) => {
     if (hasHash) {
@@ -62,8 +77,8 @@ export default function Navbar() {
       return item.href === location.hash;
     }
     if (item.children) return isServices;
-    if (item.href.startsWith('/')) return location.pathname === item.href;
-    if (item.href.startsWith('#')) return false;
+    if (item.href.startsWith("/")) return location.pathname === item.href;
+    if (item.href.startsWith("#")) return false;
     return false;
   };
 
@@ -80,7 +95,9 @@ export default function Navbar() {
               <img
                 src="/logo_white.png"
                 alt="Kcare"
-                className={`h-14 sm:h-14 md:h-14 w-auto object-contain ${transparent ? 'drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]' : ''}`}
+                className={`h-14 sm:h-14 md:h-14 w-auto object-contain ${
+                  transparent ? "drop-shadow-[0_2px_6px_rgba(0,0,0,0.35)]" : ""
+                }`}
               />
             </a>
           </div>
@@ -93,8 +110,19 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(true)}
             >
               <span className="sr-only">Open main menu</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+                />
               </svg>
             </button>
           </div>
@@ -107,21 +135,32 @@ export default function Navbar() {
 
                 if (item.children) {
                   return (
-                    <div 
-                      key={item.name} 
+                    <div
+                      key={item.name}
                       className="relative"
                       onMouseEnter={() => setProceduresMenuOpen(true)}
                       onMouseLeave={() => setProceduresMenuOpen(false)}
                     >
                       <a
                         href={item.href}
-                        onClick={(e) => { e.preventDefault(); setProceduresMenuOpen(!proceduresMenuOpen); }}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          setProceduresMenuOpen(!proceduresMenuOpen);
+                        }}
                         className={`${linkBase} ${linkTheme} group inline-flex items-center gap-1`}
                       >
                         <span>{item.name}</span>
-                        <span className={(proceduresMenuOpen || isActive) ? activeUnderlineClass : underlineClass} />
+                        <span
+                          className={
+                            proceduresMenuOpen || isActive
+                              ? activeUnderlineClass
+                              : underlineClass
+                          }
+                        />
                         <ChevronDown
-                          className={`h-4 w-4 transition-transform duration-200 ${proceduresMenuOpen ? 'rotate-180' : ''}`}
+                          className={`h-4 w-4 transition-transform duration-200 ${
+                            proceduresMenuOpen ? "rotate-180" : ""
+                          }`}
                           aria-hidden="true"
                         />
                       </a>
@@ -158,9 +197,14 @@ export default function Navbar() {
                   <a
                     key={item.name}
                     href={item.href}
-                    className={`${linkBase} ${linkTheme}`}>
+                    className={`${linkBase} ${linkTheme}`}
+                  >
                     {item.name}
-                    <span className={isActive ? activeUnderlineClass : underlineClass} />
+                    <span
+                      className={
+                        isActive ? activeUnderlineClass : underlineClass
+                      }
+                    />
                   </a>
                 );
               })}
@@ -179,12 +223,21 @@ export default function Navbar() {
         </div>
       </nav>
 
-      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+      <Dialog
+        as="div"
+        className="lg:hidden"
+        open={mobileMenuOpen}
+        onClose={setMobileMenuOpen}
+      >
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-gradient-to-b from-white/95 to-[#F9FAFB]/90 backdrop-blur-lg px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-emerald-200/30">
           <div className="flex items-center justify-between">
             <a href="#" className="-m-1.5 p-1.5 flex items-center">
-              <img src="/logo4.png" alt="Kcare" className="h-9 w-auto object-contain" />
+              <img
+                src="/logo4.png"
+                alt="Kcare"
+                className="h-9 w-auto object-contain"
+              />
             </a>
             <button
               type="button"
@@ -192,8 +245,19 @@ export default function Navbar() {
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>
-              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>

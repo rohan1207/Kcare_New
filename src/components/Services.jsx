@@ -6,107 +6,118 @@ const SERVICES = [
   {
     title: "Diabetic Foot",
     image: "/diabetic_foot.jpg",
-    description: "Advanced care for diabetic foot complications with precision healing and preventive strategies.",
+    description:
+      "Advanced care for diabetic foot complications with precision healing and preventive strategies.",
     category: "Specialized Care",
-    duration: "2-3 hours"
+    duration: "2-3 hours",
   },
   {
     title: "Breast",
     image: "/breast.jpg",
-    description: "Comprehensive breast surgery with minimally invasive techniques for optimal outcomes.",
+    description:
+      "Comprehensive breast surgery with minimally invasive techniques for optimal outcomes.",
     category: "Oncology",
-    duration: "1-2 hours"
+    duration: "1-2 hours",
   },
   {
     title: "Thyroid",
     image: "/thyroid.jpg",
-    description: "Expert thyroid procedures using advanced robotic technology for precise results.",
+    description:
+      "Expert thyroid procedures using advanced robotic technology for precise results.",
     category: "Endocrine",
-    duration: "1.5-2 hours"
+    duration: "1.5-2 hours",
   },
   {
     title: "Fissure",
     image: "/fissure.jpg",
-    description: "Modern treatment approaches for anal fissures with minimal discomfort.",
+    description:
+      "Modern treatment approaches for anal fissures with minimal discomfort.",
     category: "Proctology",
-    duration: "30-45 mins"
+    duration: "30-45 mins",
   },
   {
     title: "Piles",
     image: "/piles.jpg",
     description: "Advanced hemorrhoid treatment with quick recovery time.",
     category: "Proctology",
-    duration: "45-60 mins"
+    duration: "45-60 mins",
   },
   {
     title: "Fistula",
     image: "/fistula.jpg",
-    description: "Specialized fistula procedures using latest surgical techniques.",
+    description:
+      "Specialized fistula procedures using latest surgical techniques.",
     category: "Proctology",
-    duration: "1-1.5 hours"
+    duration: "1-1.5 hours",
   },
   {
     title: "Appendix",
     image: "/appendix.jpg",
-    description: "Laparoscopic appendectomy with minimal scarring and faster healing.",
+    description:
+      "Laparoscopic appendectomy with minimal scarring and faster healing.",
     category: "General Surgery",
-    duration: "45-60 mins"
+    duration: "45-60 mins",
   },
   {
     title: "Hernia",
     image: "/hernia.webp",
     description: "State-of-the-art hernia repair with robotic precision.",
     category: "General Surgery",
-    duration: "1-2 hours"
+    duration: "1-2 hours",
   },
   {
     title: "Gall Bladder",
     image: "/gall_bladder.jpg",
-    description: "Advanced laparoscopic gallbladder surgery with reduced recovery time.",
+    description:
+      "Advanced laparoscopic gallbladder surgery with reduced recovery time.",
     category: "General Surgery",
-    duration: "1-1.5 hours"
+    duration: "1-1.5 hours",
   },
   {
     title: "Hydrocele",
     image: "/hydrocele.jpg",
     description: "Modern hydrocele treatment with minimal invasive approach.",
     category: "Urology",
-    duration: "45-60 mins"
+    duration: "45-60 mins",
   },
   {
     title: "Pilonidal Sinus",
     image: "/pilonidal_sinus.jpg",
-    description: "Expert treatment of pilonidal sinus with focus on prevention.",
+    description:
+      "Expert treatment of pilonidal sinus with focus on prevention.",
     category: "Specialized Care",
-    duration: "1-1.5 hours"
+    duration: "1-1.5 hours",
   },
   {
     title: "Rectal Prolapse",
     image: "/rectal_prolapse.jpg",
-    description: "Comprehensive care for rectal prolapse using advanced techniques.",
+    description:
+      "Comprehensive care for rectal prolapse using advanced techniques.",
     category: "Proctology",
-    duration: "2-3 hours"
+    duration: "2-3 hours",
   },
   {
     title: "Phymosis",
     image: "/Phymosis.png",
     description: "Gentle and effective phimosis treatment with expert care.",
     category: "Urology",
-    duration: "30-45 mins"
+    duration: "30-45 mins",
   },
   {
     title: "Abscess",
     image: "/Abscess.jpg",
-    description: "Quick and effective abscess treatment with proper healing support.",
+    description:
+      "Quick and effective abscess treatment with proper healing support.",
     category: "General Surgery",
-    duration: "20-30 mins"
+    duration: "20-30 mins",
   },
   {
     title: "Cyst",
     image: "/cyst.jpg",
-    description: "Professional cyst removal with minimal scarring and recovery time.",
+    description:
+      "Professional cyst removal with minimal scarring and recovery time.",
     category: "General Surgery",
-    duration: "30-45 mins"
+    duration: "30-45 mins",
   },
 ];
 
@@ -115,12 +126,12 @@ function ServiceCard({ service, index }) {
     <motion.article
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ 
-        duration: 0.6, 
+      transition={{
+        duration: 0.6,
         delay: index * 0.15,
         type: "spring",
         stiffness: 50,
-        damping: 15
+        damping: 15,
       }}
       className="group relative overflow-hidden rounded-[2rem] bg-gradient-to-br from-slate-900 to-slate-800 shadow-xl ring-1 ring-slate-800/5 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2"
     >
@@ -153,7 +164,9 @@ function ServiceCard({ service, index }) {
             <span className="inline-flex rounded-full bg-emerald-500/90 text-white backdrop-blur-md px-4 py-1.5 font-medium tracking-wide shadow-lg shadow-emerald-500/20">
               {service.category}
             </span>
-            <span className="text-emerald-300 font-medium tracking-wide">{service.duration}</span>
+            <span className="text-emerald-300 font-medium tracking-wide">
+              {service.duration}
+            </span>
           </div>
           <h3 className="text-white text-[1.7rem] font-light tracking-tight mb-3">
             {service.title}
@@ -171,7 +184,10 @@ function ServiceCard({ service, index }) {
           <span className="mr-1 text-sm font-medium opacity-0 w-0 overflow-hidden transition-all duration-300 group-hover:opacity-100 group-hover:w-auto">
             Learn more
           </span>
-          <ArrowRight className="h-6 w-6 transition-transform duration-300" strokeWidth={2.5} />
+          <ArrowRight
+            className="h-6 w-6 transition-transform duration-300"
+            strokeWidth={2.5}
+          />
         </a>
       </div>
     </motion.article>
@@ -180,29 +196,32 @@ function ServiceCard({ service, index }) {
 
 export default function Services() {
   const [visibleRows, setVisibleRows] = useState(2);
-  
+
   const ITEMS_PER_ROW = 3;
   const visibleServices = SERVICES.slice(0, visibleRows * ITEMS_PER_ROW);
   const hasMore = visibleServices.length < SERVICES.length;
 
   const handleViewMore = () => {
     if (visibleRows * ITEMS_PER_ROW < SERVICES.length) {
-      setVisibleRows(prev => prev + 1);
+      setVisibleRows((prev) => prev + 1);
     }
   };
 
   return (
-    <section id="services" className="relative py-32 bg-gradient-to-b from-slate-50 to-white overflow-hidden">
+    <section
+      id="services"
+      className="relative py-32 bg-gradient-to-b from-slate-50 to-white overflow-hidden"
+    >
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         {/* Centered Header */}
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ 
+          transition={{
             duration: 0.8,
             type: "spring",
             stiffness: 50,
-            damping: 15
+            damping: 15,
           }}
           className="mb-20 text-center relative z-10"
         >
@@ -214,7 +233,7 @@ export default function Services() {
             Advanced <span className="font-medium">Surgical</span> Services
           </h2>
           <p className="mt-6 text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-light">
-            Robotic precision. Minimal invasion. Faster recovery. 
+            Robotic precision. Minimal invasion. Faster recovery.
             <br className="hidden sm:block" />
             Experience world-class surgical care with cutting-edge technology.
           </p>
@@ -224,21 +243,25 @@ export default function Services() {
         <div className="grid gap-8 md:gap-10 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-16">
           <AnimatePresence mode="wait">
             {visibleServices.map((service, index) => (
-              <ServiceCard key={service.title} service={service} index={index} />
+              <ServiceCard
+                key={service.title}
+                service={service}
+                index={index}
+              />
             ))}
           </AnimatePresence>
         </div>
 
         {/* View More Button */}
         {hasMore && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
+            transition={{
               delay: 0.4,
               type: "spring",
               stiffness: 50,
-              damping: 15
+              damping: 15,
             }}
             className="text-center"
           >
@@ -247,7 +270,10 @@ export default function Services() {
               className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-400 px-10 py-4 text-[15px] font-medium tracking-wide text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
             >
               View More Services
-              <ChevronDown className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1" strokeWidth={2.5} />
+              <ChevronDown
+                className="h-5 w-5 transition-transform duration-300 group-hover:translate-y-1"
+                strokeWidth={2.5}
+              />
             </button>
             <p className="mt-5 text-sm text-slate-500 tracking-wide">
               Showing {visibleServices.length} of {SERVICES.length} services
