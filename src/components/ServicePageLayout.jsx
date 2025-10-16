@@ -81,6 +81,80 @@ const ServicePageLayout = ({ service }) => {
               </div>
             </motion.div>
 
+            {/* When to Consult */}
+            {service.whenToConsult && service.whenToConsult.length > 0 && (
+              <motion.div
+                variants={cardVariants}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ once: true, amount: 0.2 }}
+                className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-lg ring-1 ring-emerald-100/80"
+              >
+                <h2 className="text-3xl font-light text-stone-900 mb-4">When to <span className="font-medium">consult</span></h2>
+                <ul className="list-disc pl-6 space-y-2 text-stone-600/90 font-light">
+                  {service.whenToConsult.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
+            {/* Treatment Options */}
+            {service.treatmentOptions && (
+              <motion.div
+                variants={cardVariants}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ once: true, amount: 0.2 }}
+                className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-lg ring-1 ring-emerald-100/80"
+              >
+                <h2 className="text-3xl font-light text-stone-900 mb-4">Treatment <span className="font-medium">options</span></h2>
+                <div className="prose prose-lg max-w-none text-stone-600/90 font-light leading-relaxed">
+                  {Array.isArray(service.treatmentOptions)
+                    ? service.treatmentOptions.map((p, i) => <p key={i}>{p}</p>)
+                    : <p>{service.treatmentOptions}</p>
+                  }
+                </div>
+              </motion.div>
+            )}
+
+            {/* Recovery */}
+            {service.recovery && (
+              <motion.div
+                variants={cardVariants}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ once: true, amount: 0.2 }}
+                className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-lg ring-1 ring-emerald-100/80"
+              >
+                <h2 className="text-3xl font-light text-stone-900 mb-4">Recovery</h2>
+                <div className="prose prose-lg max-w-none text-stone-600/90 font-light leading-relaxed">
+                  {Array.isArray(service.recovery)
+                    ? service.recovery.map((p, i) => <p key={i}>{p}</p>)
+                    : <p>{service.recovery}</p>
+                  }
+                </div>
+              </motion.div>
+            )}
+
+            {/* Why Choose Us - page specific */}
+            {service.whyChooseUs && service.whyChooseUs.length > 0 && (
+              <motion.div
+                variants={cardVariants}
+                initial="offscreen"
+                whileInView="onscreen"
+                viewport={{ once: true, amount: 0.2 }}
+                className="bg-white/80 backdrop-blur-sm p-8 rounded-[2rem] shadow-lg ring-1 ring-emerald-100/80"
+              >
+                <h2 className="text-3xl font-light text-stone-900 mb-4">Why <span className="font-medium">choose us</span></h2>
+                <ul className="list-disc pl-6 space-y-2 text-stone-600/90 font-light">
+                  {service.whyChooseUs.map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            )}
+
             {/* Benefits Section */}
             {service.benefits && (
               <motion.div 
@@ -151,11 +225,22 @@ const ServicePageLayout = ({ service }) => {
               className="bg-emerald-50/50 backdrop-blur-sm p-8 rounded-[2rem] ring-1 ring-emerald-100/80"
             >
               <h3 className="text-xl font-medium text-stone-900 mb-4">Why Choose K-Care?</h3>
-              <ul className="space-y-4 text-stone-700 font-light">
-                <li className="flex items-start gap-3"><Stethoscope className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />Expert surgical team with years of experience.</li>
-                <li className="flex items-start gap-3"><HeartPulse className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />Patient-centric approach with compassionate care.</li>
-                <li className="flex items-start gap-3"><ShieldCheck className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />State-of-the-art technology for better outcomes.</li>
-              </ul>
+              {service.whyChooseUs && service.whyChooseUs.length > 0 ? (
+                <ul className="space-y-4 text-stone-700 font-light">
+                  {service.whyChooseUs.map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-3">
+                      <ShieldCheck className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <ul className="space-y-4 text-stone-700 font-light">
+                  <li className="flex items-start gap-3"><Stethoscope className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />Expert surgical team with years of experience.</li>
+                  <li className="flex items-start gap-3"><HeartPulse className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />Patient-centric approach with compassionate care.</li>
+                  <li className="flex items-start gap-3"><ShieldCheck className="w-5 h-5 text-emerald-600 mt-1 flex-shrink-0" />State-of-the-art technology for better outcomes.</li>
+                </ul>
+              )}
             </motion.div>
           </aside>
         </div>

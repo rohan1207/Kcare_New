@@ -5,64 +5,36 @@ import ServicePageLayout from '../components/ServicePageLayout';
 const RoboticHerniaRepairPage = () => {
   const serviceData = {
     title: "Robotic Hernia Repair",
-    subtitle: "The most advanced and durable solution for complex hernias.",
+    subtitle: "Smaller cuts, less pain, faster healing—with precision robotic surgery.",
     image: "/hernia.webp",
     Icon: Shield,
     overview: [
-      "A hernia occurs when an organ pushes through a weak spot in the surrounding muscle or connective tissue. While some hernias are simple, others can be large, complex, or recurrent, requiring a more advanced surgical approach.",
-      "Robotic hernia repair represents the pinnacle of minimally invasive surgery. Using the da Vinci system, we can perform highly complex repairs with unmatched precision, leading to a stronger, more durable result and a smoother recovery for the patient."
+      "A hernia develops when an internal organ or tissue pushes through a weak spot in the muscle wall, often appearing as a bulge in the abdomen or groin. Hernias don’t heal on their own and usually require surgery.",
     ],
-    benefits: [
-      {
-        title: "Unmatched Precision",
-        description: "The robotic platform provides 3D visualization and wristed instruments, allowing for intricate suturing and mesh placement."
-      },
-      {
-        title: "Reduced Recurrence Rate",
-        description: "The strength and precision of the robotic repair can lead to a lower chance of the hernia returning."
-      },
-      {
-        title: "Minimal Pain & Scarring",
-        description: "Like laparoscopy, the procedure is performed through tiny incisions, resulting in less pain and better cosmetic outcomes."
-      },
-      {
-        title: "Faster Return to Activity",
-        description: "Patients can often return to non-strenuous activities faster than with traditional open surgery."
-      }
+    whenToConsult: [
+      "Visible bulge or swelling in the abdomen or groin",
+      "Pain while lifting, coughing, or bending",
+      "Discomfort that worsens by the end of the day",
     ],
-    technology: {
-      title: "Advanced Technology",
-      description: "The da Vinci Surgical System is the cornerstone of our robotic hernia repair. I control the robotic arms from a console, translating my movements into extremely precise actions inside the body. This technology allows us to dissect tissues and place surgical mesh with a level of accuracy that is beyond the capability of the human hand alone, which is especially beneficial for complex abdominal wall reconstructions."
-    },
-    timeline: {
-      title: "Procedure Timeline",
-      steps: [
-        {
-          title: "Comprehensive Evaluation",
-          description: "Your journey starts with a physical exam and often imaging (like a CT scan) to understand the size and complexity of the hernia."
-        },
-        {
-          title: "Surgical Planning",
-          description: "We determine the best approach for your specific hernia, planning the robotic procedure for optimal mesh placement and reinforcement."
-        },
-        {
-          title: "Pre-Operative Anesthesia Check",
-          description: "You will have a consultation with our anesthesia team to ensure you are fully prepared and safe for surgery."
-        },
-        {
-          title: "Robotic-Assisted Surgery",
-          description: "The hernia is repaired using the da Vinci system through small incisions, allowing for a meticulous and durable reconstruction of the abdominal wall."
-        },
-        {
-          title: "Post-Operative Recovery",
-          description: "You'll be monitored in our recovery unit. Most patients are discharged within 1-2 days, depending on the complexity of the repair."
-        },
-        {
-          title: "Guided Return to Activity",
-          description: "We provide a structured plan for your recovery, including when to resume walking, work, and exercise to ensure a strong, lasting repair."
-        }
-      ]
-    }
+    treatmentOptions: [
+      "In Robotic Hernia Repair, the surgeon operates using robotic arms controlled from a console. This allows unmatched precision and flexibility, even for complex or recurrent hernias. A surgical mesh is placed to strengthen the muscle wall.",
+      "The procedure typically takes 1–2 hours, depending on the hernia type.",
+    ],
+    recovery: [
+      "Most patients return home the next day and can resume light work in 3–5 days.",
+      "Complete recovery takes about 2 weeks, with excellent long‑term results and minimal recurrence.",
+    ],
+    whyChooseUs: [
+      "Smaller incisions, less pain, faster healing, and better cosmetic results.",
+      "Experienced surgeon specializing in advanced robotic techniques.",
+    ],
+    timeline: [
+      { title: "Comprehensive Evaluation", description: "Physical exam and imaging (often ultrasound/CT) to assess size, type, and complexity." },
+      { title: "Surgical Planning", description: "Choose the optimal robotic approach and mesh placement tailored to your hernia." },
+      { title: "Anaesthesia & Setup", description: "General anaesthesia; robotic ports placed through small keyhole incisions." },
+      { title: "Robotic Repair (1–2 hours)", description: "Precise dissection and repair with mesh reinforcement using wristed robotic instruments." },
+      { title: "Recovery & Discharge", description: "Observation and pain control; most go home next day with activity guidelines." },
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;

@@ -1,66 +1,39 @@
 import React from 'react';
 import { ShieldHalf } from 'lucide-react';
 import ServicePageLayout from '../components/ServicePageLayout';
-import ProcedureTimeline from '../components/Timeline';
-
-
 
 const CystRemovalPage = () => {
   const serviceData = {
     title: "Cyst Removal",
-    subtitle: "Simple and effective removal of common skin cysts with minimal scarring.",
+    subtitle: "Permanent cure with precise, scar‑minimizing removal.",
     image: "/cyst.jpg",
     Icon: ShieldHalf,
     overview: [
-      "Skin cysts, such as sebaceous or epidermoid cysts, are common, non-cancerous lumps that develop under the skin. While usually harmless, they can become inflamed, infected, or cosmetically bothersome.",
-      "Surgical excision is the most effective way to remove a cyst completely and prevent it from recurring. We perform this minor procedure with a focus on achieving the best possible cosmetic result, leaving a fine-line scar that often becomes nearly invisible over time."
+      "Cysts are non-cancerous lumps that can form anywhere on the body — commonly on the scalp, face, or back. While usually harmless, they may grow, get infected, or cause cosmetic concern.",
+      "Surgical removal provides a permanent cure."
     ],
-    benefits: [
-      {
-        title: "Complete Removal",
-        description: "Surgically removing the entire cyst wall is the best way to ensure it does not grow back."
-      },
-      {
-        title: "Excellent Cosmetic Results",
-        description: "Careful surgical technique and fine sutures are used to minimize scarring."
-      },
-      {
-        title: "Prevention of Infection",
-        description: "Removing the cyst eliminates the risk of future inflammation, infection, and painful rupture."
-      },
-      {
-        title: "Quick and Painless",
-        description: "The procedure is performed quickly under local anesthesia with minimal discomfort."
-      }
+    whenToConsult: [
+      "Visible or growing lump under the skin",
+      "Pain, redness, or discharge",
+      "Cosmetic concern or repeated infection"
     ],
-    technology: {
-      description: "The key to a successful cyst removal is meticulous surgical technique. After numbing the area, a small incision is carefully planned, often along natural skin creases to hide the scar. The cyst is then dissected out intact, ensuring the entire sac is removed. The wound is closed with fine sutures, which are typically removed in about a week. This approach ensures complete removal and provides the best possible long-term cosmetic outcome."
-    },
+    treatmentOptions: [
+      "Under local anaesthesia, the cyst and its sac are completely removed through a small incision. For deeper cysts or cosmetic areas, laser or minimally invasive removal is used to avoid scarring.",
+      "The procedure takes 20–40 minutes, depending on the size and site."
+    ],
+    recovery: [
+      "Patients can go home immediately after the procedure and resume work the next day.",
+      "Healing occurs within 5–7 days, leaving minimal to no mark."
+    ],
+    whyChooseUs: [
+      "Precise, scar‑minimizing cyst removal using modern surgical and laser techniques — ensuring safety, hygiene, and excellent cosmetic results."
+    ],
     timeline: [
-      {
-        title: "Clinical Evaluation",
-        description: "We examine the lump to confirm it is a benign cyst and rule out other conditions."
-      },
-      {
-        title: "Procedure Planning",
-        description: "We discuss the simple excision procedure, which is scheduled at your convenience as an outpatient."
-      },
-      {
-        title: "Cyst Excision",
-        description: "Under local anesthesia, the cyst is completely removed through a small, carefully placed incision."
-      },
-      {
-        title: "Wound Closure",
-        description: "The skin is closed with fine sutures to ensure a neat, clean scar and optimal cosmetic result."
-      },
-      {
-        title: "Dressing and Home Care",
-        description: "A simple dressing is applied, and you are given instructions on how to care for the wound at home."
-      },
-      {
-        title: "Suture Removal & Follow-Up",
-        description: "You'll return in about a week for suture removal and a final check-up to ensure proper healing."
-      }
+      { title: "Consultation & Assessment", description: "Clinical evaluation to confirm cyst and plan complete, safe removal." },
+      { title: "Anaesthesia & Preparation", description: "Local anaesthesia and sterile prep; marking along natural skin lines for best cosmetic outcome." },
+      { title: "Cyst Excision", description: "The cyst and its sac are removed intact through a small incision; laser/minimally invasive techniques used in cosmetic areas." },
+      { title: "Fine Closure & Dressing", description: "Skin closed with fine sutures; a light dressing applied to protect the site." },
+      { title: "Home Care & Follow‑up", description: "Return to routine next day; review in ~5–7 days for healing and suture removal if needed." }
     ]
   };
 

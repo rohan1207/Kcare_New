@@ -12,30 +12,25 @@ const PilesTreatmentPage = () => {
     image: "/piles.jpg",
     Icon: Droplets,
     overview: [
-      "Piles, or hemorrhoids, are swollen veins in the lower rectum and anus. They are a very common condition that can cause pain, itching, and bleeding, significantly affecting quality of life. While many cases can be managed with lifestyle changes, persistent or severe hemorrhoids require medical intervention.",
-      "We specialize in Laser Hemorrhoidoplasty (LHP), a minimally invasive procedure that offers a quick and virtually painless solution. This advanced technique avoids the cuts and stitches of traditional surgery, leading to a much faster recovery."
+      "Piles are swollen veins around the anus or rectum that can cause bleeding, itching, or pain while passing stool. They’re very common and often linked to constipation, prolonged sitting, or straining during bowel movements.",
     ],
-    benefits: [
-      {
-        title: "Painless & Bloodless",
-        description: "The laser procedure is precise, involves no cutting, and results in minimal to no post-operative pain."
-      },
-      {
-        title: "Rapid Recovery",
-        description: "Patients can typically resume their normal daily activities within 24-48 hours."
-      },
-      {
-        title: "No Open Wounds",
-        description: "Unlike traditional surgery, LHP leaves no open wounds, drastically reducing the risk of infection."
-      },
-      {
-        title: "High Success Rate",
-        description: "Laser treatment is highly effective for various grades of hemorrhoids, with a very low rate of recurrence."
-      }
+    whenToConsult: [
+      "Bleeding during or after passing stool",
+      "Pain, swelling, or itching in the anal region",
+      "A lump or feeling of something ‘coming out’",
     ],
-    technology: {
-      description: "Laser Hemorrhoidoplasty (LHP) uses a specialized radial fiber to deliver laser energy directly into the hemorrhoidal pile. This energy seals the blood vessels from within, causing the hemorrhoid to shrink and eventually disappear. The procedure is performed with high precision, preserving the sensitive anal sphincter muscle and mucosa, which is why it is so well-tolerated by patients."
-    },
+    treatmentOptions: [
+      "Mild piles can often be managed with dietary changes, increased fibre, and medicines. For advanced cases, laser or stapler surgery offers a modern, painless solution.",
+      "The laser piles procedure takes about 20–30 minutes under anaesthesia. It seals the swollen veins using focused laser energy without cuts or stitches.",
+    ],
+    recovery: [
+      "Most patients go home the same day and resume normal activities within 2–3 days.",
+      "Complete healing usually takes 1–2 weeks.",
+    ],
+    whyChooseUs: [
+      "We use advanced laser and minimally invasive tools for a faster, safer, and more comfortable recovery.",
+      "Minimal bleeding with almost no recurrence in most cases.",
+    ],
     timeline: [
       {
         title: "Consultation and Proctoscopy",

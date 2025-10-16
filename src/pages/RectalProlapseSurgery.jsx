@@ -1,64 +1,39 @@
 import React from 'react';
 import { HeartCrack } from 'lucide-react';
 import ServicePageLayout from '../components/ServicePageLayout';
-import ProcedureTimeline from '../components/Timeline';
 
 const RectalProlapseSurgeryPage = () => {
   const serviceData = {
     title: "Rectal Prolapse Surgery",
-    subtitle: "Restoring normal anatomy and function with advanced surgical techniques.",
+    subtitle: "Minimally invasive and robotic repair to restore comfort and control.",
     image: "/rectal_prolapse.jpg",
     Icon: HeartCrack,
     overview: [
-      "Rectal prolapse is a condition where the rectum, the last part of the large intestine, loses its normal attachments inside the body and protrudes out of the anus. This can cause significant discomfort, fecal incontinence, and a major disruption to quality of life.",
-      "Surgical correction is the only definitive treatment for rectal prolapse. We specialize in modern, minimally invasive abdominal procedures that offer the most durable and effective repair, restoring both normal anatomy and function."
+      "Rectal prolapse occurs when a part of the rectum slips out of its normal position, often protruding through the anus. It can cause discomfort, bleeding, mucus discharge, or difficulty controlling bowel movements. Though not life-threatening, it can affect daily comfort and confidence.",
     ],
-    benefits: [
-      {
-        title: "Restores Normal Function",
-        description: "The primary goal is to correct the prolapse and improve or resolve issues like fecal incontinence."
-      },
-      {
-        title: "Durable, Long-Lasting Repair",
-        description: "Abdominal repair procedures have a lower rate of recurrence compared to older perineal approaches."
-      },
-      {
-        title: "Minimally Invasive Approach",
-        description: "Using robotic or laparoscopic techniques means less pain, a shorter hospital stay, and faster recovery."
-      },
-      {
-        title: "Improved Quality of Life",
-        description: "A successful repair allows you to regain confidence and return to a normal, active lifestyle."
-      }
+    whenToConsult: [
+      "A feeling or visible bulge coming out during bowel movements",
+      "Mucus or blood discharge",
+      "Discomfort or pain while sitting or walking",
+      "Difficulty controlling stool (incontinence)",
     ],
-    technology: {
-      description: "Our preferred technique is the Robotic-Assisted Ventral Mesh Rectopexy. Using the da Vinci surgical system, we lift the rectum and secure it back into its correct anatomical position using a piece of surgical mesh. The robotic platform's precision and 3D visualization are critical for performing this delicate procedure safely and effectively through small incisions, ensuring an excellent and lasting outcome."
-    },
+    treatmentOptions: [
+      "Rectal prolapse is best treated with Laparoscopic or Robotic Rectopexy, a minimally invasive surgery that repositions and secures the rectum in its place.",
+      "The surgery is performed under general anaesthesia and takes around 1–2 hours. Depending on the patient’s age and health, either a perineal (lower) or abdominal approach may be used.",
+    ],
+    recovery: [
+      "Most patients can return home within 2–3 days and resume routine activities in about 1 week.",
+      "Complete internal healing takes 3–4 weeks.",
+    ],
+    whyChooseUs: [
+      "We specialize in minimally invasive and robotic techniques that offer less pain, faster recovery, and a much lower chance of recurrence — restoring comfort and normal bowel function.",
+    ],
     timeline: [
-      {
-        title: "Diagnostic Evaluation",
-        description: "A thorough clinical exam, often supplemented by tests like defecography, is done to assess the severity of the prolapse and pelvic floor function."
-      },
-      {
-        title: "Tailored Surgical Planning",
-        description: "We determine the most appropriate surgical approach (e.g., robotic rectopexy) based on your health and the specifics of the prolapse."
-      },
-      {
-        title: "Pre-Operative Optimization",
-        description: "Bowel preparation and a pre-anesthesia check-up are completed to ensure you are ready for surgery."
-      },
-      {
-        title: "Minimally Invasive Surgery",
-        description: "The prolapse is repaired through small abdominal incisions using robotic or laparoscopic techniques to restore the rectum's natural position."
-      },
-      {
-        title: "Post-Surgical Recovery",
-        description: "You will be monitored in the hospital for a few days, with a focus on pain management and a gradual return to a normal diet."
-      },
-      {
-        title: "Rehabilitation and Follow-Up",
-        description: "We provide guidance on pelvic floor exercises and dietary management to support a full recovery and prevent recurrence."
-      }
+      { title: "Clinical Assessment", description: "Exam and proctoscopy; imaging if needed to confirm diagnosis and plan." },
+      { title: "Surgical Planning", description: "Choose laparoscopic vs robotic rectopexy; discuss perineal vs abdominal approach." },
+      { title: "Pre‑op Preparation", description: "Anaesthesia fitness, bowel prep, and peri‑operative instructions." },
+      { title: "Rectopexy (1–2 hours)", description: "Minimally invasive repositioning and fixation of rectum to restore anatomy." },
+      { title: "Recovery & Follow‑up", description: "Discharge in 2–3 days; diet progression, pelvic floor rehab, and review." },
     ]
   };
 

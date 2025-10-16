@@ -1,65 +1,53 @@
 import React from 'react';
 import { HeartPulse } from 'lucide-react';
 import ServicePageLayout from '../components/ServicePageLayout';
-import ProcedureTimeline from '../components/Timeline';
-
-
 
 const AbscessDrainagePage = () => {
   const serviceData = {
     title: "Abscess Drainage",
-    subtitle: "Prompt, effective relief from painful skin and soft tissue infections.",
+    subtitle: "Prompt drainage relieves pain and prevents complications from spreading infection.",
     image: "/Abscess.jpg",
     Icon: HeartPulse,
     overview: [
-      "An abscess is a tender, pus-filled pocket that forms in tissue, usually due to a bacterial infection. It can be painful, swollen, and warm to the touch. Attempting to drain an abscess at home is dangerous and can worsen the infection.",
-      "Professional incision and drainage (I&D) is the required medical treatment. This procedure involves safely opening the abscess to allow the pus to drain, which provides immediate pain relief and is the first step toward healing."
+      "An abscess is a painful, pus-filled swelling that forms under the skin due to infection. If not treated early, it can spread to nearby tissues or cause fever.",
+      "Prompt, professional drainage helps relieve pain quickly and prevents further complications."
     ],
-    benefits: [
-      {
-        title: "Immediate Pain Relief",
-        description: "Draining the pus instantly relieves the pressure and pain caused by the abscess."
-      },
-      {
-        title: "Prevents Spread of Infection",
-        description: "Proper drainage and cleaning prevent the bacteria from spreading to other parts of the body."
-      },
-      {
-        title: "Promotes Faster Healing",
-        description: "Once drained, the body can begin the process of healing the affected tissue effectively."
-      },
-      {
-        title: "Reduces Scarring",
-        description: "Professional drainage is done with precision to minimize tissue damage and subsequent scarring."
-      }
+    whenToConsult: [
+      "Painful lump with redness, warmth, or swelling",
+      "Fever or fatigue",
+      "Pus or foul-smelling discharge"
     ],
-    technology: {
-      description: "For deeper or more complex abscesses, we use ultrasound guidance to precisely locate the fluid pocket. This ensures that the incision is made in the optimal location for complete drainage, improving the effectiveness of the procedure and minimizing trauma to surrounding healthy tissue. The procedure is performed under local anesthesia in a sterile environment to ensure it is both painless and safe."
-    },
+    treatmentOptions: [
+      "Abscess drainage is a simple surgical procedure done under local or, in some cases, general anaesthesia. The infected area is opened, pus is drained, and the cavity is cleaned. A small dressing or drain may be placed to allow further discharge to escape.",
+      "The procedure usually takes 20–30 minutes and is commonly performed as a day-care surgery."
+    ],
+    recovery: [
+      "Most patients experience immediate relief and can resume light activities the next day.",
+      "Complete healing typically takes 7–10 days with regular dressing and follow-up."
+    ],
+    whyChooseUs: [
+      "Safe, sterile, and gentle abscess management with minimal scarring and complete infection control."
+    ],
     timeline: [
       {
-        title: "Initial Consultation & Diagnosis",
-        description: "Our medical team will conduct a thorough examination of the affected area to confirm the presence of an abscess and determine the best course of action."
+        title: "Consultation & Assessment",
+        description: "Clinical evaluation to confirm abscess, assess depth, and plan safe drainage."
       },
       {
-        title: "Pre-Procedure Preparation",
-        description: "The area is cleaned with an antiseptic solution, and a local anesthetic is administered to ensure the procedure is completely painless."
+        title: "Anaesthesia & Preparation",
+        description: "Area cleaned under sterile conditions; local anaesthesia ensures a comfortable procedure."
       },
       {
-        title: "Incision & Drainage (I&D)",
-        description: "A small, precise incision is made over the abscess, allowing the pus to drain completely. For deeper abscesses, ultrasound guidance may be used."
+        title: "Incision & Drainage",
+        description: "A small opening is made to evacuate pus fully; the cavity is irrigated and cleaned."
       },
       {
-        title: "Wound Care & Packing",
-        description: "The cavity is irrigated with a sterile solution. In some cases, a sterile packing is placed inside to allow it to continue draining and heal from the inside out."
+        title: "Dressing / Drain Placement",
+        description: "A light dressing or small drain may be placed to allow continued drainage and heal from within."
       },
       {
-        title: "Post-Procedure Instructions",
-        description: "You will receive detailed instructions on how to care for the wound at home, including dressing changes and signs of complications to watch for."
-      },
-      {
-        title: "Follow-up & Recovery",
-        description: "A follow-up appointment is scheduled to monitor healing and remove any packing. Most patients experience rapid improvement and a smooth recovery."
+        title: "Home Care & Follow‑up",
+        description: "You receive dressing guidance and a follow-up schedule; most feel better immediately and heal over 7–10 days."
       }
     ]
   };

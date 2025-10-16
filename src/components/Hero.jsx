@@ -27,18 +27,20 @@ const slides = [
 // SVG path definitions (wavy lines)
 // We reveal each path to a given progress via stroke-dashoffset
 const PATHS = [
-  "M0 60 C 120 20, 260 100, 380 60 C 500 20, 640 100, 780 60 C 920 20, 1080 100, 1180 60",
+  // Refined to be smoother and closer in feel to paths 2 and 3
+  "M0 150 C 300 145, 300 55, 460 120 C 640 170, 760 55, 900 90 C 1040 140, 1200 70, 1000 110",
   "M0 90 C 140 140, 300 40, 460 110 C 640 180, 760 40, 900 90 C 1040 140, 1180 60, 1190 110",
   "M0 120 C 200 40, 360 180, 540 80 C 720 0, 880 160, 950 100 C 1100 40, 1260 180, 1200 120",
-  "M0 150 C 180 100, 320 200, 480 140 C 660 80, 820 220, 1080 160 C 1220 120, 1380 220, 1100 170",
+  // Refined bottom wave: still lower, but with similar oscillation pattern
+  "M0 135 C 180 80, 340 190, 520 105 C 700 50, 860 190, 1020 125 C 1140 90, 1300 190, 1180 140",
 ];
 
 const COLORS = ["#45d6c3", "#ffc857", "#b59bff", "#7ce4a9"];
-const INITIAL_PROGRESS = 0.3; // just left of center
-const VIEWBOX_WIDTH = 1080; // must match the SVG viewBox width
+const INITIAL_PROGRESS = 0.29; // just left of center
+const VIEWBOX_WIDTH = 1090; // must match the SVG viewBox width
 const VIEWBOX_HEIGHT = 200; // must match the SVG viewBox height
 // Desired fixed end progress for each wave (will be clamped to visible bounds)
-const TARGET_PROGRESS = [0.78, 0.7, 0.65, 0.6];
+const TARGET_PROGRESS = [0.78, 0.7, 0.65, 0.65];
 
 // Per-wave card content
 const WAVE_DATA = [
@@ -71,6 +73,7 @@ const Hero = () => {
   const [isCardHovered, setIsCardHovered] = useState(false);
   const [isHeadHovered, setIsHeadHovered] = useState(false);
   const switchingRef = useRef(false); // prevents multiple simultaneous activations
+  const [flipLeft, setFlipLeft] = useState(false); // flip card horizontally if overflowing to the right
 
   // Auto-advance slides
   useEffect(() => {
@@ -183,8 +186,8 @@ const Hero = () => {
       return { cx, cy };
     };
     const { cx, cy } = ptCalc();
-    // initial placement very close to head; adjustment effect will clamp
-    setCardPos({ x: cx + 10, y: cy - 8 });
+    // Anchor base position at the head; wrapper will translate to keep bottom-left at the point
+    setCardPos({ x: cx, y: cy });
     setActiveWave(i);
     setIsCardVisible(true);
   };
@@ -210,15 +213,15 @@ const Hero = () => {
       const cx = (pt.x / VIEWBOX_WIDTH) * svgRect.width;
       const cy = (pt.y / VIEWBOX_HEIGHT) * svgRect.height;
       const cardRect = cardRef.current.getBoundingClientRect();
-      let x = cx + 10; // prefer to the right of the dot
-      let y = cy - cardRect.height / 2; // center vertically around the dot
       const margin = 12;
-      if (x + cardRect.width + margin > layerRect.width)
-        x = cx - cardRect.width - 10; // flip left
-      if (x < margin) x = margin;
-      if (y < margin) y = margin;
-      if (y + cardRect.height + margin > layerRect.height)
-        y = layerRect.height - cardRect.height - margin;
+      // Base anchor at head
+      let x = cx;
+      let y = cy;
+      // Determine horizontal flip only if needed and feasible
+      const wouldOverflowRight = x + cardRect.width + margin > layerRect.width;
+      const canFlipLeft = x - cardRect.width >= margin;
+      setFlipLeft(wouldOverflowRight && canFlipLeft);
+      // Keep the anchor at the head point; wrapper will handle translate to keep bottom-left at the point
       setCardPos({ x, y });
     });
     return () => cancelAnimationFrame(id);
@@ -342,7 +345,7 @@ const Hero = () => {
           <button className="cursor-pointer border bg-emerald-400/30 border-emerald-400/90 text-emerald-300 hover:bg-white hover:text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors backdrop-blur-sm">
             Enquiry
           </button>
-        </div>
+        </div> 
       </div>
 
       {/* Progressive Wavy Lines Layer (interactive) */}
@@ -419,51 +422,63 @@ const Hero = () => {
         {/* Image-Text Card tied to active wave head */}
         <AnimatePresence>
           {isCardVisible && activeWave !== null && (
-            <motion.div
-              ref={cardRef}
-              key="wave-card"
-              className="absolute top-0 left-0 pointer-events-auto rounded-xl overflow-hidden bg-white/10 backdrop-blur-lg border border-white/20 text-white shadow-xl"
-              style={{ left: cardPos.x, top: cardPos.y }}
-              initial={{ opacity: 0, y: 10, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 6, scale: 0.98 }}
-              transition={{ duration: 0.25 }}
-              onMouseEnter={() => {
-                setIsCardHovered(true);
-                if (revertTimerRef.current)
-                  clearTimeout(revertTimerRef.current);
-              }}
-              onMouseLeave={() => {
-                setIsCardHovered(false);
-                if (activeWave !== null) scheduleRevert(activeWave, 1500);
+            <div
+              className="absolute"
+              style={{
+                left: cardPos.x,
+                bottom: cardPos.y,
+                // Position wrapper exactly at the head; card inside will translate to bottom-left origin
+                pointerEvents: "none",
               }}
             >
-              <div className="flex flex-col w-48">
-                <div
-                  className="w-full h-28 overflow-hidden ring-1 ring-white/20"
-                  style={{ backgroundColor: "#000" }}
-                >
-                  <img
-                    src={(WAVE_DATA[activeWave] || WAVE_DATA[0]).image}
-                    alt="feature"
-                    className="w-full h-full object-cover opacity-90"
-                  />
-                </div>
-                <div className="p-3 pb-4">
-                  <div className="text-xs md:text-sm tracking-wide">
-                    <span className="font-medium leading-relaxed">
-                      {(WAVE_DATA[activeWave] || WAVE_DATA[0]).feature}
-                    </span>
+              <motion.div
+                ref={cardRef}
+                key="wave-card"
+                className="pointer-events-auto rounded-xl overflow-hidden bg-white/10 backdrop-blur-lg border border-white/20 text-white shadow-xl"
+                style={{
+                  transformOrigin: flipLeft ? "right bottom" : "left bottom",
+                  transform: flipLeft ? "translate(-100%, -100%)" : "translate(0, -100%)",
+                }}
+                initial={{ opacity: 0, y: 0, scaleY: 0.92, scaleX: 0.98 }}
+                animate={{ opacity: 1, y: 0, scaleY: 1, scaleX: 1 }}
+                exit={{ opacity: 0, y: 0, scaleY: 0.96, scaleX: 0.99 }}
+                transition={{ duration: 0.25 }}
+                onMouseEnter={() => {
+                  setIsCardHovered(true);
+                  if (revertTimerRef.current) clearTimeout(revertTimerRef.current);
+                }}
+                onMouseLeave={() => {
+                  setIsCardHovered(false);
+                  if (activeWave !== null) scheduleRevert(activeWave, 1500);
+                }}
+              >
+                <div className="flex flex-col w-56">
+                  <div
+                    className="w-full h-[300px] overflow-hidden ring-1 ring-white/20"
+                    style={{ backgroundColor: "#000" }}
+                  >
+                    <img
+                      src={(WAVE_DATA[activeWave] || WAVE_DATA[0]).image}
+                      alt="feature"
+                      className="w-full h-full object-cover opacity-90"
+                    />
+                  </div>
+                  <div className="p-3 pb-4">
+                    <div className="text-xs md:text-sm tracking-wide">
+                      <span className="font-medium leading-relaxed">
+                        {(WAVE_DATA[activeWave] || WAVE_DATA[0]).feature}
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div
-                className="h-1"
-                style={{
-                  background: (WAVE_DATA[activeWave] || WAVE_DATA[0]).color,
-                }}
-              />
-            </motion.div>
+                <div
+                  className="h-1"
+                  style={{
+                    background: (WAVE_DATA[activeWave] || WAVE_DATA[0]).color,
+                  }}
+                />
+              </motion.div>
+            </div>
           )}
         </AnimatePresence>
       </div>

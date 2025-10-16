@@ -1,64 +1,38 @@
 import React from 'react';
 import { Bandage } from 'lucide-react';
 import ServicePageLayout from '../components/ServicePageLayout';
-import ProcedureTimeline from '../components/Timeline';
 
 const PilonidalSinusCarePage = () => {
   const serviceData = {
     title: "Pilonidal Sinus Care",
-    subtitle: "Advanced laser treatment for a faster, less painful recovery.",
+    subtitle: "Laser‑assisted care for faster healing, minimal pain, and clean, scar‑free results.",
     image: "/pilonidal_sinus.jpg",
     Icon: Bandage,
     overview: [
-      "A pilonidal sinus is a small tunnel or tract in the skin at the top of the buttocks, which can become infected and form a painful abscess. Traditionally, treatment involved extensive surgery with a long and often difficult recovery period.",
-      "We offer a modern, minimally invasive alternative using laser technology. This approach effectively treats the sinus tract without the need for large incisions, leading to significantly less pain, faster healing, and a lower risk of recurrence."
+      "A pilonidal sinus is a small cyst or tunnel under the skin near the tailbone, often caused by ingrown hair and infection. It can cause swelling, pain, or pus discharge. If not treated properly, it may keep recurring.",
     ],
-    benefits: [
-      {
-        title: "No Stitches or Large Wounds",
-        description: "The laser closes the sinus tract from within, eliminating the need for surgical excision and stitches."
-      },
-      {
-        title: "Faster Return to Work",
-        description: "Recovery is remarkably fast, with most patients able to resume normal activities, including sitting, much sooner."
-      },
-      {
-        title: "Minimal Pain",
-        description: "Compared to traditional surgery, laser treatment is associated with significantly less post-operative pain."
-      },
-      {
-        title: "Low Recurrence Rate",
-        description: "The laser effectively destroys the sinus lining, which helps to prevent the condition from coming back."
-      }
+    whenToConsult: [
+      "Swelling or pain near the tailbone",
+      "Recurrent pus or bloody discharge",
+      "Difficulty sitting or walking comfortably",
     ],
-    technology: {
-      description: "Our preferred method is Pilonidal Sinus Laser-Assisted Closure (PiLaC). This technique involves inserting a radial laser fiber into the sinus opening. The laser's energy is applied to the tract, causing it to collapse and seal shut. This is a quick, outpatient procedure that has revolutionized the treatment of pilonidal disease by making it a much less daunting experience for the patient."
-    },
+    treatmentOptions: [
+      "We use Laser Pilonidal Sinus Treatment or Minimally Invasive Excision, depending on the case. The infected tract is gently removed or sealed using a laser, with minimal tissue damage and no stitches.",
+      "The surgery takes about 30–45 minutes and is done under anaesthesia as a daycare procedure.",
+    ],
+    recovery: [
+      "Patients can go home the same day and resume work within 2–3 days.",
+      "Complete healing occurs in 2–4 weeks, with very low chances of recurrence.",
+    ],
+    whyChooseUs: [
+      "Our laser‑assisted care ensures faster healing, minimal pain, and a clean, scar‑free result — helping you return to normal life quickly and comfortably.",
+    ],
     timeline: [
-      {
-        title: "Diagnosis and Evaluation",
-        description: "A clinical examination confirms the presence of a pilonidal sinus and assesses for any active infection or abscess."
-      },
-      {
-        title: "Incision and Drainage (if needed)",
-        description: "If an abscess is present, it is first drained under local anesthesia to resolve the acute infection."
-      },
-      {
-        title: "Laser Treatment Planning",
-        description: "Once any infection is clear, the PiLaC procedure is scheduled as a definitive, minimally invasive treatment."
-      },
-      {
-        title: "PiLaC Procedure",
-        description: "The quick, outpatient laser procedure is performed to clean the sinus tract and seal it closed from the inside."
-      },
-      {
-        title: "Post-Procedure Care",
-        description: "You'll be discharged with simple instructions for keeping the small wound clean. No complex packing is required."
-      },
-      {
-        title: "Speedy Recovery",
-        description: "You can expect minimal pain and a rapid return to daily activities, including sitting comfortably, within a few days."
-      }
+      { title: "Diagnosis & Planning", description: "Clinical exam to confirm sinus and plan laser/minimally invasive approach." },
+      { title: "Prepare the Area", description: "If abscess present, drain first; then schedule definitive laser treatment." },
+      { title: "Laser/Minimally Invasive Procedure (30–45 min)", description: "Gently clean and seal/remove tract with minimal tissue damage; usually no stitches." },
+      { title: "Same‑day Discharge", description: "Simple wound care at home; no complex packing required." },
+      { title: "Follow‑up & Prevention", description: "Review healing; advise hygiene and hair care to prevent recurrence." },
     ]
   };
 

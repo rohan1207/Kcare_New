@@ -8,58 +8,50 @@ import ProcedureTimeline from '../components/Timeline';
 const FistulaTreatmentPage = () => {
   const serviceData = {
     title: "Fistula Treatment",
-    subtitle: "Sphincter-preserving laser surgery for a complex condition.",
+    subtitle: "Sphincter‑preserving laser and endoscopic options for lasting relief.",
     image: "/fistula.jpg",
     Icon: Spline,
     overview: [
-      "An anal fistula is an abnormal tunnel that forms between the inside of the anus and the skin outside. It is a complex condition that does not heal on its own and requires surgical treatment. Traditional surgeries can carry a risk of damage to the anal sphincter muscles, which control bowel movements.",
-      "We specialize in advanced, sphincter-preserving laser surgery (FiLaC® - Fistula-tract Laser Closure). This minimally invasive technique effectively closes the fistula tract from the inside out, preserving muscle function and ensuring a high success rate with minimal pain."
+      "An anal fistula is a small tunnel that forms between the anal canal and the skin near the anus, often after an infection or abscess. It can cause pain, discharge, or swelling around the anal area.",
     ],
-    benefits: [
-      {
-        title: "Sphincter Preservation",
-        description: "Our primary goal is to heal the fistula while completely preserving the integrity of the anal sphincter muscles, eliminating the risk of incontinence."
-      },
-      {
-        title: "Minimal Pain & Discomfort",
-        description: "The laser procedure is gentle, involving no large cuts, which translates to significantly less postoperative pain."
-      },
-      {
-        title: "Faster Healing & Recovery",
-        description: "Patients experience a much quicker recovery and can return to normal life faster than with conventional surgery."
-      },
-      {
-        title: "High Success Rate",
-        description: "FiLaC® has demonstrated high success rates for even complex fistulas, offering a reliable and definitive cure."
-      }
+    whenToConsult: [
+      "Recurrent pus discharge near the anus",
+      "Pain or swelling that worsens on sitting",
+      "History of an untreated abscess",
     ],
-    technology: {
-      description: "The FiLaC® procedure involves passing a radial laser fiber through the fistula tract. The laser's energy is applied circumferentially to the tract wall, causing the tissue to shrink and close in a controlled manner. This process destroys the fistula epithelium and seals the tract without the need for cutting or stitches, making it an exceptionally safe and effective treatment."
-    },
+    treatmentOptions: [
+      "The best solution is Laser Fistula Treatment (FiLaC technique) or Video‑Assisted Anal Fistula Treatment (VAAFT). These minimally invasive procedures remove the infected tract without cutting the sphincter muscle, reducing the risk of incontinence.",
+      "The surgery usually takes 30–45 minutes and is performed under anaesthesia.",
+    ],
+    recovery: [
+      "Most patients are discharged the same day and can get back to light work in 2–3 days.",
+      "Complete healing takes around 2–4 weeks, depending on the tract size.",
+    ],
+    whyChooseUs: [
+      "Advanced laser techniques ensure minimal pain, faster healing, and a low recurrence rate.",
+      "Muscle‑sparing approach preserves normal bowel control and continence.",
+      "Comprehensive imaging and planning for complex tracts.",
+    ],
     timeline: [
       {
-        title: "Consultation & Advanced Imaging",
-        description: "A clinical evaluation is followed by an MRI or fistulogram to precisely map the fistula's path, which is crucial for successful treatment."
+        title: "Consultation and Mapping",
+        description: "Clinical exam with MRI/fistulogram to map the tract, identify internal opening, and classify complexity."
       },
       {
-        title: "Strategic Treatment Planning",
-        description: "We review the imaging to plan the procedure, confirming that a sphincter-preserving laser approach like FiLaC® is the optimal choice."
+        title: "Plan Sphincter‑sparing Procedure",
+        description: "We discuss FiLaC or VAAFT based on anatomy, aiming to clear infection while preserving continence."
       },
       {
-        title: "Minimally Invasive Laser Procedure",
-        description: "The FiLaC® procedure is performed under anesthesia as a day-care case, gently sealing the fistula tract from within."
+        title: "Day‑care Surgery (30–45 min)",
+        description: "Laser closure of the tract (FiLaC) or endoscopic cleaning/closure (VAAFT) under anaesthesia."
       },
       {
-        title: "Post-Operative Care",
-        description: "After a brief recovery period, you are discharged with instructions for local wound care and hygiene to support healing."
+        title: "Same‑day Discharge",
+        description: "Go home after observation with instructions on hygiene, dressings, and pain control."
       },
       {
-        title: "Healing Phase",
-        description: "The treated tract heals gradually over several weeks. You will be able to resume most activities with minimal discomfort."
-      },
-      {
-        title: "Follow-Up & Confirmation of Closure",
-        description: "Follow-up visits are scheduled to monitor the healing process and confirm that the fistula has closed completely, ensuring a lasting cure."
+        title: "Healing and Review",
+        description: "Resume light activities in 2–3 days; follow‑up ensures closure and addresses any branching tracts if needed."
       }
     ]
   };

@@ -8,34 +8,35 @@ import ServicePageLayout from '../components/ServicePageLayout';
 const HydroceleSurgeryPage = () => {
   const serviceData = {
     title: "Hydrocele Surgery",
-    subtitle: "A simple, effective procedure for lasting relief and comfort.",
+    subtitle: "Modern, minimally invasive correction for lasting comfort.",
     image: "/hydrocele.jpg",
     Icon: Droplets,
     overview: [
-      "A hydrocele is a type of swelling in the scrotum that occurs when fluid collects in the thin sheath surrounding a testicle. While often painless, larger hydroceles can cause discomfort, a feeling of heaviness, or embarrassment.",
-      "Hydrocele surgery, or hydrocelectomy, is a straightforward and highly effective procedure to remove the fluid collection and the sac that produces it, providing a permanent solution to the problem."
+      "A hydrocele is a painless swelling around the testicle caused by fluid buildup. It’s common in adult men and can cause heaviness or discomfort. While harmless in most cases, a large hydrocele may require surgical correction.",
     ],
-    benefits: [
-      {
-        title: "Permanent Solution",
-        description: "The surgery removes the hydrocele sac, which prevents the fluid from re-accumulating."
-      },
-      {
-        title: "Relief from Discomfort",
-        description: "Eliminates the feeling of heaviness, swelling, and any associated pain or discomfort."
-      },
-      {
-        title: "Quick Outpatient Procedure",
-        description: "The surgery is typically performed on an outpatient basis, allowing you to return home the same day."
-      },
-      {
-        title: "Minimal Downtime",
-        description: "Recovery is generally quick, with most patients able to resume normal, non-strenuous activities within a few days."
-      }
+    whenToConsult: [
+      "Swelling or heaviness in the scrotum",
+      "Discomfort while walking or sitting",
+      "Increase in scrotal size over time",
     ],
-    technology: {
-      description: "The procedure is performed with a focus on minimizing tissue trauma and ensuring patient comfort. A small incision is made in the scrotum or lower abdomen, through which the hydrocele is accessed. The fluid is drained, and the sac is removed or repositioned to prevent recurrence. We use fine sutures that dissolve on their own, ensuring a clean and comfortable healing process with minimal scarring."
-    }
+    treatmentOptions: [
+      "Hydrocelectomy is a simple surgical procedure performed under anaesthesia to drain the fluid and remove the sac that causes the swelling.",
+      "The surgery usually takes 30–40 minutes and is done as a day‑care procedure.",
+    ],
+    recovery: [
+      "Patients can go home the same day and return to routine work in 3–5 days.",
+      "Complete healing occurs within 2 weeks.",
+    ],
+    whyChooseUs: [
+      "We use modern, minimally invasive techniques to ensure quick recovery, minimal scarring, and lasting comfort.",
+    ],
+    timeline: [
+      { title: "Evaluation & Ultrasound", description: "Clinical exam and scrotal ultrasound to confirm hydrocele and assess size." },
+      { title: "Day‑care Scheduling", description: "Plan a short procedure under anaesthesia with same‑day discharge." },
+      { title: "Hydrocelectomy (30–40 min)", description: "Drain fluid and remove/reshape the sac through a small incision." },
+      { title: "Recovery & Instructions", description: "Supportive scrotal care, pain control, and hygiene guidance." },
+      { title: "Follow‑up & Return to Routine", description: "Review in 1–2 weeks; most resume normal activities within days." },
+    ]
   };
 
   return <ServicePageLayout service={serviceData} />;
