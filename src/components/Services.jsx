@@ -1,123 +1,128 @@
-import { ArrowUpRight, ArrowRight, ChevronDown } from "lucide-react";
+import { ArrowRight, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const SERVICES = [
   {
-    title: "Diabetic Foot",
-    image: "/diabetic_foot.jpg",
-    description:
-      "Advanced care for diabetic foot complications with precision healing and preventive strategies.",
-    category: "Specialized Care",
-    duration: "2-3 hours",
-  },
-  {
-    title: "Breast",
-    image: "/breast.jpg",
-    description:
-      "Comprehensive breast surgery with minimally invasive techniques for optimal outcomes.",
-    category: "Oncology",
-    duration: "1-2 hours",
-  },
-  {
-    title: "Thyroid",
-    image: "/thyroid.jpg",
-    description:
-      "Expert thyroid procedures using advanced robotic technology for precise results.",
-    category: "Endocrine",
-    duration: "1.5-2 hours",
-  },
-  {
-    title: "Fissure",
-    image: "/fissure.jpg",
-    description:
-      "Modern treatment approaches for anal fissures with minimal discomfort.",
-    category: "Proctology",
-    duration: "30-45 mins",
-  },
-  {
-    title: "Piles",
-    image: "/piles.jpg",
-    description: "Advanced hemorrhoid treatment with quick recovery time.",
-    category: "Proctology",
-    duration: "45-60 mins",
-  },
-  {
-    title: "Fistula",
-    image: "/fistula.jpg",
-    description:
-      "Specialized fistula procedures using latest surgical techniques.",
-    category: "Proctology",
-    duration: "1-1.5 hours",
-  },
-  {
-    title: "Appendix",
-    image: "/appendix.jpg",
-    description:
-      "Laparoscopic appendectomy with minimal scarring and faster healing.",
-    category: "General Surgery",
-    duration: "45-60 mins",
-  },
-  {
-    title: "Hernia",
-    image: "/hernia.webp",
-    description: "State-of-the-art hernia repair with robotic precision.",
-    category: "General Surgery",
-    duration: "1-2 hours",
-  },
-  {
-    title: "Gall Bladder",
+    title: "Laparoscopic Gallbladder Surgery",
     image: "/gall_bladder.jpg",
     description:
-      "Advanced laparoscopic gallbladder surgery with reduced recovery time.",
+      "Advanced laparoscopic gallbladder removal ensuring quick recovery and minimal scarring.",
     category: "General Surgery",
-    duration: "1-1.5 hours",
+    path: "/services/gall-bladder-removal",
   },
   {
-    title: "Hydrocele",
+    title: "Laparoscopic Appendectomy",
+    image: "/appendix.jpg",
+    description:
+      "Minimally invasive appendix removal with fast healing and reduced postoperative pain.",
+    category: "General Surgery",
+    path: "/services/laparoscopic-appendectomy",
+  },
+  {
+    title: "Robotic Hernia Repair",
+    image: "/hernia.webp",
+    description:
+      "Precision robotic-assisted hernia surgery offering faster recovery and minimal discomfort.",
+    category: "General Surgery",
+    path: "/services/robotic-hernia-repair",
+  },
+  {
+    title: "Hydrocele Surgery",
     image: "/hydrocele.jpg",
-    description: "Modern hydrocele treatment with minimal invasive approach.",
+    description:
+      "Safe and effective hydrocele correction with minimal invasive techniques.",
     category: "Urology",
-    duration: "45-60 mins",
+    path: "/services/hydrocele-surgery",
   },
   {
-    title: "Pilonidal Sinus",
+    title: "Diabetic Foot Care",
+    image: "/diabetic_foot.jpg",
+    description:
+      "Comprehensive diabetic foot management for faster healing and infection prevention.",
+    category: "Specialized Care",
+    path: "/services/diabetic-foot-care",
+  },
+  {
+    title: "Breast Surgery",
+    image: "/breast.jpg",
+    description:
+      "Comprehensive breast procedures with advanced surgical precision and care.",
+    category: "Oncology",
+    path: "/services/breast-surgery",
+  },
+  {
+    title: "Advanced Thyroid Surgery",
+    image: "/thyroid.jpg",
+    description:
+      "State-of-the-art thyroid surgery using advanced and safe techniques for precise outcomes.",
+    category: "Endocrine",
+    path: "/services/advanced-thyroid-surgery",
+  },
+  {
+    title: "Pilonidal Sinus Care",
     image: "/pilonidal_sinus.jpg",
     description:
-      "Expert treatment of pilonidal sinus with focus on prevention.",
+      "Expert treatment for pilonidal sinus with focus on complete healing and recurrence prevention.",
     category: "Specialized Care",
-    duration: "1-1.5 hours",
+    path: "/services/pilonidal-sinus-care",
   },
   {
-    title: "Rectal Prolapse",
+    title: "Rectal Prolapse Surgery",
     image: "/rectal_prolapse.jpg",
     description:
-      "Comprehensive care for rectal prolapse using advanced techniques.",
+      "Comprehensive surgical care for rectal prolapse using modern, minimally invasive methods.",
     category: "Proctology",
-    duration: "2-3 hours",
+    path: "/services/rectal-prolapse-surgery",
   },
   {
-    title: "Phymosis",
+    title: "Phimosis Treatment",
     image: "/Phymosis.png",
-    description: "Gentle and effective phimosis treatment with expert care.",
+    description:
+      "Gentle and effective phimosis treatment ensuring comfort and quick recovery.",
     category: "Urology",
-    duration: "30-45 mins",
+    path: "/services/phimosis-treatment",
   },
   {
-    title: "Abscess",
+    title: "Abscess Drainage",
     image: "/Abscess.jpg",
     description:
-      "Quick and effective abscess treatment with proper healing support.",
+      "Safe and sterile abscess drainage procedure for quick relief and proper healing.",
     category: "General Surgery",
-    duration: "20-30 mins",
+    path: "/services/abscess-drainage",
   },
   {
-    title: "Cyst",
+    title: "Cyst Removal",
     image: "/cyst.jpg",
     description:
-      "Professional cyst removal with minimal scarring and recovery time.",
+      "Precise and scar-minimizing cyst removal with advanced surgical care.",
     category: "General Surgery",
-    duration: "30-45 mins",
+    path: "/services/cyst-removal",
+  },
+  {
+    title: "Anal Fissure Treatment",
+    image: "/fissure.jpg",
+    description:
+      "Modern laser and surgical treatments for fissures with minimal discomfort and fast recovery.",
+    category: "Proctology",
+    path: "/services/laser-fissure-treatment",
+  },
+  {
+    title: "Piles Treatment",
+    image: "/piles.jpg",
+    description:
+      "Advanced laser and surgical hemorrhoid treatments for pain-free recovery.",
+    category: "Proctology",
+    path: "/services/piles-treatment",
+  },
+  {
+    title: "Fistula Treatment",
+    image: "/fistula.jpg",
+    description:
+      "Minimally invasive fistula surgery ensuring complete healing and minimal recurrence.",
+    category: "Proctology",
+    path: "/services/fistula-treatment",
   },
 ];
 
@@ -149,7 +154,7 @@ function ServiceCard({ service, index }) {
       {/* Content container */}
       <div className="absolute inset-0 p-7 pr-24 flex flex-col justify-end">
         {/* Default state content */}
-        <div className="transition-opacity transition-transform duration-300 ease-in-out group-hover:opacity-0 group-hover:-translate-y-12">
+  <div className="transition-all duration-300 ease-in-out group-hover:opacity-0 group-hover:-translate-y-12">
           <span className="inline-flex rounded-full bg-emerald-500/90 text-white backdrop-blur-md px-4 py-1.5 text-xs font-medium tracking-wide mb-3.5 shadow-lg shadow-emerald-500/20">
             {service.category}
           </span>
@@ -159,7 +164,7 @@ function ServiceCard({ service, index }) {
         </div>
 
         {/* Hover state content */}
-        <div className="absolute inset-0 p-7 flex flex-col justify-end opacity-0 transition-opacity transition-transform duration-300 ease-in-out group-hover:opacity-100 group-hover:-translate-y-12">
+  <div className="absolute inset-0 p-7 flex flex-col justify-end opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:-translate-y-12">
           <div className="flex items-center gap-2.5 text-sm mb-3.5">
             <span className="inline-flex rounded-full bg-emerald-500/90 text-white backdrop-blur-md px-4 py-1.5 font-medium tracking-wide shadow-lg shadow-emerald-500/20">
               {service.category}
@@ -177,8 +182,9 @@ function ServiceCard({ service, index }) {
         </div>
 
         {/* Morphing CTA button */}
-        <a
-          href="#"
+        <Link
+          to={service.path}
+          aria-label={`Learn more about ${service.title}`}
           className="absolute bottom-7 right-7 inline-flex items-center justify-center gap-2 h-14 w-14 rounded-full bg-white group-hover:bg-emerald-400 text-slate-900 group-hover:text-white shadow-lg overflow-hidden px-0 transition-all duration-300 ease-out group-hover:w-44 group-hover:px-5"
         >
           <span className="mr-1 text-sm font-medium opacity-0 w-0 overflow-hidden transition-all duration-300 group-hover:opacity-100 group-hover:w-auto">
@@ -188,7 +194,7 @@ function ServiceCard({ service, index }) {
             className="h-6 w-6 transition-transform duration-300"
             strokeWidth={2.5}
           />
-        </a>
+        </Link>
       </div>
     </motion.article>
   );

@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import HomePage from "./pages/HomePage";
 // import Technology from "./pages/Technology";
 import Navbar from "./components/Navbar";
@@ -42,6 +43,13 @@ export default function App() {
 function AppInner() {
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  // Scroll to top whenever the route (pathname) changes
+  useEffect(() => {
+    // Use smooth behavior for nicer UX
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+  }, [location.pathname]);
+
   return (
     <>
       <Navbar />
