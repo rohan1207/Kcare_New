@@ -10,12 +10,14 @@ import Testimonials from "../components/Testimonials";
 import Services from "../components/Services";
 import Our_Experties from "../components/Our_Experties"
 import ScrollStatsOverlay from "../components/ScrollStatsOverlay";
+import CoFounder from "../components/CoFounder";
 
 export default function HomePage() {
   return (
     <>
       <Hero />
       <MainFounder />
+      <CoFounder/>
       <Our_Experties/>
       <Services/>
       

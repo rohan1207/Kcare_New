@@ -90,7 +90,7 @@ const ScrollStatsOverlay = () => {
       percentage: '98%',
       value: 98,
       description: 'Successful outcomes in robotic and laparoscopic procedures',
-      gradient: ['#10b981', '#14b8a6'], // emerald to teal
+      gradient: ['#F59E0B', '#FB923C'], // amber to orange
     },
     {
       percentage: '65%',
@@ -102,7 +102,7 @@ const ScrollStatsOverlay = () => {
       percentage: '90%',
       value: 90,
       description: 'Reduction in post-surgery pain and complications',
-      gradient: ['#059669', '#0f766e'], // emerald to teal dark
+      gradient: ['#D97706', '#EA580C'], // amber dark to orange dark
     },
     {
       percentage: '75%',

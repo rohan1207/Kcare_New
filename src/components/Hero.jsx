@@ -339,10 +339,10 @@ const Hero = () => {
           Delivering precision-driven care with compassion and excellence.
         </motion.p>
         <div className="mt-10 flex gap-4">
-          <button className="cursor-pointer bg-emerald-400 hover:bg-emerald-300 text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors">
+          <button className="cursor-pointer bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-600 hover:to-orange-600 text-white font-semibold px-8 py-3 rounded-full transition-all shadow-lg shadow-amber-500/30">
             Book appointment
           </button>
-          <button className="cursor-pointer border bg-emerald-400/30 border-emerald-400/90 text-emerald-300 hover:bg-white hover:text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors backdrop-blur-sm">
+          <button className="cursor-pointer border-2 border-amber-400/90 text-white hover:bg-gradient-to-r hover:from-amber-500 hover:to-orange-500 hover:border-transparent font-semibold px-8 py-3 rounded-full transition-all backdrop-blur-sm">
             Enquiry
           </button>
         </div> 

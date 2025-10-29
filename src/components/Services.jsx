@@ -148,14 +148,14 @@ function ServiceCard({ service, index }) {
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-900/30 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 to-transparent mix-blend-overlay" />
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 to-transparent mix-blend-overlay" />
       </div>
 
       {/* Content container */}
       <div className="absolute inset-0 p-7 pr-24 flex flex-col justify-end">
         {/* Default state content */}
   <div className="transition-all duration-300 ease-in-out group-hover:opacity-0 group-hover:-translate-y-12">
-          <span className="inline-flex rounded-full bg-emerald-500/90 text-white backdrop-blur-md px-4 py-1.5 text-xs font-medium tracking-wide mb-3.5 shadow-lg shadow-emerald-500/20">
+          <span className="inline-flex rounded-full bg-amber-500/90 text-white backdrop-blur-md px-4 py-1.5 text-xs font-medium tracking-wide mb-3.5 shadow-lg shadow-amber-500/20">
             {service.category}
           </span>
           <h3 className="text-white text-[1.7rem] font-light tracking-tight drop-shadow-lg">
@@ -166,10 +166,10 @@ function ServiceCard({ service, index }) {
         {/* Hover state content */}
   <div className="absolute inset-0 p-7 flex flex-col justify-end opacity-0 transition-all duration-300 ease-in-out group-hover:opacity-100 group-hover:-translate-y-12">
           <div className="flex items-center gap-2.5 text-sm mb-3.5">
-            <span className="inline-flex rounded-full bg-emerald-500/90 text-white backdrop-blur-md px-4 py-1.5 font-medium tracking-wide shadow-lg shadow-emerald-500/20">
+            <span className="inline-flex rounded-full bg-amber-500/90 text-white backdrop-blur-md px-4 py-1.5 font-medium tracking-wide shadow-lg shadow-amber-500/20">
               {service.category}
             </span>
-            <span className="text-emerald-300 font-medium tracking-wide">
+            <span className="text-amber-300 font-medium tracking-wide">
               {service.duration}
             </span>
           </div>
@@ -185,7 +185,7 @@ function ServiceCard({ service, index }) {
         <Link
           to={service.path}
           aria-label={`Learn more about ${service.title}`}
-          className="absolute bottom-7 right-7 inline-flex items-center justify-center gap-2 h-14 w-14 rounded-full bg-white group-hover:bg-emerald-400 text-slate-900 group-hover:text-white shadow-lg overflow-hidden px-0 transition-all duration-300 ease-out group-hover:w-44 group-hover:px-5"
+          className="absolute bottom-7 right-7 inline-flex items-center justify-center gap-2 h-14 w-14 rounded-full bg-white group-hover:bg-amber-400 text-slate-900 group-hover:text-white shadow-lg overflow-hidden px-0 transition-all duration-300 ease-out group-hover:w-44 group-hover:px-5"
         >
           <span className="mr-1 text-sm font-medium opacity-0 w-0 overflow-hidden transition-all duration-300 group-hover:opacity-100 group-hover:w-auto">
             Learn more
@@ -231,8 +231,8 @@ export default function Services() {
           }}
           className="mb-20 text-center relative z-10"
         >
-          <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-5 py-2.5 text-sm font-medium text-emerald-700 mb-6 shadow-sm shadow-emerald-100/50">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-amber-50 px-5 py-2.5 text-sm font-medium text-amber-700 mb-6 shadow-sm shadow-amber-100/50">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
             Our Expertise
           </span>
           <h2 className="text-5xl md:text-[4.5rem] font-light tracking-tight text-slate-900 mb-6">
@@ -273,7 +273,7 @@ export default function Services() {
           >
             <button
               onClick={handleViewMore}
-              className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-br from-emerald-500 to-emerald-400 px-10 py-4 text-[15px] font-medium tracking-wide text-white shadow-lg shadow-emerald-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+              className="group relative inline-flex items-center gap-3 rounded-full bg-gradient-to-br from-amber-500 to-orange-400 px-10 py-4 text-[15px] font-medium tracking-wide text-white shadow-lg shadow-amber-500/25 transition-all duration-300 hover:shadow-xl hover:shadow-amber-500/30 hover:-translate-y-0.5"
             >
               View More Services
               <ChevronDown
@@ -288,9 +288,9 @@ export default function Services() {
         )}
 
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-        <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-emerald-50/40 to-transparent blur-3xl opacity-60" />
+        <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-amber-50 to-yellow-50/70 blur-3xl opacity-80" />
+        <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-orange-50 to-amber-50/70 blur-3xl opacity-60" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-amber-50/40 to-transparent blur-3xl opacity-60" />
       </div>
     </section>
   );

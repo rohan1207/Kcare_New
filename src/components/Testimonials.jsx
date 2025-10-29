@@ -88,9 +88,9 @@ function TestimonialCard({ t, index }) {
     "rounded-3xl p-8 shadow-lg ring-1 text-gray-700 leading-relaxed backdrop-blur-sm h-full flex flex-col";
   const tones = {
     lightBlue:
-      "bg-white/90 backdrop-blur-sm ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
+      "bg-white/90 backdrop-blur-sm ring-1 ring-amber-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
     white:
-      "bg-gradient-to-br from-emerald-50 to-blue-50/50 ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
+      "bg-gradient-to-br from-amber-50 to-blue-50/50 ring-1 ring-amber-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
     mint: "bg-white/90 backdrop-blur-sm ring-1 ring-stone-200/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300",
   };
   return (
@@ -121,7 +121,7 @@ function TestimonialCard({ t, index }) {
         </div>
       </div>
       <div className="mt-6 relative">
-        <Quote className="absolute -top-2 -left-2 w-8 h-8 text-emerald-300/60" />
+        <Quote className="absolute -top-2 -left-2 w-8 h-8 text-amber-300/60" />
         <p className="text-stone-700 relative z-10 leading-relaxed font-light">
           {t.quote}
         </p>
@@ -139,9 +139,9 @@ export default function Testimonials() {
     >
       {/* Decorative elements */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-emerald-50/40 to-transparent blur-3xl opacity-60" />
+        <div className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-amber-50 to-sky-50/70 blur-3xl opacity-80" />
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-amber-50/70 blur-3xl opacity-60" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-gradient-to-r from-amber-50/40 to-transparent blur-3xl opacity-60" />
       </div>
 
       {/* Header */}
@@ -155,8 +155,8 @@ export default function Testimonials() {
             ease: [0.22, 1, 0.36, 1],
           }}
         >
-          <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-5 py-2.5 text-sm font-medium text-emerald-700 mb-6 shadow-sm shadow-emerald-100/50 ring-1 ring-emerald-100">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+          <span className="inline-flex items-center gap-2.5 rounded-full bg-amber-50 px-5 py-2.5 text-sm font-medium text-amber-700 mb-6 shadow-sm shadow-amber-100/50 ring-1 ring-amber-100">
+            <span className="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
             Patient Stories
           </span>
           <h2 className="text-4xl md:text-5xl font-light tracking-tight text-stone-900 mb-6">
@@ -196,7 +196,7 @@ export default function Testimonials() {
             viewport={{ once: true, amount: 0.4 }}
             className="lg:col-span-5 h-full"
           >
-            <div className="rounded-[2rem] ring-1 ring-emerald-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+            <div className="rounded-[2rem] ring-1 ring-amber-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               <div className="mb-4">
                 <div className="text-lg font-semibold text-stone-900 mb-1">
                   {VIDEO_TESTIMONIALS[0].name}
@@ -220,7 +220,7 @@ export default function Testimonials() {
             whileInView="visible"
             viewport={{ once: true, amount: 0.4 }}
             custom={0}
-            className="lg:col-span-7 rounded-[2rem] ring-1 ring-emerald-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+            className="lg:col-span-7 rounded-[2rem] ring-1 ring-amber-100/80 shadow-xl overflow-hidden bg-white/90 backdrop-blur-sm p-6 h-full flex flex-col hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
           >
             <div className="mb-4">
               <div className="text-lg font-semibold text-stone-900 mb-1">
@@ -250,7 +250,7 @@ export default function Testimonials() {
         >
           <a
             href="#"
-            className="inline-flex items-center gap-2 rounded-full bg-emerald-400 hover:bg-emerald-300 text-stone-900 px-6 py-3 text-sm font-semibold shadow-md shadow-emerald-900/10 transition-colors"
+            className="inline-flex items-center gap-2 rounded-full bg-amber-400 hover:bg-amber-300 text-stone-900 px-6 py-3 text-sm font-semibold shadow-md shadow-amber-900/10 transition-colors"
           >
             View all testimonials <ArrowRight className="h-4 w-4" />
           </a>
@@ -259,3 +259,4 @@ export default function Testimonials() {
     </section>
   );
 }
+

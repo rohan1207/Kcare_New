@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 // Decorative background elements
 const Blur = () => (
   <>
-    <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-emerald-50/40 to-transparent blur-3xl opacity-60" />
+    <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-amber-50 to-yellow-50/70 blur-3xl opacity-80" />
+    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-orange-50 to-amber-50/70 blur-3xl opacity-60" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-amber-50/40 to-transparent blur-3xl opacity-60" />
   </>
 );
 
@@ -39,8 +39,8 @@ export default function WhyChooseUsSection() {
           className="grid gap-10 lg:grid-cols-12 items-center mb-12"
         >
           <div className="lg:col-span-7">
-            <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-5 py-2.5 text-sm font-medium text-emerald-700 mb-8 shadow-sm shadow-emerald-100/50 ring-1 ring-emerald-100">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+            <span className="inline-flex items-center gap-2.5 rounded-full bg-amber-50 px-5 py-2.5 text-sm font-medium text-amber-700 mb-8 shadow-sm shadow-amber-100/50 ring-1 ring-amber-100">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
               Advanced Surgical Care
             </span>
             <h2 className="text-4xl md:text-[64px] font-light leading-[1.05] tracking-tight text-stone-900">
@@ -72,11 +72,11 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true, amount: 0.3 }}
             variants={cardVariants}
           >
-            <div className="rounded-[2rem] bg-[#041f1c] text-white p-10 shadow-xl shadow-emerald-900/20 w-full flex flex-col justify-center relative overflow-hidden backdrop-blur-sm">
+            <div className="rounded-[2rem] bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 text-white p-10 shadow-xl shadow-amber-500/30 w-full flex flex-col justify-center relative overflow-hidden">
               {/* Decorative elements */}
-              <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl" />
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
+              <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-400/30 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-orange-600/20 rounded-full blur-3xl" />
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/10 to-transparent mix-blend-overlay" />
 
               <h3 className="text-3xl font-light leading-tight relative z-10">
                 Robotic & Laparoscopic
@@ -88,7 +88,7 @@ export default function WhyChooseUsSection() {
                 techniques enable us to perform complex procedures with minimal
                 incisions, reducing pain and accelerating your recovery time.
               </p>
-              <button className="mt-8 bg-emerald-400 hover:bg-emerald-300 text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors w-fit relative z-10">
+              <button className="mt-8 bg-white hover:bg-yellow-50 text-amber-600 font-semibold px-8 py-3 rounded-full transition-all duration-200 w-fit relative z-10 shadow-md">
                 Learn more
               </button>
             </div>
@@ -102,8 +102,8 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true, amount: 0.3 }}
             variants={cardVariants}
           >
-            <div className="rounded-[2rem] overflow-hidden shadow-xl shadow-emerald-900/20 w-full relative">
-              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/20 to-transparent mix-blend-overlay z-10" />
+            <div className="rounded-[2rem] overflow-hidden shadow-xl shadow-amber-900/20 w-full relative">
+              <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/20 to-transparent mix-blend-overlay z-10" />
               <img
                 src="https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1600&auto=format&fit=crop"
                 alt="Advanced surgical technology"
@@ -124,11 +124,11 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true, amount: 0.3 }}
             variants={cardVariants}
           >
-            <div className="rounded-[2rem] bg-white/90 backdrop-blur-sm p-10 shadow-xl ring-1 ring-emerald-100/80 w-full flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+            <div className="rounded-[2rem] bg-white/90 backdrop-blur-sm p-10 shadow-xl ring-1 ring-amber-100/80 w-full flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               <div>
-                <div className="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6 ring-1 ring-emerald-100">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center mb-6 ring-1 ring-amber-100">
                   <svg
-                    className="w-7 h-7 text-emerald-600"
+                    className="w-7 h-7 text-amber-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -163,14 +163,14 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true, amount: 0.3 }}
             variants={cardVariants}
           >
-            <div className="rounded-[2rem] overflow-hidden shadow-xl shadow-emerald-900/20 w-full relative bg-[#041f1c] p-10">
-              <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
-              <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl" />
-              <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl" />
+            <div className="rounded-[2rem] overflow-hidden shadow-xl shadow-amber-500/30 w-full relative bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500 p-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-transparent mix-blend-overlay" />
+              <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-300/30 rounded-full blur-3xl" />
+              <div className="absolute bottom-0 left-0 w-40 h-40 bg-orange-600/20 rounded-full blur-3xl" />
               <div className="relative z-10">
-                <div className="w-14 h-14 rounded-2xl bg-emerald-400/20 flex items-center justify-center mb-6 ring-1 ring-emerald-400/30">
+                <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center mb-6 ring-1 ring-white/30 backdrop-blur-sm">
                   <svg
-                    className="w-7 h-7 text-emerald-400"
+                    className="w-7 h-7 text-white"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -188,7 +188,7 @@ export default function WhyChooseUsSection() {
                   <br />
                   <span className="font-medium">Facilities</span>
                 </h4>
-                <p className="mt-5 text-white/90 leading-relaxed font-light text-lg">
+                <p className="mt-5 text-white/95 leading-relaxed font-light text-lg">
                   State-of-the-art operating rooms equipped with the latest
                   surgical technology, ensuring the highest standards of care
                   and safety for our patients.
@@ -205,11 +205,11 @@ export default function WhyChooseUsSection() {
             viewport={{ once: true, amount: 0.3 }}
             variants={cardVariants}
           >
-            <div className="rounded-[2rem] p-10 bg-gradient-to-br from-emerald-50 to-blue-50/50 text-stone-900 shadow-xl w-full flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm">
+            <div className="rounded-[2rem] p-10 bg-gradient-to-br from-amber-50 to-orange-50/60 text-stone-900 shadow-xl w-full flex flex-col justify-between hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
               <div>
-                <div className="w-14 h-14 rounded-2xl bg-emerald-50 flex items-center justify-center mb-6 ring-1 ring-emerald-100">
+                <div className="w-14 h-14 rounded-2xl bg-amber-50 flex items-center justify-center mb-6 ring-1 ring-amber-100">
                   <svg
-                    className="w-7 h-7 text-emerald-600"
+                    className="w-7 h-7 text-amber-600"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -240,3 +240,4 @@ export default function WhyChooseUsSection() {
     </section>
   );
 }
+

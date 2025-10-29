@@ -4,17 +4,17 @@ import { motion } from "framer-motion";
 // Decorative elements
 const Blur = () => (
   <>
-    <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-emerald-50/40 to-transparent blur-3xl opacity-60" />
+    <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-yellow-100/30 to-amber-100/20 blur-3xl opacity-70" />
+    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-orange-100/30 to-amber-100/20 blur-3xl opacity-60" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-amber-100/20 to-transparent blur-3xl opacity-50" />
   </>
 );
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-28 bg-[#041f1c] overflow-hidden">
+    <section id="about" className="relative py-28 bg-gradient-to-br from-white via-amber-50/30 to-orange-50/20 overflow-hidden">
       <Blur />
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 to-transparent mix-blend-overlay" />
       <div className="mx-auto max-w-7xl px-6 lg:px-10">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -26,7 +26,7 @@ export default function AboutSection() {
             stiffness: 50,
             damping: 15,
           }}
-          className="rounded-[2.5rem] bg-gradient-to-br from-white to-slate-50/80 ring-1 ring-emerald-100/80 shadow-xl p-12 lg:p-14 backdrop-blur-sm"
+          className="rounded-[2.5rem] bg-gradient-to-br from-white to-slate-50/80 ring-1 ring-amber-100/80 shadow-xl p-12 lg:p-14 backdrop-blur-sm"
         >
           <div className="grid gap-8 lg:gap-12 md:grid-cols-2 items-center">
             {/* Left copy */}
@@ -38,8 +38,8 @@ export default function AboutSection() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <span className="inline-flex items-center gap-2.5 rounded-full bg-emerald-50 px-5 py-2.5 text-sm font-medium text-emerald-700 mb-8 shadow-sm shadow-emerald-100/50">
-                  <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
+                <span className="inline-flex items-center gap-2.5 rounded-full bg-amber-50 px-5 py-2.5 text-sm font-medium text-amber-700 mb-8 shadow-sm shadow-amber-100/50">
+                  <span className="h-1.5 w-1.5 rounded-full bg-amber-500"></span>
                   About Our Clinic
                 </span>
               </motion.div>
@@ -66,7 +66,7 @@ export default function AboutSection() {
                 </div>
                 <div className="ml-4 pl-2">
                   <div className="flex items-center">
-                    <Plus className="w-4 h-4 text-emerald-500 mr-2" />
+                    <Plus className="w-4 h-4 text-amber-500 mr-2" />
                     <span className="text-lg text-slate-600 font-light">
                       Expert Team
                     </span>
@@ -97,14 +97,14 @@ export default function AboutSection() {
                 <div className="mt-10 flex gap-4">
                   <a
                     href="#"
-                    className="inline-flex items-center gap-2 rounded-full bg-emerald-400 px-8 py-3.5 text-[15px] font-semibold tracking-wide text-stone-900 shadow-md shadow-emerald-900/20 transition-all duration-300 hover:bg-emerald-300 hover:-translate-y-0.5"
+                    className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 px-8 py-3.5 text-[15px] font-semibold tracking-wide text-white shadow-lg shadow-amber-500/30 transition-all duration-300 hover:from-amber-400 hover:to-orange-400 hover:-translate-y-0.5"
                   >
                     Learn About Our Clinic{" "}
                     <ArrowRight className="h-4 w-4" strokeWidth={2.5} />
                   </a>
                   <a
                     href="#"
-                    className="inline-flex items-center gap-2 rounded-full border border-emerald-200 px-8 py-3.5 text-[15px] font-medium tracking-wide text-emerald-700 transition-colors duration-300 hover:bg-emerald-50"
+                    className="inline-flex items-center gap-2 rounded-full border border-amber-300 px-8 py-3.5 text-[15px] font-medium tracking-wide text-amber-700 transition-all duration-300 hover:bg-amber-50 hover:border-amber-400"
                   >
                     Meet Our Team
                   </a>
@@ -126,12 +126,12 @@ export default function AboutSection() {
             >
               <div className="relative">
                 {/* Background decorative elements */}
-                <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-100 to-emerald-50 rounded-full blur-2xl opacity-80" />
-                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-tr from-sky-100 to-sky-50 rounded-full blur-2xl opacity-80" />
+                <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-yellow-200/40 to-amber-200/30 rounded-full blur-2xl opacity-70" />
+                <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-tr from-orange-200/40 to-amber-200/30 rounded-full blur-2xl opacity-70" />
 
                 {/* Main image with overlay */}
-                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-emerald-900/10">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent mix-blend-overlay" />
+                <div className="relative rounded-[2rem] overflow-hidden shadow-2xl shadow-amber-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-amber-500/15 to-orange-500/10 mix-blend-overlay" />
                   <img
                     src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=1600&auto=format&fit=crop"
                     alt="Surgical team in operating room"
@@ -141,19 +141,19 @@ export default function AboutSection() {
                 </div>
 
                 {/* Stats overlay */}
-                <div className="absolute -right-5 -bottom-5 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl ring-1 ring-emerald-100/80">
+                <div className="absolute -right-5 -bottom-5 bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-xl ring-1 ring-amber-100/80">
                   <div className="flex gap-4">
                     <div>
-                      <div className="text-3xl font-medium text-emerald-600">
+                      <div className="text-3xl font-medium text-amber-600">
                         10+
                       </div>
                       <div className="text-sm text-slate-600 mt-1">
                         Years of Excellence
                       </div>
                     </div>
-                    <div className="w-px bg-emerald-100" />
+                    <div className="w-px bg-amber-100" />
                     <div>
-                      <div className="text-3xl font-medium text-emerald-600">
+                      <div className="text-3xl font-medium text-amber-600">
                         2K+
                       </div>
                       <div className="text-sm text-slate-600 mt-1">
@@ -170,3 +170,4 @@ export default function AboutSection() {
     </section>
   );
 }
+

@@ -28,6 +28,7 @@ import CystRemovalPage from "./pages/CystRemoval";
 import BlogsPage from "./pages/Blogs";
 import BlogDetailPage from "./pages/BlogDetailPage";
 import GalleryPage from "./pages/Gallery";
+import FounderDetail from "./pages/FounderDetail";
 import RecognitionPage from "./pages/Recognition";
 
 export default function App() {
@@ -79,6 +80,7 @@ function AppInner() {
           <Route path="/blogs/:blogId" element={<BlogDetailPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
           <Route path="/recognition" element={<RecognitionPage />} />
+          <Route path="/founders/:slug" element={<FounderDetail />} />
         </Routes>
       </main>
       <Footer />

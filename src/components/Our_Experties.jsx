@@ -52,19 +52,19 @@ const ExpertiseCards = () => {
   };
 
   return (
-    <div className="w-full py-16 sm:py-20 lg:py-24 bg-[#041f1c] relative overflow-hidden px-8">
+    <div className="w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-amber-50/40 to-orange-50/30 relative overflow-hidden px-8">
       {/* Decorative background elements matching ModernDentistrySection */}
-      <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-20" />
-      <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-15" />
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
+      <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-yellow-100/30 to-amber-100/20 blur-3xl opacity-60" />
+      <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-orange-100/30 to-amber-100/20 blur-3xl opacity-50" />
+      <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 to-transparent mix-blend-overlay" />
 
       <div className="w-full max-w-7xl mx-auto">
         {/* Section Heading */}
         <div className="w-full mb-8 text-center">
-          <h2 className="mt-4 text-3xl md:text-5xl font-light tracking-tight text-white">
+          <h2 className="mt-4 text-3xl md:text-5xl font-light tracking-tight text-stone-900">
             Our <span className="font-medium">Expertise</span>
           </h2>
-          <p className="mt-4 text-white/90 max-w-3xl mx-auto">
+          <p className="mt-4 text-stone-700 max-w-3xl mx-auto">
             Minimally invasive, precision-driven procedures for hernia, gallbladder, proctology, and diabetic foot care—aimed at faster recovery, less pain, and superior outcomes.
           </p>
         </div>
@@ -73,7 +73,7 @@ const ExpertiseCards = () => {
           {cards.map((card, index) => (
             <motion.div
               key={card.id}
-              className="relative rounded-[2rem] overflow-hidden cursor-pointer shadow-xl shadow-emerald-900/20"
+              className="relative rounded-[2rem] overflow-hidden cursor-pointer shadow-xl shadow-amber-500/30"
               style={{
                 width: getCardWidth(index)
               }}
@@ -97,13 +97,13 @@ const ExpertiseCards = () => {
                   alt={card.title}
                   className="w-full h-full object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#041f1c]/50 via-[#041f1c]/40 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
+                <div className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/20 to-orange-500/10 mix-blend-overlay" />
               </motion.div>
 
               {/* Colored Indicator Dot */}
               <motion.div
-                className="absolute top-6 left-6 w-3 h-3 rounded-full bg-emerald-400 shadow-lg ring-2 ring-emerald-400/30"
+                className="absolute top-6 left-6 w-3 h-3 rounded-full bg-gradient-to-r from-yellow-400 to-amber-500 shadow-lg ring-2 ring-amber-400/50"
                 animate={{
                   scale: hoveredIndex === index ? 1.3 : 1
                 }}
@@ -141,7 +141,7 @@ const ExpertiseCards = () => {
                           </p>
 
                           <motion.button
-                            className="bg-emerald-400 hover:bg-emerald-300 text-stone-900 font-semibold px-8 py-3 rounded-full transition-colors w-fit shadow-md shadow-emerald-900/20"
+                            className="bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-white font-semibold px-8 py-3 rounded-full transition-all duration-200 w-fit shadow-lg shadow-amber-500/40"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
                           >
