@@ -12,7 +12,7 @@ const Blur = () => (
 
 export default function AboutSection() {
   return (
-    <section id="about" className="relative py-28 bg-gradient-to-br from-white via-amber-50/30 to-orange-50/20 overflow-hidden">
+    <section id="about" className="relative py-28 bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 overflow-hidden">
       <Blur />
       <div className="absolute inset-0 bg-gradient-to-br from-amber-400/5 to-transparent mix-blend-overlay" />
       <div className="mx-auto max-w-7xl px-6 lg:px-10">

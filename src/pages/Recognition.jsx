@@ -4,8 +4,8 @@ import { Award, Newspaper, CheckCircle } from 'lucide-react';
 
 const Blur = () => (
   <>
-    <div className="absolute top-0 right-0 -z-10 h-[700px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
+    <div className="absolute top-0 right-0 -z-10 h-[700px] w-[600px] rounded-full bg-gradient-to-br from-amber-50 to-orange-50/70 blur-3xl opacity-80" />
+    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-yellow-50 to-amber-50/70 blur-3xl opacity-60" />
   </>
 );
 
@@ -70,11 +70,11 @@ const RecognitionPage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative bg-[#041f1c] text-white overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32"
+        className="relative bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 text-white overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32"
       >
-        <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-400/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 to-transparent mix-blend-overlay" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1 
@@ -83,7 +83,7 @@ const RecognitionPage = () => {
             transition={{ delay: 0.2, type: 'spring' }}
             className="text-4xl md:text-6xl font-light tracking-tight"
           >
-            Recognitions <span className="font-serif italic text-emerald-400">&</span> <span className="font-medium">Achievements</span>
+            Recognitions <span className="font-serif italic text-yellow-300">&</span> <span className="font-medium">Achievements</span>
           </motion.h1>
           <motion.p 
             initial={{ y: 20, opacity: 0 }} 
@@ -106,20 +106,20 @@ const RecognitionPage = () => {
               initial="offscreen"
               whileInView="onscreen"
               viewport={{ once: true, amount: 0.3 }}
-              className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl overflow-hidden group ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+              className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl overflow-hidden group ring-1 ring-amber-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="relative">
                 <img src={item.image} alt={item.title} className="w-full h-64 object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
                 <div className="absolute top-4 right-4">
-                  <span className="inline-flex items-center gap-2 rounded-full bg-emerald-400/100 px-3 py-1 text-sm font-medium text-white ring-1 ring-emerald-400/30 backdrop-blur-sm">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-amber-500/100 px-3 py-1 text-sm font-medium text-white ring-1 ring-amber-400/30 backdrop-blur-sm">
                     <item.icon className="w-4 h-4" />
                     {item.type}
                   </span>
                 </div>
               </div>
               <div className="p-6 sm:p-8">
-                <p className="text-sm font-medium text-emerald-600 mb-2">{item.source}</p>
+                <p className="text-sm font-medium text-amber-600 mb-2">{item.source}</p>
                 <h2 className="text-2xl font-light text-stone-900 mb-3 leading-tight">
                   <span className="font-medium">{item.title.split(':')[0]}</span>{item.title.includes(':') ? ':' : ''}{item.title.split(':').slice(1).join(':')}
                 </h2>

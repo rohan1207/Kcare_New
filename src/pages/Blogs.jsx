@@ -7,8 +7,8 @@ import { Calendar, User, ArrowRight } from 'lucide-react';
 // Decorative background elements from the design system
 const Blur = () => (
   <>
-    <div className="absolute top-0 right-0 -z-10 h-[700px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
+    <div className="absolute top-0 right-0 -z-10 h-[700px] w-[600px] rounded-full bg-gradient-to-br from-amber-50 to-orange-50/70 blur-3xl opacity-80" />
+    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-yellow-50 to-amber-50/70 blur-3xl opacity-60" />
   </>
 );
 
@@ -30,12 +30,12 @@ const BlogsPage = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative bg-[#041f1c] text-white overflow-hidden py-24 sm:py-32"
+        className="relative bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 text-white overflow-hidden py-24 sm:py-32"
       >
         {/* Decorative elements */}
-        <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-400/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 to-transparent mix-blend-overlay" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1 
@@ -67,7 +67,7 @@ const BlogsPage = () => {
               initial="offscreen"
               whileInView="onscreen"
               viewport={{ once: true, amount: 0.3 }}
-              className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl overflow-hidden group flex flex-col ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+              className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl overflow-hidden group flex flex-col ring-1 ring-amber-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
             >
               <div className="relative">
                 <img src={blog.images[0]} alt={blog.title} className="w-full h-56 object-cover" />
@@ -90,7 +90,7 @@ const BlogsPage = () => {
                 <p className="text-stone-600/90 leading-relaxed mb-6 line-clamp-3 font-light">{blog.summary}</p>
                 <Link 
                   to={`/blogs/${blog.id}`}
-                  className="mt-auto inline-flex items-center gap-2 text-emerald-600 font-semibold group-hover:text-emerald-700 transition-colors duration-300"
+                  className="mt-auto inline-flex items-center gap-2 text-amber-600 font-semibold group-hover:text-amber-700 transition-colors duration-300"
                 >
                   Read More <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>

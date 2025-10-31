@@ -7,9 +7,9 @@ import { Calendar, User, ArrowLeft } from 'lucide-react';
 // Decorative background elements from the design system
 const Blur = () => (
   <>
-    <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-emerald-50/40 to-transparent blur-3xl opacity-60" />
+    <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-amber-50 to-orange-50/70 blur-3xl opacity-80" />
+    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-yellow-50 to-amber-50/70 blur-3xl opacity-60" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10 h-[800px] w-[800px] rounded-full bg-gradient-to-r from-amber-50/40 to-transparent blur-3xl opacity-60" />
   </>
 );
 
@@ -24,7 +24,7 @@ const BlogDetailPage = () => {
         <div>
           <h1 className="text-4xl font-medium text-stone-900">404</h1>
           <p className="text-lg text-stone-600 mt-2 font-light">Blog post not found.</p>
-          <Link to="/blogs" className="mt-6 inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700">
+          <Link to="/blogs" className="mt-6 inline-flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700">
             <ArrowLeft className="w-4 h-4" /> Back to all blogs
           </Link>
         </div>
@@ -44,7 +44,7 @@ const BlogDetailPage = () => {
         return (
           <ul key={index} className="space-y-4 list-disc list-inside pl-2 mb-6 text-stone-600/90">
             {contentItem.items.map((item, i) => (
-              <li key={i} className="text-lg leading-relaxed font-light marker:text-emerald-500">{item}</li>
+              <li key={i} className="text-lg leading-relaxed font-light marker:text-amber-500">{item}</li>
             ))}
           </ul>
         );
@@ -76,16 +76,16 @@ const BlogDetailPage = () => {
             initial={{ y: 50, opacity: 0 }} 
             animate={{ y: 0, opacity: 1 }} 
             transition={{ duration: 0.7, delay: 0.2, type: 'spring' }}
-            className="bg-white/90 backdrop-blur-sm rounded-t-[2rem] p-8 md:p-12 shadow-2xl ring-1 ring-emerald-100/80"
+            className="bg-white/90 backdrop-blur-sm rounded-t-[2rem] p-8 md:p-12 shadow-2xl ring-1 ring-amber-100/80"
           >
             <h1 className="text-3xl md:text-5xl font-light text-stone-900 mb-6"><span className="font-medium">{blog.title.split(' ').slice(0, 2).join(' ')}</span> {blog.title.split(' ').slice(2).join(' ')}</h1>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-stone-500 mb-8 border-b border-stone-200/80 pb-6">
               <div className="flex items-center space-x-2">
-                <User className="w-5 h-5 text-emerald-600" />
+                <User className="w-5 h-5 text-amber-600" />
                 <span className="font-medium text-stone-700">{blog.author}</span>
               </div>
               <div className="flex items-center space-x-2">
-                <Calendar className="w-5 h-5 text-emerald-600" />
+                <Calendar className="w-5 h-5 text-amber-600" />
                 <span className="font-medium text-stone-700">{new Date(blog.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
               </div>
             </div>
@@ -102,19 +102,19 @@ const BlogDetailPage = () => {
           <h2 className="text-3xl font-light text-stone-900 mb-8 text-center"><span className="font-medium">Continue</span> Reading</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {relatedBlogs.map(related => (
-              <Link to={`/blogs/${related.id}`} key={related.id} className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl overflow-hidden group ring-1 ring-emerald-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+              <Link to={`/blogs/${related.id}`} key={related.id} className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl overflow-hidden group ring-1 ring-amber-100/80 hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
                 <div className="relative h-48 w-full overflow-hidden">
                   <img src={related.images[0]} alt={related.title} className="w-full h-full object-cover" />
                 </div>
                 <div className="p-6">
-                  <h3 className="text-lg font-light text-stone-800 mb-2 group-hover:text-emerald-700 transition-colors duration-300"><span className="font-medium">{related.title.split(' ')[0]}</span> {related.title.split(' ').slice(1).join(' ')}</h3>
+                  <h3 className="text-lg font-light text-stone-800 mb-2 group-hover:text-amber-700 transition-colors duration-300"><span className="font-medium">{related.title.split(' ')[0]}</span> {related.title.split(' ').slice(1).join(' ')}</h3>
                   <p className="text-sm text-stone-600/90 line-clamp-2 font-light">{related.summary}</p>
                 </div>
               </Link>
             ))}
           </div>
           <div className="text-center mt-12">
-            <Link to="/blogs" className="inline-flex items-center gap-2 text-emerald-600 font-semibold hover:text-emerald-700 transition-colors duration-300">
+            <Link to="/blogs" className="inline-flex items-center gap-2 text-amber-600 font-semibold hover:text-amber-700 transition-colors duration-300">
               <ArrowLeft className="w-4 h-4" /> Back to All Articles
             </Link>
           </div>

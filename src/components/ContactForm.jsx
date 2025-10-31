@@ -62,7 +62,7 @@ export default function ContactForm() {
   };
 
   const inputClass = (field) =>
-    `w-full p-3.5 bg-slate-50/70 border border-stone-200/80 rounded-lg text-sm font-light text-stone-800 placeholder-stone-500/90 focus:ring-1 focus:ring-emerald-400 focus:border-emerald-400 transition-colors duration-300 ${
+    `w-full p-3.5 bg-slate-50/70 border border-stone-200/80 rounded-lg text-sm font-light text-stone-800 placeholder-stone-500/90 focus:ring-1 focus:ring-amber-500 focus:border-amber-500 transition-colors duration-300 ${
       errors[field] ? "border-red-400" : ""
     }`;
 
@@ -73,7 +73,7 @@ export default function ContactForm() {
         <button
           onClick={() => setIsWhatsApp(false)}
           className={`w-1/2 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
-            !isWhatsApp ? "bg-white text-emerald-700 shadow-sm" : "text-stone-600"
+            !isWhatsApp ? "bg-white text-amber-700 shadow-sm" : "text-stone-600"
           }`}
         >
           Via Email
@@ -81,7 +81,7 @@ export default function ContactForm() {
         <button
           onClick={() => setIsWhatsApp(true)}
           className={`w-1/2 py-2.5 text-sm font-medium rounded-full transition-all duration-300 ${
-            isWhatsApp ? "bg-white text-emerald-700 shadow-sm" : "text-stone-600"
+            isWhatsApp ? "bg-white text-amber-700 shadow-sm" : "text-stone-600"
           }`}
         >
           Via WhatsApp
@@ -117,7 +117,7 @@ export default function ContactForm() {
             whileTap={{ scale: 0.98 }}
             type="button"
             onClick={sendToWhatsapp}
-            className="w-full flex items-center justify-center gap-2 bg-emerald-500 text-white py-3.5 rounded-lg hover:bg-emerald-600 transition-all font-semibold shadow-lg shadow-emerald-500/20"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white py-3.5 rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all font-semibold shadow-lg shadow-amber-500/30"
           >
             <MessageSquare className="w-5 h-5" />
             Book via WhatsApp
@@ -127,7 +127,7 @@ export default function ContactForm() {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             type="submit"
-            className="w-full flex items-center justify-center gap-2 bg-emerald-500 text-white py-3.5 rounded-lg hover:bg-emerald-600 transition-all font-semibold shadow-lg shadow-emerald-500/20"
+            className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-amber-500 to-orange-500 text-white py-3.5 rounded-lg hover:from-amber-600 hover:to-orange-600 transition-all font-semibold shadow-lg shadow-amber-500/30"
           >
             <Send className="w-5 h-5" />
             Book Appointment
@@ -135,7 +135,7 @@ export default function ContactForm() {
         )}
       </form>
 
-      {status && <p className="mt-4 text-center text-sm text-emerald-700">{status}</p>}
+      {status && <p className="mt-4 text-center text-sm text-amber-700">{status}</p>}
     </div>
   );
 }

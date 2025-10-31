@@ -6,8 +6,8 @@ import ContactForm from "../components/ContactForm";
 
 const Blur = () => (
   <>
-    <div className="absolute top-0 right-0 -z-10 h-[700px] w-[600px] rounded-full bg-gradient-to-br from-emerald-50 to-sky-50/70 blur-3xl opacity-80" />
-    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-blue-50 to-emerald-50/70 blur-3xl opacity-60" />
+    <div className="absolute top-0 right-0 -z-10 h-[700px] w-[600px] rounded-full bg-gradient-to-br from-amber-50 to-orange-50/70 blur-3xl opacity-80" />
+    <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-yellow-50 to-amber-50/70 blur-3xl opacity-60" />
   </>
 );
 
@@ -27,11 +27,11 @@ export default function ContactUs() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
-        className="relative bg-[#041f1c] text-white overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32"
+        className="relative bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 text-white overflow-hidden pt-32 pb-24 sm:pt-40 sm:pb-32"
       >
-        <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-400/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-40 h-40 bg-emerald-500/10 rounded-full blur-3xl" />
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-600/10 to-transparent mix-blend-overlay" />
+        <div className="absolute top-0 right-0 w-40 h-40 bg-yellow-400/20 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-40 h-40 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 to-transparent mix-blend-overlay" />
         
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.h1 
@@ -58,7 +58,7 @@ export default function ContactUs() {
           variants={fadeInUp}
           initial="hidden"
           animate="visible"
-          className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl ring-1 ring-emerald-100/80 p-6 sm:p-8"
+          className="bg-white/90 backdrop-blur-sm rounded-[2rem] shadow-xl ring-1 ring-amber-100/80 p-6 sm:p-8"
         >
           <ContactInfo />
         </motion.div>
@@ -74,7 +74,7 @@ export default function ContactUs() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.3 }}
-            className="lg:col-span-3 bg-white/90 backdrop-blur-sm rounded-[2rem] p-8 shadow-lg ring-1 ring-emerald-100/80"
+            className="lg:col-span-3 bg-white/90 backdrop-blur-sm rounded-[2rem] p-8 shadow-lg ring-1 ring-amber-100/80"
           >
             <h2 className="text-3xl font-light text-stone-900 mb-1">
               Schedule an <span className="font-medium">Appointment</span>
@@ -91,15 +91,15 @@ export default function ContactUs() {
             viewport={{ once: true, amount: 0.3 }}
             className="lg:col-span-2 space-y-8"
           >
-            <div className="bg-white/90 backdrop-blur-sm rounded-[2rem] p-8 shadow-lg ring-1 ring-emerald-100/80">
+            <div className="bg-white/90 backdrop-blur-sm rounded-[2rem] p-8 shadow-lg ring-1 ring-amber-100/80">
               <h3 className="text-2xl font-light text-stone-900 mb-4 flex items-center gap-3">
-                <MapPin className="w-6 h-6 text-emerald-500" />
+                <MapPin className="w-6 h-6 text-amber-600" />
                 Our Location
               </h3>
               <div className="relative w-full h-64 rounded-xl overflow-hidden group cursor-pointer" onClick={() => window.open("https://www.google.com/maps/place/Camp,+Pune,+Maharashtra", "_blank")}>
                 {isMapLoading && (
                   <div className="absolute inset-0 flex items-center justify-center bg-slate-100 z-10">
-                    <div className="w-8 h-8 border-2 border-emerald-400 border-t-transparent rounded-full animate-spin"></div>
+                    <div className="w-8 h-8 border-2 border-amber-500 border-t-transparent rounded-full animate-spin"></div>
                   </div>
                 )}
                 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/20 transition-all duration-300"></div>
@@ -115,9 +115,9 @@ export default function ContactUs() {
               </div>
             </div>
 
-            <div className="bg-white/90 backdrop-blur-sm rounded-[2rem] p-8 shadow-lg ring-1 ring-emerald-100/80">
+            <div className="bg-white/90 backdrop-blur-sm rounded-[2rem] p-8 shadow-lg ring-1 ring-amber-100/80">
               <h3 className="text-2xl font-light text-stone-900 mb-4 flex items-center gap-3">
-                <Clock className="w-6 h-6 text-emerald-500" />
+                <Clock className="w-6 h-6 text-amber-600" />
                 Opening Hours
               </h3>
               <div className="space-y-3 text-stone-600 font-light">

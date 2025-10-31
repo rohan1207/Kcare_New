@@ -52,7 +52,7 @@ const ExpertiseCards = () => {
   };
 
   return (
-    <div className="w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-white via-amber-50/40 to-orange-50/30 relative overflow-hidden px-8">
+    <div className="w-full py-16 sm:py-20 lg:py-24 bg-gradient-to-br from-amber-500 via-orange-500 to-amber-600 relative overflow-hidden px-8">
       {/* Decorative background elements matching ModernDentistrySection */}
       <div className="absolute top-0 right-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-br from-yellow-100/30 to-amber-100/20 blur-3xl opacity-60" />
       <div className="absolute bottom-0 left-0 -z-10 h-[600px] w-[600px] rounded-full bg-gradient-to-tr from-orange-100/30 to-amber-100/20 blur-3xl opacity-50" />
